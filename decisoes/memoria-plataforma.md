@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: ab2d7709-f116-409b-a64f-d0018981c666
-  modified: 2026-09-29T01:52:23.609Z
+  modified: 2026-09-29T13:50:33.614Z
 ---
 
 Em 25/09/2026 o Pedro decidiu construir um **sistema próprio de gestão para a M&O**, separado do
@@ -146,8 +146,38 @@ vendas" e "Quadro branco" a pedido dele.
 - **Não rodou ao vivo:** o caminho do Drive dentro do claude.ai. O formato da resposta foi
   conferido por chamada real; a exportação de Docs e Slides em PDF, não.
 
+**v10 publicada em 29/09 no mesmo link** (registro em
+`pedro/feedbacks/2026-09-29-plataforma-mo-cliente-com-a-cara-dele-historico-quadro-e-funil.md`,
+pedidos 1 a 5).
+- **Cadastro do cliente** com logo, ícone, cores lidas do logo (ele escolhe a principal, e o painel
+  nasce no tema da marca) e nicho. O ícone aparece no lado do time.
+- **Aba Sobre**, só do time, logo depois do QG: o que a empresa faz, nicho, o que precisa da M&O,
+  objetivos, limitações de hoje e anotações. A M&O veio preenchida pela skill `mo-agency`.
+- **O que o cliente vê na produção:** uma chave por etapa, por cliente, para posts e vídeos. Por
+  padrão ele vê a aprovação dele, o publicado e, no vídeo, gravação, edição e aprovação da edição. As
+  etapas escondidas em sequência viram uma coluna só: "Em produção", "Em revisão" ou "Aprovado".
+- **Cliente ativo:** adiciona links e edita os que ele pôs; link e post dele avisam o responsável da
+  M&O. Mudar o que é da M&O continua pelo "Pedir algo".
+- **Histórico**, só para os sócios: quem, o quê, onde e quando, do time e do cliente, juntando edições
+  seguidas do mesmo item. Não notifica. No protótipo some ao recarregar.
+- **Texto duplicado consertado** no título do funil, do quadro, das páginas e das peças. A causa era o
+  Preact redesenhando o título por cima do que o navegador já tinha escrito.
+- **Drive:** o conector entrega a lista em partes, e a prévia agora segue as partes seguintes.
+
+**v11 publicada em 29/09 no mesmo link** (mesmo registro, pedidos 6 a 9).
+- **Quadro:** sete modelos de desenho (funil, pirâmide, ciclo, processo em etapas, comparação, matriz
+  de prioridade e persona), 16 no total, e os trapézios de funil e de pirâmide como formas.
+- **Mapa mental dos dois lados.** O ramo novo vai para o lado com menos ramos, a ideia central
+  selecionada mostra um "+" de cada lado, e o ramo troca de lado pelo botão "Outro lado" ou arrastado
+  por cima da ideia central. O lado fica gravado (`side` no elemento), para nenhum ramo pular ao apagar
+  ou reordenar.
+- **Cor livre** em toda paleta do quadro, com as três últimas cores guardadas no navegador de quem usa.
+- **Funil em dois estilos,** "Só o caminho" (sem número nenhum, para mostrar ao cliente) e "Com
+  números", trocados no topo do funil. Três modelos no estilo só o caminho. Funil antigo continua com
+  números.
+
 **No GitHub desde 29/09:** repositório privado `github.com/pedromustafags-ai/plataforma-mo`, cópia local em
-`~/Downloads/plataforma-mo`. Tem a página publicada, a fonte da v1 à v9 (`fonte/`, com `build.py` que remonta
+`~/Downloads/plataforma-mo`. Tem a página publicada, a fonte da v1 à v11 (`fonte/`, com `build.py` que remonta
 a página a partir de `src.html` e dos logos em `fonte/logo/`), as falas do Pedro, os handoffs, esta memória e as
 pesquisas (`decisoes/`). Ao mudar a plataforma, atualizar também o repositório.
 

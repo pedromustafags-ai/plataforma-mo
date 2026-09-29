@@ -5,7 +5,7 @@ canal: geral — produto interno da M&O, fora do escopo do MVB-OS
 tipo: diretriz — pedidos novos e um defeito, depois de navegar a v9
 autor: Pedro
 peso: lei
-status: novo — pedidos 1 a 5 aplicados na v10, publicada em 29/09 no mesmo link; os pedidos 6 a 9 (quadro e funil) entram na v11
+status: destilado — pedidos 1 a 5 aplicados na v10 e 6 a 9 na v11, as duas publicadas em 29/09 no mesmo link; a regra mora no próprio protótipo e na memória plataforma-mo-sistema-proprio, porque não há manual do MVB-OS para a plataforma
 relacionado: pedro/feedbacks/2026-09-28-plataforma-mo-cor-do-cliente-formato-do-post-mapa-livre.md, pedro/feedbacks/2026-09-28-plataforma-mo-funil-visual-como-funnelytics.md, pedro/feedbacks/2026-09-28-plataforma-mo-quadro-como-miro-e-menu-legivel.md, memória plataforma-mo-sistema-proprio
 quando-puxar: antes de mexer no cadastro do cliente, no painel do cliente, na esteira, no quadro branco ou no funil
 ---
@@ -120,4 +120,28 @@ DECISÕES DA V10 (29/09), ditas ao Pedro na entrega:
   das tarefas, posts e roteiros. O texto dentro do quadro branco não tinha o defeito.
 - **Drive:** o conector entrega a lista de arquivos em partes (a pasta dos carrosséis veio em duas), e a
   prévia agora segue as partes seguintes.
+
+DECISÕES DA V11 (29/09), ditas ao Pedro na entrega:
+
+- **Modelos do quadro:** entraram sete desenhos que servem para qualquer cliente, logo depois do mapa
+  mental: funil em quatro camadas, pirâmide, ciclo, processo em etapas, comparação (antes e depois),
+  matriz de prioridade (impacto e esforço) e persona. São 16 modelos ao todo. Os desenhos usam a paleta
+  da M&O, e o funil e a pirâmide trouxeram duas formas novas para a barra: os trapézios de funil e de
+  pirâmide.
+- **Mapa mental dos dois lados:** os ramos se dividem entre os dois lados da ideia central, e o ramo novo
+  vai para o lado que tem menos. Com a ideia central selecionada aparece um "+" de cada lado. O ramo troca
+  de lado pelo botão "Outro lado" ou arrastado por cima da ideia central, e o lado fica gravado, então
+  apagar ou reordenar não faz ramo nenhum pular. As setas do teclado seguem o lado de cada ramo.
+- **A ideia central móvel:** ela já se movia desde a v9, levando o mapa inteiro junto. O que prendia era
+  o mapa só crescer para a direita, e é isso que a v11 resolve.
+- **Cor livre:** toda paleta do quadro ganhou uma bolinha colorida que abre o seletor de qualquer cor,
+  por código ou pelo conta-gotas do sistema: post-it, fundo da forma, cor do texto e da seta, ramo do mapa
+  e caneta. As três últimas cores escolhidas ficam à mão, guardadas no navegador de quem usa. O texto em
+  cima de cor escura clareia sozinho, e a ponta da seta sai da mesma cor da linha.
+- **Funil em dois estilos:** "Só o caminho" desenha etapas e setas, sem número nenhum, para mostrar ao
+  cliente; "Com números" é o funil que já existia, com as taxas, o custo por reunião agendada e a
+  previsão do mês. O estilo troca no topo do funil a qualquer hora, e o funil novo escolhe o estilo antes
+  do modelo. No estilo só o caminho há três modelos: caminho simples, caminho com qualificação e
+  lançamento. A M&O ganhou um exemplo, "Caminho do lead, para mostrar ao cliente", e os funis que já
+  existiam continuam com os números.
 

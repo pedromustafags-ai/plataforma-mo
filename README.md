@@ -4,7 +4,7 @@ Protótipo clicável da plataforma de gestão da M&O Company, com a central do t
 cliente, pensada para substituir Notion, ClickUp e Trello. Os dados são de exemplo, tirados do
 trabalho real da M&O, e nada é salvo em servidor: recarregar a página volta ao começo.
 
-- **No ar:** https://claude.ai/artifact/8isLH3dQCDxv73eQGtguWV (versão 10, 29/09/2026)
+- **No ar:** https://claude.ai/artifact/8isLH3dQCDxv73eQGtguWV (versão 11, 29/09/2026)
 - **Este repositório** guarda a cópia exata da versão publicada, para versionar e para servir de ponto
   de partida da versão de verdade.
 
@@ -25,7 +25,7 @@ Depois abra http://localhost:8000 no navegador e escolha um dos acessos de exemp
 |---|---|
 | `index.html` | A página publicada, idêntica à que está no ar. |
 | `img/` | As 51 artes dos carrosséis da M&O usadas nos posts de exemplo. |
-| `fonte/` | A fonte de todas as versões, da v1 à v10, com os scripts que montaram cada uma. O guia está em `fonte/COMO-FUNCIONA.md`. |
+| `fonte/` | A fonte de todas as versões, da v1 à v11, com os scripts que montaram cada uma. O guia está em `fonte/COMO-FUNCIONA.md`. |
 | `decisoes/` | O porquê de cada escolha: as falas do Pedro volta a volta, os handoffs, a memória da plataforma e as pesquisas. O índice está em `decisoes/README.md`. |
 
 ## O que só funciona dentro do claude.ai
@@ -37,7 +37,7 @@ avisa:
 - o link do Drive que vira prévia do post;
 - o copiloto, a ata por IA e o desenho por IA no quadro e no funil.
 
-## O que tem, até a versão 10
+## O que tem, até a versão 11
 
 - Central do time: meu dia, caixa de entrada, visão geral, tarefas, postagens, roteiros, calendário,
   reuniões, quadros, funis, processos internos, equipe e automações.
@@ -46,8 +46,10 @@ avisa:
 - Esteira de produção com passagem automática de etapa, e aprovação do cliente pelo celular.
 - Post com 8 formatos e uma prévia que recebe imagem, PDF, ZIP, vídeo ou link.
 - Roteiro com 10 modelos ou em texto livre.
-- Funil no padrão do Funnelytics, com o custo de cada reunião agendada.
-- Quadro branco no padrão do Miro, com mapa mental de posição livre.
+- Funil no padrão do Funnelytics, em dois estilos: só o caminho, para mostrar ao cliente, ou com o
+  custo de cada reunião agendada.
+- Quadro branco no padrão do Miro, com 16 modelos (entre eles funil, pirâmide, ciclo e matriz de
+  prioridade), mapa mental dos dois lados com posição livre, e cor livre em todas as paletas.
 - Cadastro do cliente com logo, ícone, cores e nicho, e uma aba Sobre com a bio do cliente, só do time.
 - O cliente vê na produção só as etapas que o time liga para ele, adiciona os próprios links e avisa o
   time do que faz.
@@ -88,14 +90,17 @@ Todas publicadas no mesmo link, entre 25 e 29/09/2026. O detalhe de cada uma est
   adiciona e edita os próprios links, e o time é avisado; o Histórico registra quem mudou o quê, sem
   notificar; o título do funil, do quadro, das páginas e das peças parou de duplicar o texto; a prévia
   pelo Drive segue as partes da lista de arquivos.
+- **v11 (29/09):** o quadro ganha sete modelos de desenho (funil, pirâmide, ciclo, processo em etapas,
+  comparação, matriz de prioridade e persona) e os trapézios de funil e de pirâmide como formas; o mapa
+  mental cresce para os dois lados da ideia central, e cada ramo troca de lado pelo botão Outro lado ou
+  arrastado por cima dela; toda paleta do quadro ganha uma bolinha de cor livre, com as três últimas
+  cores à mão; o funil ganha o estilo Só o caminho, com etapas e setas e sem número nenhum, ao lado do
+  Com números, e três modelos nesse estilo.
 
 ## O que está em aberto
 
-- O Pedro testar a v10 dentro do claude.ai, e o link de pasta do Drive virando prévia do post (esse
+- O Pedro testar a v11 dentro do claude.ai, e o link de pasta do Drive virando prévia do post (esse
   caminho não rodou ao vivo; a parte do conector foi conferida de fora em 29/09).
-- A v11, pedida em 29/09: mais modelos no quadro (funil, infográficos), mapa mental dos dois lados com a
-  ideia central móvel, cor livre além das seis de cada paleta, e modelos de funil por estilo de desenho
-  (só o caminho, ou com o cálculo no fim).
 - Qual falta do quadro vem depois: cursores ao vivo, comentários, votação com cronômetro, agrupar e
   guias de alinhamento, exportar.
 - Se o TikTok entra como fonte de tráfego no funil dos clientes.

@@ -1,0 +1,6 @@
+/* v11: cor livre, estilo do funil */
+.sw-free{position:relative;display:inline-block;vertical-align:middle;cursor:pointer;overflow:hidden;background:conic-gradient(from 0deg,#E4572E,#F5C518,#1E7A4C,#0E7480,#2459C7,#6D3FC0,#C0392B,#E4572E)}
+.sw-free input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;border:0;padding:0;margin:0}
+.fn-mode button{height:26px;padding:0 10px}
+.nf-style{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.nf-style small{font-size:12.5px;line-height:1.4}

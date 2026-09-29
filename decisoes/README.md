@@ -33,6 +33,8 @@ Cada arquivo traz as falas dele, literais, e as leis que saíram delas.
 - `handoff-2026-09-28-2259.md`: a v9, com o que não rodou ao vivo e a ordem das pendências.
 - `handoff-2026-09-29-0926.md`: a subida para este repositório, e o passo a passo para atualizá-lo a cada
   versão nova.
+- `handoff-2026-09-29-1050.md`: a v10 e a v11, com os defeitos achados no teste e o que continua sem rodar
+  ao vivo.
 
 ## As pesquisas desta volta (`pesquisas/`)
 

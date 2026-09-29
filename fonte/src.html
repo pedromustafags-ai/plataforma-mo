@@ -1366,6 +1366,12 @@ label.btn,.drop,.sw-lg,.idv-btn{position:relative}
 .hist-row .hist-t{min-width:0;overflow-wrap:anywhere}
 .hist-row .tag{vertical-align:1px}
 .hist-row .when{font:500 12px var(--mono);color:var(--text-3);padding-top:2px}
+/* v11: cor livre, estilo do funil */
+.sw-free{position:relative;display:inline-block;vertical-align:middle;cursor:pointer;overflow:hidden;background:conic-gradient(from 0deg,#E4572E,#F5C518,#1E7A4C,#0E7480,#2459C7,#6D3FC0,#C0392B,#E4572E)}
+.sw-free input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;border:0;padding:0;margin:0}
+.fn-mode button{height:26px;padding:0 10px}
+.nf-style{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.nf-style small{font-size:12.5px;line-height:1.4}
 </style>
 
 <div id="app"></div>
@@ -1803,9 +1809,9 @@ function App() {
     renameBoard: (id, title) => commit(d => { d.boards.find(x => x.id === id).title = title; }),
     addBoard: clientId => { const id = uid('b'); commit(d => d.boards.unshift({ id, clientId: clientId || null, title: 'Quadro sem título', by: me ? me.id : 'pedro', at: off(0), els: [] }), 'Quadro criado'); return id; },
     setFunnel: (id, patch) => commit(d => { Object.assign(d.funnels.find(x => x.id === id), patch, { at: off(0) }); }),
-    addFunnel: f => { const id = uid('f'); const base = f.tpl === 'vsl' ? tplVSL(id, null) : f.tpl === 'captura' ? tplCaptura(id, null) : f.tpl === 'qualif' ? tplQualif(id, null) : { currency: 'US$', nodes: [], edges: [], note: '' };
-      const title = f.title.trim() || (f.tpl === 'vsl' ? 'VSL com upsell e downsell' : f.tpl === 'qualif' ? 'Funil de vendas' : 'Funil sem título');
-      commit(d => d.funnels.unshift({ ...base, id, clientId: f.clientId || null, tpl: false, title, by: me ? me.id : 'pedro', at: off(0) }), 'Funil criado'); return id; },
+    addFunnel: f => { const id = uid('f'); const base = FN_PATH[f.tpl] ? FN_PATH[f.tpl](id) : f.tpl === 'vsl' ? tplVSL(id, null) : f.tpl === 'captura' ? tplCaptura(id, null) : f.tpl === 'qualif' ? tplQualif(id, null) : { currency: 'US$', nodes: [], edges: [], note: '' };
+      const title = f.title.trim() || base.title || 'Funil sem título';
+      commit(d => d.funnels.unshift({ ...base, id, clientId: f.clientId || null, tpl: false, style: f.style === 'path' ? 'path' : 'calc', title, by: me ? me.id : 'pedro', at: off(0) }), 'Funil criado'); return id; },
     setMeetingNote: (key, note) => commit(d => { d.meetingNotes[key] = note; }),
     linkMeeting: (key, cid) => commit(d => { d.meetingClient[key] = cid; }),
     createTasksFromMeeting: (key, list) => commit(d => { const ids = list.map(o => { const id = uid('t'); d.tasks.unshift({ id, type: 'interna', priority: 'media', checklist: [], comments: [], changeReq: false, status: 'todo', since: off(0), meeting: key, ...o }); return id; }); d.meetingNotes[key].created = list.length; d.meetingNotes[key].taskIds = ids; }, `${plural(list.length, 'tarefa criada', 'tarefas criadas')} a partir da reunião`),
@@ -2690,6 +2696,7 @@ function seedV2() {
         { id: 'e4', from: 'n3', to: 'n4', rate: 70 }, { id: 'e5', from: 'n4', to: 'n5', rate: 35 }, { id: 'e6', from: 'n5', to: 'n6', rate: 55 }, { id: 'e7', from: 'n6', to: 'n7', rate: 25 }] },
     tplVSL('f2', null),
     tplCaptura('f3', null),
+    { ...FN_PATH.caminho('f4'), clientId: 'mo', title: 'Caminho do lead, para mostrar ao cliente', at: off(-2) },
   ];
   const team = ['Pedro Mustafa', 'Bruno', 'Felipe', 'Vinícius'].map(name => ({ name }));
   const meetings = [
@@ -3107,7 +3114,7 @@ function FunnelsList({ clientId }) {
     <div class="bgrid">${list.map(f => { const c = computeFunnel(f.nodes, f.edges); return html`<button class="bcard" key=${f.id} onClick=${() => go({ v: 'funnel', id: f.id })}>
       <div class="bthumb"><${FunnelThumb} f=${f} /></div>
       <span class="bt">${f.title}</span>
-      <span class="bd">${f.clientId ? html`<${CChip} id=${f.clientId} />` : html`<span class="tag">MODELO</span>`}<span>${c.t.meetings ? `${money(c.t.cpMeet, f.currency)} por reunião` : c.t.revenue ? `ROAS ${nf(c.t.roas, 1)}` : plural(f.nodes.length, 'etapa')}</span></span></button>`; })}
+      <span class="bd">${f.clientId ? html`<${CChip} id=${f.clientId} />` : html`<span class="tag">MODELO</span>`}<span>${f.style === 'path' ? `Só o caminho · ${plural(f.nodes.length, 'etapa')}` : c.t.meetings ? `${money(c.t.cpMeet, f.currency)} por reunião` : c.t.revenue ? `ROAS ${nf(c.t.roas, 1)}` : plural(f.nodes.length, 'etapa')}</span></span></button>`; })}
       ${list.length === 0 && html`<div class="card empty" style="grid-column:1/-1">Nenhum funil ainda.</div>`}</div>
   </div>`;
 }
@@ -3124,7 +3131,8 @@ function FunnelPage({ id }) {
       ${f.clientId ? html`<${CChip} id=${f.clientId} />` : html`<span class="tag">MODELO</span>`}
       <${FavBtn} k=${'funnel:' + f.id} />
       <span class="spacer"></span>
-      <label class="sr" for="fn-cur">Moeda</label><select id="fn-cur" class="sel" style="width:auto;height:30px;font-size:13px" value=${f.currency} onChange=${e => act.setFunnel(f.id, { currency: e.target.value })}><option value="US$">US$</option><option value="R$">R$</option><option value="€">€</option></select>
+      <div class="seg fn-mode" role="group" aria-label="Estilo do funil">${[['path', 'Só o caminho', 'Etapas e setas, sem número nenhum. Bom para apresentar ao cliente.'], ['calc', 'Com números', 'Taxas, custo por reunião agendada e previsão do mês.']].map(([k, l, t]) => html`<button key=${k} class=${cx((f.style || 'calc') === k && 'on')} aria-pressed=${(f.style || 'calc') === k} title=${t} onClick=${() => act.setFunnel(f.id, { style: k })}>${l}</button>`)}</div>
+      ${f.style !== 'path' && html`<label class="sr" for="fn-cur">Moeda</label><select id="fn-cur" class="sel" style="width:auto;height:30px;font-size:13px" value=${f.currency} onChange=${e => act.setFunnel(f.id, { currency: e.target.value })}><option value="US$">US$</option><option value="R$">R$</option><option value="€">€</option></select>`}
     </div>
     <${FunnelEditor} f=${f} key=${f.id} />
   </div>`;
@@ -3137,7 +3145,7 @@ function FunnelEditor({ f }) {
   const [vp, setVp] = useState({ x: 40, y: 60, k: .8 }); const vpRef = useRef(vp); vpRef.current = vp;
   const [sel, setSel] = useState(null); const [link, setLink] = useState(null); const [spaceDown, setSpaceDown] = useState(false); const [goal, setGoal] = useState('40');
   const svgRef = useRef(); const wrapRef = useRef(); const drag = useRef(null);
-  const calc = computeFunnel(nodes, edges); const cur = f.currency;
+  const calc = computeFunnel(nodes, edges); const cur = f.currency; const path = f.style === 'path';
   const by = Object.fromEntries(nodes.map(n => [n.id, n]));
   const persist = (n = nRef.current, e = eRef.current) => act.setFunnel(f.id, { nodes: n, edges: e });
   const setN = (n, keep) => { setNodes(n); nRef.current = n; if (!keep) persist(n, eRef.current); };
@@ -3210,33 +3218,36 @@ function FunnelEditor({ f }) {
         <g transform=${`translate(${vp.x},${vp.y}) scale(${vp.k})`}>
           ${edges.map(e => { const a = by[e.from], b = by[e.to]; if (!a || !b) return null; const g = edgePath(a, b); const on = sel && sel.k === 'edge' && sel.id === e.id; const lab = `${nf(num(e.rate), 1)}% · ${nf(calc.flow[e.id] || 0)}`; const w = lab.length * 7 + 18;
             return html`<g key=${e.id} data-e=${e.id} class="fn-edge"><path d=${g.d} class=${cx('fn-line', on && 'on')} marker-end="url(#fnar)" /><path d=${g.d} stroke="transparent" stroke-width="16" fill="none" />
-              <g transform=${`translate(${g.mx - w / 2},${g.my - 12})`}><rect width=${w} height="24" rx="12" class=${cx('fn-lab', on && 'on')} /><text x=${w / 2} y="16" text-anchor="middle" class="fn-lab-t">${lab}</text></g></g>`; })}
+              ${!path && html`<g transform=${`translate(${g.mx - w / 2},${g.my - 12})`}><rect width=${w} height="24" rx="12" class=${cx('fn-lab', on && 'on')} /><text x=${w / 2} y="16" text-anchor="middle" class="fn-lab-t">${lab}</text></g>`}</g>`; })}
           ${link && by[link.from] && html`<path d=${linkPath(by[link.from], link.x, link.y)} class="fn-line on" fill="none" />`}
-          ${nodes.map(n => html`<${FnNode} key=${n.id} n=${n} on=${!!(sel && sel.k === 'node' && sel.id === n.id)} metric=${metric(n)} leak=${leakOf(n)} />`)}
+          ${nodes.map(n => html`<${FnNode} key=${n.id} n=${n} on=${!!(sel && sel.k === 'node' && sel.id === n.id)} metric=${path ? null : metric(n)} leak=${path ? null : leakOf(n)} />`)}
         </g>
       </svg>
-      ${calc.cycle && html`<div class="cv-warn">Tem uma volta no funil (uma etapa que aponta para trás). As etapas da volta ficam fora da conta.</div>`}
+      ${calc.cycle && !path && html`<div class="cv-warn">Tem uma volta no funil (uma etapa que aponta para trás). As etapas da volta ficam fora da conta.</div>`}
       <div class="cv-zoom"><button class="tl" aria-label="Diminuir zoom" onClick=${() => zoomBy(1 / 1.2)}><${Icon} n="minus" s=${16} /></button><button class="tl pct" onClick=${fit} title="Ajustar à tela">${Math.round(vp.k * 100)}%</button><button class="tl" aria-label="Aumentar zoom" onClick=${() => zoomBy(1.2)}><${Icon} n="plus" s=${16} /></button></div>
-      <div class="fn-forecast" aria-label="Previsão do mês">
+      ${!path && html`<div class="fn-forecast" aria-label="Previsão do mês">
         ${[['Custo total', money(T.cost, cur)], ['Visitas', nf(T.visits)], ['Leads', nf(T.leads)], ['Reuniões agendadas', nf(T.meetings, 1)], ['Custo por reunião agendada', money(T.cpMeet, cur), 'goal'], ['Custo por lead', money(T.cpl, cur)], ['Vendas', nf(T.sales, 1)], ['Receita', T.revenue ? money(T.revenue, cur) : '—'], ['ROAS', T.roas ? nf(T.roas, 2) + '×' : '—']].map(([l, v, g]) => html`<div key=${l} class=${cx('fc', g)}><span>${l}</span><b>${v}</b></div>`)}
-      </div>
+      </div>`}
     </div>
     <aside class="fn-insp">
       ${sn ? html`<div class="sec" style="gap:14px"><div class="insp-h"><${Mini} type=${sn.type} s=${34} /><span class="label">${FN[sn.type].g} · ${FN[sn.type].label}</span></div>
           ${FN[sn.type].kind === 'note' ? html`<label class="field"><span>Texto da nota</span><textarea class="ta" id="fn-note" rows="5" style="height:auto;padding:8px 11px;resize:vertical" value=${sn.p.text || ''} onChange=${e => setNode(sn.id, { p: { text: e.target.value } })}></textarea></label>`
             : html`<label class="field"><span>Nome</span><input class="inp" id="fn-name" value=${sn.label} onChange=${e => setNode(sn.id, { label: e.target.value })} /></label>`}
           ${FN[sn.type].sh === 'page' && html`<div class="field"><span>Desenho da página</span><div style="display:flex;gap:8px;flex-wrap:wrap"><label class="btn sm"><${Icon} n="image" s=${14} />${sn.p.shot ? 'Trocar o print' : 'Usar print da página'}<input type="file" accept="image/*" class="sr" onChange=${async e => { const file = e.target.files && e.target.files[0]; e.target.value = ''; if (file) setNode(sn.id, { p: { shot: await fileToUrl(file) } }); }} /></label>${sn.p.shot && html`<button class="btn sm ghost" onClick=${() => setNode(sn.id, { p: { shot: null } })}>Voltar ao esboço</button>`}</div><small class="muted">Sem print, o funil mostra o esboço desse tipo de página.</small></div>`}
-          ${FN[sn.type].kind === 'traffic' && (FN[sn.type].paid ? html`<div class="two"><label class="field"><span>Investimento/mês (${cur})</span><input class="inp" id="fn-inv" inputmode="decimal" value=${sn.p.invest} onChange=${e => setNode(sn.id, { p: { invest: e.target.value } })} /></label><label class="field"><span>Custo por clique</span><input class="inp" id="fn-cpc" inputmode="decimal" value=${sn.p.cpc} onChange=${e => setNode(sn.id, { p: { cpc: e.target.value } })} /></label></div>` : html`<label class="field"><span>Visitas por mês</span><input class="inp" id="fn-vis" inputmode="numeric" value=${sn.p.visits} onChange=${e => setNode(sn.id, { p: { visits: e.target.value } })} /></label>`)}
-          ${FN[sn.type].kind === 'buy' && html`<div class="two"><label class="field"><span>Taxa de compra (%)</span><input class="inp" id="fn-conv" inputmode="decimal" value=${sn.p.conv} onChange=${e => setNode(sn.id, { p: { conv: e.target.value } })} /></label><label class="field"><span>Preço (${cur})</span><input class="inp" id="fn-price" inputmode="decimal" placeholder="definir" value=${sn.p.price} onChange=${e => setNode(sn.id, { p: { price: e.target.value } })} /></label></div>`}
-          ${FN[sn.type].kind === 'talk' && html`<label class="field"><span>Custo por conversa (${cur})</span><input class="inp" id="fn-cost" inputmode="decimal" placeholder="ex.: 0,50" value=${sn.p.cost} onChange=${e => setNode(sn.id, { p: { cost: e.target.value } })} /><small class="muted">${FN[sn.type].brand === 'whatsapp' ? 'Mensagem do WhatsApp mais a IA. ' : ''}Entra no custo por reunião.</small></label>`}
-          ${FN[sn.type].kind !== 'note' && html`<div class="insp-stat"><span>Chegam aqui</span><b>${nf(calc.vol[sn.id] || 0, 1)} /mês</b></div>
-          <div><span class="label">Para onde vai</span>${edges.filter(e => e.from === sn.id).map(e => html`<div class="insp-edge" key=${e.id}><span>${by[e.to] ? by[e.to].label : '—'}</span><input class="inp" aria-label=${'Taxa para ' + (by[e.to] ? by[e.to].label : '')} inputmode="decimal" value=${e.rate} onChange=${ev => setEdge(e.id, { rate: ev.target.value })} /><span class="muted">%</span></div>`)}
+          ${!path && FN[sn.type].kind === 'traffic' && (FN[sn.type].paid ? html`<div class="two"><label class="field"><span>Investimento/mês (${cur})</span><input class="inp" id="fn-inv" inputmode="decimal" value=${sn.p.invest} onChange=${e => setNode(sn.id, { p: { invest: e.target.value } })} /></label><label class="field"><span>Custo por clique</span><input class="inp" id="fn-cpc" inputmode="decimal" value=${sn.p.cpc} onChange=${e => setNode(sn.id, { p: { cpc: e.target.value } })} /></label></div>` : html`<label class="field"><span>Visitas por mês</span><input class="inp" id="fn-vis" inputmode="numeric" value=${sn.p.visits} onChange=${e => setNode(sn.id, { p: { visits: e.target.value } })} /></label>`)}
+          ${!path && FN[sn.type].kind === 'buy' && html`<div class="two"><label class="field"><span>Taxa de compra (%)</span><input class="inp" id="fn-conv" inputmode="decimal" value=${sn.p.conv} onChange=${e => setNode(sn.id, { p: { conv: e.target.value } })} /></label><label class="field"><span>Preço (${cur})</span><input class="inp" id="fn-price" inputmode="decimal" placeholder="definir" value=${sn.p.price} onChange=${e => setNode(sn.id, { p: { price: e.target.value } })} /></label></div>`}
+          ${!path && FN[sn.type].kind === 'talk' && html`<label class="field"><span>Custo por conversa (${cur})</span><input class="inp" id="fn-cost" inputmode="decimal" placeholder="ex.: 0,50" value=${sn.p.cost} onChange=${e => setNode(sn.id, { p: { cost: e.target.value } })} /><small class="muted">${FN[sn.type].brand === 'whatsapp' ? 'Mensagem do WhatsApp mais a IA. ' : ''}Entra no custo por reunião.</small></label>`}
+          ${FN[sn.type].kind !== 'note' && html`${!path && html`<div class="insp-stat"><span>Chegam aqui</span><b>${nf(calc.vol[sn.id] || 0, 1)} /mês</b></div>`}
+          <div><span class="label">Para onde vai</span>${edges.filter(e => e.from === sn.id).map(e => html`<div class="insp-edge" key=${e.id}><span>${by[e.to] ? by[e.to].label : '—'}</span>${!path && html`<input class="inp" aria-label=${'Taxa para ' + (by[e.to] ? by[e.to].label : '')} inputmode="decimal" value=${e.rate} onChange=${ev => setEdge(e.id, { rate: ev.target.value })} /><span class="muted">%</span>`}</div>`)}
             ${!edges.some(e => e.from === sn.id) && html`<p class="muted" style="font-size:12px;margin-top:6px">Puxe a bolinha à direita desta etapa até outra para ligar.</p>`}</div>`}
           <button class="btn sm ghost danger" style="align-self:flex-start" onClick=${del}><${Icon} n="trash" s=${14} />${FN[sn.type].kind === 'note' ? 'Apagar nota' : 'Apagar etapa'}</button></div>`
       : se ? html`<div class="sec" style="gap:14px"><span class="label">Ligação</span><p><b>${by[se.from] && by[se.from].label}</b> → <b>${by[se.to] && by[se.to].label}</b></p>
-          <label class="field"><span>Quantos passam (%)</span><input class="inp" id="fn-rate" inputmode="decimal" value=${se.rate} onChange=${e => setEdge(se.id, { rate: e.target.value })} /></label>
-          <div class="insp-stat"><span>Passam por mês</span><b>${nf(calc.flow[se.id] || 0, 1)}</b></div>
+          ${!path && html`<label class="field"><span>Quantos passam (%)</span><input class="inp" id="fn-rate" inputmode="decimal" value=${se.rate} onChange=${e => setEdge(se.id, { rate: e.target.value })} /></label>
+          <div class="insp-stat"><span>Passam por mês</span><b>${nf(calc.flow[se.id] || 0, 1)}</b></div>`}
           <button class="btn sm ghost danger" style="align-self:flex-start" onClick=${del}><${Icon} n="trash" s=${14} />Apagar ligação</button></div>`
+      : path ? html`<div class="sec" style="gap:12px"><span class="label">Como usar</span>
+          <ul class="tips"><li>Clique numa etapa à esquerda (ou arraste) para pôr no funil.</li><li>Puxe a bolinha à direita de uma etapa até outra para ligar.</li><li>Clique numa página para trocar o esboço pelo print da página real.</li><li>Espaço + arrastar move a tela, ⌘ + rolagem dá zoom.</li></ul>
+          <div class="callout-s"><${Icon} n="info" s=${15} /><span>Este funil mostra só o caminho, sem número nenhum na tela. Para planejar custo e reuniões, troque para Com números no topo.</span></div></div>`
       : html`<div class="sec" style="gap:12px"><span class="label">Como usar</span>
           <ul class="tips"><li>Clique numa etapa à esquerda (ou arraste) para pôr no funil.</li><li>Puxe a bolinha à direita de uma etapa até outra para ligar.</li><li>Clique numa página para trocar o esboço pelo print da página real.</li><li>Clique na ligação para mudar quantos passam.</li><li>Espaço + arrastar move a tela, ⌘ + rolagem dá zoom.</li></ul>
           ${f.note && html`<div class="callout-s"><${Icon} n="alert" s=${15} /><span>${f.note}</span></div>`}
@@ -3245,20 +3256,6 @@ function FunnelEditor({ f }) {
           <div class="insp-stat"><span>Custo total para bater a meta</span><b>${T.cpMeet && num(goal) ? money(num(goal) * T.cpMeet, cur) : '—'}</b><small>Conta linear: mantém as taxas de hoje e escala a verba.</small></div></div>`}
     </aside>
   </div>`;
-}
-function NewFunnel({ close, clientId }) {
-  const { db, act, go } = useApp();
-  const [f, setF] = useState({ title: '', tpl: 'qualif', clientId: clientId || '' });
-  const TPL = [['qualif', 'Qualificação Imediata', 'Meta e orgânico → quiz → agente no WhatsApp → reunião → venda'], ['vsl', 'VSL com upsell e downsell', 'Anúncio → VSL → checkout → upsell → downsell → obrigado'], ['captura', 'Captura, e-mail e página de vendas', 'Anúncio e orgânico → página de captura → e-mail → página de vendas → checkout'], ['blank', 'Em branco', 'Comece do zero']];
-  return html`<form onSubmit=${e => { e.preventDefault(); const id = act.addFunnel(f); close(); go({ v: 'funnel', id }); }}>
-    <div class="mhd"><div><h2>Novo funil</h2><p>Escolha um ponto de partida. Tudo é editável depois.</p></div><button type="button" class="btn icon ghost" aria-label="Fechar" onClick=${close}><${Icon} n="x" /></button></div>
-    <div class="mbd">
-      <div class="tpls">${TPL.map(([k, l, d]) => html`<button type="button" key=${k} class=${cx('tpl', f.tpl === k && 'on')} aria-pressed=${f.tpl === k} onClick=${() => setF({ ...f, tpl: k })}><b>${l}</b><small>${d}</small></button>`)}</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><label class="field"><span>Nome</span><input class="inp" id="nf-name" placeholder=${TPL.find(t => t[0] === f.tpl)[1]} value=${f.title} onInput=${e => setF({ ...f, title: e.target.value })} /></label>
-        <label class="field"><span>Cliente</span><select class="sel" id="nf-client" value=${f.clientId} onChange=${e => setF({ ...f, clientId: e.target.value })}><option value="">Modelo interno</option>${db.clients.map(c => html`<option value=${c.id}>${c.name}</option>`)}</select></label></div>
-    </div>
-    <div class="mft"><button type="button" class="btn ghost" onClick=${close}>Cancelar</button><button class="btn pri" type="submit">Criar funil</button></div>
-  </form>`;
 }
 function NewTask({ close, clientId }) {
   const { db, act, me } = useApp();
@@ -4407,7 +4404,7 @@ function FnNode({ n, on, metric, leak }) {
     <foreignObject x=${g.cx - g.w / 2 + 12} y=${g.cy - g.h / 2 + 10} width=${g.w - 24} height=${g.h - 20}><div xmlns="http://www.w3.org/1999/xhtml" class="fn-note-t">${(n.p && n.p.text) || html`<span style="opacity:.55">Escreva a nota no painel ao lado</span>`}</div></foreignObject></g>`;
   return html`<g data-n=${n.id} class=${cx('fn-node', on && 'on')}>
     <${ShapeArt} type=${n.type} cx=${g.cx} cy=${g.cy} shot=${n.p && n.p.shot} id=${n.id} on=${on} />
-    <foreignObject x=${g.cx - CAPW / 2} y=${g.cy + g.h / 2 + 6} width=${CAPW} height="52"><div xmlns="http://www.w3.org/1999/xhtml" class="fn-cap"><b>${n.label}</b><small>${metric}</small>${leak && html`<small class="leak">${leak}</small>`}</div></foreignObject>
+    <foreignObject x=${g.cx - CAPW / 2} y=${g.cy + g.h / 2 + 6} width=${CAPW} height="52"><div xmlns="http://www.w3.org/1999/xhtml" class="fn-cap"><b>${n.label}</b>${metric ? html`<small>${metric}</small>` : null}${leak && html`<small class="leak">${leak}</small>`}</div></foreignObject>
     <circle cx=${g.cx - g.w / 2} cy=${g.cy} r="4" class="fn-in" />
     <circle data-n=${n.id} data-port="1" cx=${g.cx + g.w / 2} cy=${g.cy} r="7" class="fn-port" />
   </g>`;
@@ -4629,18 +4626,6 @@ function mindSize(n, lv) {
   const w = Math.max(lv === 0 ? 120 : 64, Math.min(MIND.maxW, Math.max(...lines.map(l => tw(l, px, wt))) + MIND.padX * 2 + 2));
   return { w: Math.ceil(w), h: Math.round(lines.length * px * 1.35 + MIND.padY * 2 + (lv === 0 ? 8 : 0)) };
 }
-function mindLayout(els) {
-  if (!els.some(e => e.t === 'mind')) return els;
-  const map = {}; els.forEach(e => { if (e.t === 'mind') map[e.id] = { ...e }; });
-  const kids = {}; Object.values(map).forEach(n => { if (n.parent && map[n.parent]) (kids[n.parent] = kids[n.parent] || []).push(n); });
-  const sub = {};
-  const size = (n, lv, col) => { Object.assign(n, mindSize(n, lv), { lv, bc: lv === 0 ? null : col }); (kids[n.id] || []).forEach((k, i) => size(k, lv + 1, lv === 0 ? (k.color || BRANCH[i % BRANCH.length]) : (k.color || col))); };
-  const H = (n, gy) => { const ks = n.collapsed ? [] : kids[n.id] || []; const tot = ks.reduce((a, k) => a + H(k, gy), 0) + Math.max(0, ks.length - 1) * gy; return (sub[n.id] = Math.max(n.h, tot)); };
-  const place = (n, x, cy, gx, gy, root) => { n.x = Math.round(x + (root ? 0 : n.ox || 0)); n.y = Math.round(cy - n.h / 2 + (root ? 0 : n.oy || 0)); const ks = n.collapsed ? [] : kids[n.id] || []; const tot = ks.reduce((a, k) => a + sub[k.id], 0) + Math.max(0, ks.length - 1) * gy; let y = n.y + n.h / 2 - tot / 2; ks.forEach(k => { place(k, n.x + n.w + gx, y + sub[k.id] / 2, gx, gy, false); y += sub[k.id] + gy; }); };
-  const hide = (n, h) => { n.hid = h; (kids[n.id] || []).forEach(k => hide(k, h || !!n.collapsed)); };
-  Object.values(map).filter(n => !n.parent || !map[n.parent]).forEach(r => { const gx = r.gx ?? MIND.hgap, gy = r.gy ?? MIND.vgap; const cy = r.y + (r.h || 40) / 2; size(r, 0, null); H(r, gy); place(r, r.x, cy, gx, gy, true); hide(r, false); });
-  return els.map(e => (e.t === 'mind' ? map[e.id] : e));
-}
 const mindKids = (els, id) => els.filter(e => e.t === 'mind' && e.parent === id);
 function mindTree(els, id) { const out = [id]; for (let i = 0; i < out.length; i++) mindKids(els, out[i]).forEach(k => out.push(k.id)); return out; }
 const mindPath = (p, n) => { const right = n.x + n.w / 2 >= p.x + p.w / 2; const x1 = right ? p.x + p.w : p.x, y1 = p.y + p.h / 2, x2 = right ? n.x : n.x + n.w, y2 = n.y + n.h / 2; const k = (right ? 1 : -1) * Math.max(18, Math.min(64, Math.abs(x2 - x1) / 2)); return `M${x1} ${y1}C${x1 + k} ${y1} ${x2 - k} ${y2} ${x2} ${y2}`; };
@@ -4653,7 +4638,7 @@ function BoardThumb({ els }) {
     ${vis.filter(e => e.t === 'frame').map(e => html`<rect key=${e.id} x=${e.x} y=${e.y} width=${e.w} height=${e.h} rx="6" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="3" />`)}
     ${vis.filter(e => e.t === 'mind' && e.parent && map[e.parent]).map(e => html`<path key=${'b' + e.id} d=${mindPath(map[e.parent], e)} fill="none" stroke=${e.bc || '#6A655D'} stroke-width="4" />`)}
     ${vis.map(e => { if (e.t === 'frame') return null;
-      if (e.t === 'sticky') return html`<rect key=${e.id} x=${e.x} y=${e.y} width=${e.w} height=${e.h} rx="4" fill=${STICKY[e.color] || STICKY.sand} />`;
+      if (e.t === 'sticky') return html`<rect key=${e.id} x=${e.x} y=${e.y} width=${e.w} height=${e.h} rx="4" fill=${stickyFill(e.color)} />`;
       if (e.t === 'mind') return html`<rect key=${e.id} x=${e.x} y=${e.y} width=${e.w} height=${e.h} rx=${e.h / 2} fill=${e.lv === 0 ? '#222831' : e.lv === 1 ? e.bc : '#FFFFFF'} stroke=${e.lv > 1 ? e.bc : 'none'} stroke-width="3" />`;
       if (isShape(e)) return html`<g key=${e.id} transform=${`translate(${e.x},${e.y})`}>${shapeEl(e, 'var(--text-2)', 3)}</g>`;
       if (e.t === 'text') return html`<rect key=${e.id} x=${e.x} y=${e.y + e.h * .3} width=${Math.min(e.w, (e.text || '').length * (e.size || 18) * .5)} height=${e.h * .35} rx="3" fill="var(--text-3)" opacity=".5" />`;
@@ -4665,14 +4650,16 @@ function BoardThumb({ els }) {
   </svg>`;
 }
 function shapeEl(e, stroke, sw, cls) {
-  const w = e.w, h = e.h; const fill = e.t === 'text' ? 'none' : (WB_FILL[e.fill] || WB_FILL.white); const p = { fill, stroke, 'stroke-width': sw, class: cls };
+  const w = e.w, h = e.h; const fill = e.t === 'text' ? 'none' : fillOf(e.fill); const p = { fill, stroke, 'stroke-width': sw, class: cls };
   if (e.t === 'ellipse') return html`<ellipse cx=${w / 2} cy=${h / 2} rx=${w / 2} ry=${h / 2} ...${p} />`;
   if (e.t === 'diamond') return html`<polygon points=${`${w / 2},0 ${w},${h / 2} ${w / 2},${h} 0,${h / 2}`} ...${p} />`;
   if (e.t === 'tri') return html`<polygon points=${`${w / 2},0 ${w},${h} 0,${h}`} ...${p} />`;
   if (e.t === 'para') return html`<polygon points=${`${w * .18},0 ${w},0 ${w * .82},${h} 0,${h}`} ...${p} />`;
+  if (e.t === 'trap') return html`<polygon points=${`0,0 ${w},0 ${w * .88},${h} ${w * .12},${h}`} ...${p} />`;
+  if (e.t === 'trapU') return html`<polygon points=${`${w * .12},0 ${w * .88},0 ${w},${h} 0,${h}`} ...${p} />`;
   return html`<rect width=${w} height=${h} rx=${e.t === 'round' ? Math.min(h / 2, 28) : 6} ...${p} />`;
 }
-const shapeTextBox = e => e.t === 'diamond' ? [e.w * .2, e.h * .22, e.w * .6, e.h * .56] : e.t === 'tri' ? [e.w * .22, e.h * .42, e.w * .56, e.h * .52] : e.t === 'para' ? [e.w * .16, 0, e.w * .68, e.h] : [0, 0, e.w, e.h];
+const shapeTextBox = e => e.t === 'diamond' ? [e.w * .2, e.h * .22, e.w * .6, e.h * .56] : e.t === 'tri' ? [e.w * .22, e.h * .42, e.w * .56, e.h * .52] : e.t === 'para' ? [e.w * .16, 0, e.w * .68, e.h] : e.t === 'trap' || e.t === 'trapU' ? [e.w * .12, 0, e.w * .76, e.h] : [0, 0, e.w, e.h];
 
 /* modelos do quadro: nascem na origem e o quadro os coloca ao lado do que já existe */
 const wbS = (x, y, color, text = '', w = 190, h = 130) => ({ id: uid('e'), t: 'sticky', x, y, w, h, color, text });
@@ -4688,7 +4675,7 @@ function wbMindTpl(rootText, branches) {
 const WB_TPL = [
   { k: 'brainstorm', name: 'Brainstorm', desc: 'Uma pergunta, post-its soltos, e carimbo para votar nas melhores ideias.', make: () => { const f = wbF(0, 0, 1000, 600, 'Brainstorm'); const q = wbT(40, 36, 'Pergunta: como podemos…?', 26, 900); const n = wbT(40, 92, 'Uma ideia por post-it. Depois agrupe as parecidas e vote com os carimbos 👍', 15, 900, false);
       const st = [0, 1, 2, 3, 4, 5, 6, 7].map(i => wbS(40 + (i % 4) * 235, 150 + Math.floor(i / 4) * 200, ['sand', 'blue', 'green', 'pink'][i % 4])); return [f, q, n, ...st]; } },
-  { k: 'mind', name: 'Mapa mental', desc: 'Tema no centro e ramos coloridos. Tab cria filho, Enter cria irmão, e cada tópico pode ser arrastado para onde você quiser.', make: () => wbMindTpl('Tema central', [['Ideia 1', ['Detalhe']], ['Ideia 2', ['Detalhe']], ['Ideia 3'], ['Ideia 4']]) },
+  { k: 'mind', name: 'Mapa mental', desc: 'Tema no centro e ramos coloridos dos dois lados. Tab cria filho, Enter cria irmão, e cada ramo pode mudar de lado.', make: () => wbMindTpl('Tema central', [['Ideia 1', ['Detalhe']], ['Ideia 2', ['Detalhe']], ['Ideia 3'], ['Ideia 4']]) },
   { k: 'kanban', name: 'Kanban', desc: 'Três colunas para acompanhar o que está a fazer, fazendo e feito.', make: () => { const f = wbF(0, 0, 1060, 640, 'Kanban'); const cols = ['A fazer', 'Fazendo', 'Feito'].flatMap((t, i) => [wbSh('round', 30 + i * 340, 30, 320, 580, '', 'cream'), wbT(50 + i * 340, 46, t, 20, 280)]);
       return [f, ...cols, wbS(55 + 0, 100, 'sand', 'Arraste os post-its entre as colunas', 270, 110), wbS(55, 230, 'sand', 'Clique duas vezes para escrever', 270, 110)]; } },
   { k: 'journey', name: 'Jornada do cliente', desc: 'Do primeiro contato ao pós-venda: o que ele faz, pensa, sente, e onde trava.', make: () => { const stages = ['Descoberta', 'Consideração', 'Decisão', 'Compra', 'Pós-venda']; const rows = [['O que ele faz', 'sand'], ['O que pensa', 'blue'], ['O que sente', 'pink'], ['Onde trava', 'lilac'], ['Oportunidades', 'green']];
@@ -4746,7 +4733,7 @@ function Whiteboard({ board }) {
   const map = Object.fromEntries(els.map(e => [e.id, e]));
   const frames = els.filter(e => e.t === 'frame');
 
-  const commitEls = next => { next = mindLayout(next); setEls(next); elsRef.current = next; act.saveBoard(board.id, next); return next; };
+  const commitEls = next => { next = mindLayout(mindFreeze(next, elsRef.current)); setEls(next); elsRef.current = next; act.saveBoard(board.id, next); return next; };
   const save = (next, before) => { if (before) { hist.current.push(before); if (hist.current.length > 80) hist.current.shift(); fut.current = []; } return commitEls(next); };
   const undo = () => { const prev = hist.current.pop(); if (!prev) return; fut.current.push(elsRef.current); commitEls(prev); setSel([]); setEditing(null); };
   const redo = () => { const nx = fut.current.pop(); if (!nx) return; hist.current.push(elsRef.current); commitEls(nx); setSel([]); setEditing(null); };
@@ -4778,17 +4765,17 @@ function Whiteboard({ board }) {
     const next = save([...L, el, ar], L); setSel([el.id]); setEditing(el.id); reveal(next.find(x => x.id === el.id)); };
 
   /* mapa mental */
-  const mindAdd = (id, mode) => { const L = elsRef.current; const n = L.find(x => x.id === id); if (!n || n.t !== 'mind') return; const parent = mode === 'child' || !n.parent ? n : L.find(x => x.id === n.parent); const el = newMind(parent, ''); el.root = parent.root || parent.id;
+  const mindAdd = (id, mode, side) => { const L = elsRef.current; const n = L.find(x => x.id === id); if (!n || n.t !== 'mind') return; const parent = mode === 'child' || !n.parent ? n : L.find(x => x.id === n.parent); const el = newMind(parent, ''); el.root = parent.root || parent.id; if (!parent.parent) el.side = side === 'l' || side === 'r' ? side : mode === 'child' ? undefined : n.dir < 0 ? 'l' : 'r';
     let next = (mode === 'sibling' || mode === 'before') && n.parent ? (i => [...L.slice(0, i + 1), el, ...L.slice(i + 1)])(L.findIndex(x => x.id === id) - (mode === 'before' ? 1 : 0)) : [...L, el];
     if (parent.collapsed) next = next.map(x => (x.id === parent.id ? { ...x, collapsed: false } : x)); const done = save(next, L); setSel([el.id]); setEditing(el.id); reveal(done.find(x => x.id === el.id)); };
   const mindToggle = id => { const L = elsRef.current; save(L.map(x => (x.id === id ? { ...x, collapsed: !x.collapsed } : x)), L); };
   const mindNav = (id, key) => { const L = elsRef.current; const n = L.find(x => x.id === id); if (!n) return; let to = null;
-    if (key === 'ArrowLeft') to = n.parent; else if (key === 'ArrowRight') { const k = mindKids(L, id)[0]; if (k) { if (n.collapsed) mindToggle(id); to = k.id; } }
-    else { const sib = n.parent ? mindKids(L, n.parent) : []; const i = sib.findIndex(x => x.id === id); const j = key === 'ArrowUp' ? i - 1 : i + 1; if (sib[j]) to = sib[j].id; }
+    if (key === 'ArrowLeft' || key === 'ArrowRight') { const d = key === 'ArrowLeft' ? -1 : 1; if (n.parent && d !== (n.dir || 1)) to = n.parent; else { const k = mindKids(L, id).find(x => !!n.parent || x.dir === d); if (k) { if (n.collapsed) mindToggle(id); to = k.id; } } }
+    else { const sib = n.parent ? mindKids(L, n.parent).filter(x => x.dir === n.dir) : []; const i = sib.findIndex(x => x.id === id); const j = key === 'ArrowUp' ? i - 1 : i + 1; if (sib[j]) to = sib[j].id; }
     if (to) setSel([to]); };
   const hitMind = (p, skip) => { const L = elsRef.current; for (let i = L.length - 1; i >= 0; i--) { const n = L[i]; if (n.t !== 'mind' || n.hid || skip.has(n.id)) continue; if (p[0] >= n.x && p[0] <= n.x + n.w && p[1] >= n.y && p[1] <= n.y + n.h) return n; } return null; };
   const rootOf = n => { let r = n; for (let g = 0; r.parent && map[r.parent] && g < 99; g++) r = map[r.parent]; return r; };
-  const mindReorder = (id, dir) => { const L = elsRef.current; const n = L.find(x => x.id === id); if (!n || !n.parent) return; const sib = mindKids(L, n.parent); const i = sib.findIndex(x => x.id === id); const j = i + dir; if (j < 0 || j >= sib.length) return; const a = L.indexOf(sib[i]), b = L.indexOf(sib[j]); const next = [...L]; [next[a], next[b]] = [next[b], next[a]]; save(next, L); };
+  const mindReorder = (id, dir) => { const L = elsRef.current; const n = L.find(x => x.id === id); if (!n || !n.parent) return; const sib = mindKids(L, n.parent).filter(x => x.dir === n.dir); const i = sib.findIndex(x => x.id === id); const j = i + dir; if (j < 0 || j >= sib.length) return; const a = L.indexOf(sib[i]), b = L.indexOf(sib[j]); const next = [...L]; [next[a], next[b]] = [next[b], next[a]]; save(next, L); };
   const removeKeep = () => { const L = elsRef.current; const M = Object.fromEntries(L.map(x => [x.id, x])); const S2 = sel.map(id => M[id]).filter(x => x && x.t === 'mind' && x.parent && !x.locked); if (!S2.length) { remove(); return; } const ids = new Set(S2.map(x => x.id)); const up2 = pid => { let q = pid; for (let g = 0; q && ids.has(q) && g < 99; g++) q = M[q] ? M[q].parent : null; return q; };
     save(L.filter(x => !ids.has(x.id) && !(x.t === 'arrow' && (ids.has(x.from) || ids.has(x.to)))).map(x => (x.t === 'mind' && ids.has(x.parent) ? { ...x, parent: up2(x.parent), ox: 0, oy: 0 } : x)), L); setSel([]); };
   const spaceSet = (rid, patch, fin) => { const L = elsRef.current; if (!spaceBefore.current) spaceBefore.current = L; const nx = mindLayout(L.map(x => (x.id === rid ? { ...x, ...patch } : x))); if (fin) { const b0 = spaceBefore.current; spaceBefore.current = null; save(nx, b0); } else { setEls(nx); elsRef.current = nx; } };
@@ -4892,7 +4879,7 @@ function Whiteboard({ board }) {
     if (panel && panel !== 'tpl') setPanel(null);
     svgRef.current.setPointerCapture(e.pointerId);
     if (tool === 'hand' || spaceDown || e.button === 1) { drag.current = { m: 'pan', sx: e.clientX, sy: e.clientY, v: vpRef.current }; return; }
-    if (tg && tg.hasAttribute('data-madd')) { drag.current = null; mindAdd(id, 'child'); return; }
+    if (tg && tg.hasAttribute('data-madd')) { drag.current = null; mindAdd(id, 'child', tg.getAttribute('data-madd')); return; }
     if (tg && tg.hasAttribute('data-mtog')) { drag.current = null; mindToggle(id); return; }
     if (tg && tg.hasAttribute('data-quick')) { drag.current = { m: 'quick', id, dir: tg.getAttribute('data-quick'), p0: p, moved: false }; setDraft({ id: uid('e'), t: 'arrow', from: id, x2: p[0], y2: p[1], style: opt.line, head: 'end' }); return; }
     if (tool === 'select') {
@@ -4935,8 +4922,9 @@ function Whiteboard({ board }) {
     const d = drag.current; drag.current = null; setBusy(false); if (!d) return; const p = toW(e);
     if (d.m === 'move' && d.any) { const tid = mdRef.current; mdRef.current = null; setMindDrop(null); const dx = p[0] - d.p0[0], dy = p[1] - d.p0[1]; const L = elsRef.current;
       if (d.mind && tid && !e.altKey) { const tg = L.find(x => x.id === tid); const n0 = L.find(x => x.id === d.mind); const nr = tg.root || tg.id; const subt = new Set(mindTree(L, d.mind)); const same = n0.parent === tid;
-        save(L.map(x => (x.id === d.mind ? { ...x, parent: tid, root: nr, ox: 0, oy: 0 } : subt.has(x.id) ? { ...x, root: nr } : x.id === tid && x.collapsed ? { ...x, collapsed: false } : x)), d.before); setSel([d.mind]);
+        save(L.map(x => (x.id === d.mind ? { ...x, parent: tid, root: nr, ox: 0, oy: 0, side: tg.parent ? x.side : p[0] < tg.x + tg.w / 2 ? 'l' : 'r' } : subt.has(x.id) ? { ...x, root: nr } : x.id === tid && x.collapsed ? { ...x, collapsed: false } : x)), d.before); setSel([d.mind]);
         toast(same ? 'Tópico de volta à posição automática' : `Agora é tópico filho de "${short(tg.text)}"`); return; }
+      if (d.mind && !e.altKey) { const n0 = d.before.find(x => x.id === d.mind); const r0 = n0 && d.before.find(x => x.id === n0.parent); if (r0 && !r0.parent) { const nd = n0.x + dx + n0.w / 2 < r0.x + r0.w / 2 ? -1 : 1; if (nd !== (n0.dir || 1)) { save(L.map(x => (x.id === d.mind ? { ...x, side: nd < 0 ? 'l' : 'r', ox: 0, oy: 0 } : x)), d.before); toast(`Ramo passou para o lado ${nd < 0 ? 'esquerdo' : 'direito'}`); return; } } }
       const B0 = d.before; const top = new Set(d.sel.filter(id => { const n = B0.find(x => x.id === id); if (!n || n.t !== 'mind' || n.locked || !n.parent || !B0.some(x => x.id === n.parent)) return false; for (let q = n, g = 0; q && q.parent && g < 99; g++) { if (d.sel.includes(q.parent)) return false; q = B0.find(x => x.id === q.parent); } return true; }));
       save(top.size ? L.map(x => (top.has(x.id) ? { ...x, ox: Math.round((d.o[x.id] ? d.o[x.id].ox : 0) + dx), oy: Math.round((d.o[x.id] ? d.o[x.id].oy : 0) + dy) } : x)) : L, d.before); return; }
     if (d.m === 'resize' && d.moved) { save(elsRef.current, d.before); return; }
@@ -4957,22 +4945,22 @@ function Whiteboard({ board }) {
     return html`<foreignObject x=${x0} y=${y0} width=${w0} height=${h0}><div key=${ed ? 'ed' : 'ro'} xmlns="http://www.w3.org/1999/xhtml" class=${cls} style=${style} contenteditable=${ed ? 'true' : 'false'} ref=${ed ? focusEnd : null}
       data-ph=${e.t === 'sticky' ? 'Escreva' : e.t === 'arrow' ? 'Rótulo' : 'Texto'} onPointerDown=${ev => { if (ed) ev.stopPropagation(); }}
       onBlur=${ev => { if (editingRef.current === e.id) setText(e.id, ev.currentTarget.innerText.replace(/\n+$/, '').trim()); }} onKeyDown=${ev => onEditKey(ev, e)}>${v || ''}</div></foreignObject>`; };
-  const inkFor = e => e.ink || (e.fill === 'dark' ? '#F4EBDD' : e.fill === 'none' || e.t === 'text' ? 'var(--text)' : '#222831');
+  const inkFor = e => e.ink || (e.fill === 'none' || e.t === 'text' ? 'var(--text)' : darkFill(e) ? '#F4EBDD' : '#222831');
   const renderEl = e => {
     if (e.hid || e.t === 'frame') return null; const s = sel.includes(e.id);
-    if (e.t === 'arrow') { const A = e.from && map[e.from], B = e.to && map[e.to]; if ((e.from && (!A || A.hid)) || (e.to && (!B || B.hid))) return null; const g = connGeom(e, map); const ii = inkIdx(e.ink); const mk = `url(#wbh${ii})`;
+    if (e.t === 'arrow') { const A = e.from && map[e.from], B = e.to && map[e.to]; if ((e.from && (!A || A.hid)) || (e.to && (!B || B.hid))) return null; const g = connGeom(e, map); const mk = markOf(e.ink);
       return html`<g key=${e.id}><path d=${g.d} class=${cx('wb-conn', s && 'sel')} stroke=${e.ink || WB_INK[0]} stroke-dasharray=${e.dash ? '8 6' : null} marker-end=${(e.head || 'end') !== 'none' ? mk : null} marker-start=${e.head === 'both' ? mk : null} />
         <path data-id=${e.id} d=${g.d} stroke="transparent" stroke-width=${px(14)} fill="none" />
         ${(e.label || editing === e.id) && html`<g transform=${`translate(${g.mid[0] - 80},${g.mid[1] - 15})`}>${Txt(e, 'wb-clabel', null, [0, 0, 160, 30])}</g>`}</g>`; }
     if (e.t === 'pen') { const d = penD(e.pts); return html`<g key=${e.id}><path d=${d} fill="none" stroke=${e.color || 'var(--text)'} stroke-width=${e.hl ? 16 : 3} opacity=${e.hl ? .4 : 1} stroke-linecap="round" stroke-linejoin="round" class=${s ? 'wb-pen sel' : 'wb-pen'} /><path data-id=${e.id} d=${d} fill="none" stroke="transparent" stroke-width=${px(14)} /></g>`; }
     if (e.t === 'mind') { const lv = e.lv || 0; return html`<g key=${e.id} data-id=${e.id} transform=${`translate(${e.x},${e.y})`}>
         <rect width=${e.w} height=${e.h} rx=${lv < 2 ? e.h / 2 : 8} fill=${lv === 0 ? '#222831' : lv === 1 ? e.bc : '#FFFFFF'} stroke=${lv > 1 ? e.bc : lv === 0 ? 'var(--line-strong)' : 'none'} stroke-width="1.5" class="wb-mnode" />
-        ${Txt(e, 'wb-mind wb-m' + Math.min(lv, 2), null)}
+        ${Txt(e, 'wb-mind wb-m' + Math.min(lv, 2), lv === 1 && isHex(e.bc) && !onDarkOf(e.bc) ? { color: '#222831' } : null)}
         ${e.prio && html`<g transform="translate(2,2)" class=${'wb-prio p' + e.prio}><circle r="9" /><text y="3.5" text-anchor="middle">${e.prio}</text></g>`}</g>`; }
     return html`<g key=${e.id} data-id=${e.id} transform=${`translate(${e.x},${e.y})`}>
-      ${e.t === 'sticky' && html`<rect width=${e.w} height=${e.h} rx="3" fill=${STICKY[e.color] || STICKY.sand} class="wb-sticky" />`}
-      ${e.t === 'sticky' && Txt(e, 'wb-st-text', { fontSize: stickyFont(e) + 'px', fontWeight: e.bold ? 700 : 500 })}
-      ${isShape(e) && shapeEl(e, e.fill === 'dark' ? '#222831' : 'var(--text-2)', 1.5, 'wb-shp')}
+      ${e.t === 'sticky' && html`<rect width=${e.w} height=${e.h} rx="3" fill=${stickyFill(e.color)} class="wb-sticky" />`}
+      ${e.t === 'sticky' && Txt(e, 'wb-st-text', { fontSize: stickyFont(e) + 'px', fontWeight: e.bold ? 700 : 500, color: onDarkOf(stickyFill(e.color)) ? '#F4EBDD' : null })}
+      ${isShape(e) && shapeEl(e, darkFill(e) ? fillOf(e.fill) : 'var(--text-2)', 1.5, 'wb-shp')}
       ${isShape(e) && Txt(e, 'wb-shape-text', { fontSize: (e.size || 15) + 'px', fontWeight: e.bold ? 700 : 500, color: inkFor(e) }, shapeTextBox(e))}
       ${e.t === 'text' && Txt(e, 'wb-text', { fontSize: (e.size || 20) + 'px', fontWeight: e.bold ? 700 : e.bold === undefined && (e.size || 20) >= 20 ? 600 : 500, color: inkFor(e) })}
       ${e.t === 'image' && html`<image href=${e.src} width=${e.w} height=${e.h} preserveAspectRatio="xMidYMid slice" /><rect width=${e.w} height=${e.h} fill="transparent" stroke="var(--line)" />`}
@@ -5000,7 +4988,7 @@ function Whiteboard({ board }) {
     <svg ref=${svgRef} class="cv-svg" style=${{ cursor: spaceDown || tool === 'hand' ? 'grab' : tool === 'select' ? 'default' : 'crosshair' }} onPointerDown=${down} onPointerMove=${move} onPointerUp=${up} onDblClick=${dbl} onContextMenu=${e => e.preventDefault()}>
       <defs>
         <pattern id="wbgrid" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform=${`translate(${vp.x},${vp.y}) scale(${vp.k})`}><circle cx="1" cy="1" r="1" fill="var(--line-strong)" /></pattern>
-        ${WB_INK.map((c, i) => html`<marker key=${i} id=${'wbh' + i} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill=${c} /></marker>`)}
+        ${WB_INK.map((c, i) => html`<marker key=${i} id=${'wbh' + i} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill=${c} /></marker>`)}${inkMarks(els)}
         <filter id="wbsh" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity=".18" /></filter>
       </defs>
       <rect width="100%" height="100%" fill="url(#wbgrid)" />
@@ -5010,9 +4998,9 @@ function Whiteboard({ board }) {
             ${editing === f.id ? Txt(f, 'wb-ftext', { fontSize: px(14) + 'px' }, [f.x, f.y - px(30), Math.max(px(200), f.w / 2), px(26)]) : html`<text x=${f.x + px(10)} y=${f.y - px(12)} font-size=${px(14)} class="wb-fttext">${f.title}</text>`}</g></g>`)}
         ${minds.filter(n => n.parent && map[n.parent]).map(n => html`<path key=${'br' + n.id} d=${mindPath(map[n.parent], n)} fill="none" stroke=${n.bc} stroke-width=${n.lv === 1 ? 3 : 2} stroke-linecap="round" />`)}
         ${els.map(renderEl)}
-        ${minds.filter(n => mindKids(els, n.id).length || (one && one.id === n.id && !editing)).map(n => { const kidsN = mindKids(els, n.id).length; const cy = n.y + n.h / 2; const x0 = n.x + n.w + px(12); const isSel = one && one.id === n.id && !editing;
+        ${minds.filter(n => mindKids(els, n.id).length || (one && one.id === n.id && !editing)).map(n => { const kidsN = mindKids(els, n.id).length; const cy = n.y + n.h / 2; const lf = n.dir < 0; const x0 = lf ? n.x - px(12) : n.x + n.w + px(12); const isSel = one && one.id === n.id && !editing;
           return html`<g key=${'mt' + n.id}>${kidsN > 0 && html`<g data-id=${n.id} data-mtog="1" class="wb-mtog" transform=${`translate(${x0},${cy}) scale(${px(1)})`}><circle r="9" /><text y="4" text-anchor="middle">${n.collapsed ? mindTree(els, n.id).length - 1 : '−'}</text></g>`}
-            ${isSel && html`<g data-id=${n.id} data-madd="1" class="wb-madd" transform=${`translate(${x0 + (kidsN ? px(24) : 0)},${cy}) scale(${px(1)})`}><circle r="10" /><path d="M-4.5 0h9M0-4.5v9" /><title>Tópico filho (Tab)</title></g>`}</g>`; })}
+            ${isSel && html`<g data-id=${n.id} data-madd=${n.parent ? '1' : 'r'} class="wb-madd" transform=${`translate(${x0 + (kidsN ? px(lf ? -24 : 24) : 0)},${cy}) scale(${px(1)})`}><circle r="10" /><path d="M-4.5 0h9M0-4.5v9" /><title>${n.parent ? 'Tópico filho (Tab)' : 'Tópico filho à direita'}</title></g>`}${isSel && !n.parent && html`<g data-id=${n.id} data-madd="l" class="wb-madd" transform=${`translate(${n.x - px(12)},${cy}) scale(${px(1)})`}><circle r="10" /><path d="M-4.5 0h9M0-4.5v9" /><title>Tópico filho à esquerda</title></g>`}</g>`; })}
         ${mindDrop && map[mindDrop] && (() => { const tg = map[mindDrop]; return html`<g pointer-events="none"><rect x=${tg.x - px(6)} y=${tg.y - px(6)} width=${tg.w + px(12)} height=${tg.h + px(12)} rx=${px(12)} class="wb-mdrop" stroke-width=${px(2.5)} /><text x=${tg.x} y=${tg.y - px(14)} font-size=${px(12.5)} class="wb-mdrop-t">Solte para virar tópico filho · ⌥ só move</text></g>`; })()}
         ${selBox && html`<rect x=${selBox.x - px(6)} y=${selBox.y - px(one && one.t === 'frame' ? 36 : 6)} width=${selBox.w + px(12)} height=${selBox.h + px(one && one.t === 'frame' ? 42 : 12)} rx=${px(6)} class="wb-selbox" stroke-width=${px(1.5)} pointer-events="none" />`}
         ${canResize && ['nw', 'ne', 'sw', 'se'].map(h => html`<rect key=${h} data-id=${one.id} data-h=${h} x=${(h.includes('w') ? one.x : one.x + one.w) - px(6)} y=${(h.includes('n') ? one.y : one.y + one.h) - px(6)} width=${px(12)} height=${px(12)} rx=${px(3)} stroke-width=${px(1.5)} class=${'wb-handle h-' + h} />`)}
@@ -5030,15 +5018,15 @@ function Whiteboard({ board }) {
       <div class="wb-empty-acts wb-ui"><button class="btn pri" onClick=${() => setPanel('tpl')}><${Icon} n="grid" s=${15} />Escolher um modelo</button><button class="btn" onClick=${() => { const c = viewCenter(); const r = { ...newMind(null, ''), x: c[0] - 70, y: c[1] - 24 }; r.root = r.id; addEl(r); }}><${Icon} n="mind" s=${15} />Começar um mapa mental</button></div></div>`}
 
     ${showBar && html`<div class="wb-seltools wb-ui" style=${{ ...((selBox.x + selBox.w / 2) * k + vp.x > box.w / 2 ? { right: Math.max(8, box.w - ((selBox.x + selBox.w) * k + vp.x)) + 'px' } : { left: Math.max(8, sbx.left) + 'px' }), top: (sbx.top < 90 ? selBox.y * k + vp.y + selBox.h * k + (canQuick ? 44 : 16) : sbx.top - 50 - (canQuick ? 26 : 0)) + 'px' }} onPointerDown=${e => e.stopPropagation()}>
-      ${has(x => x.t === 'sticky') && html`<span class="grp">${Object.keys(STICKY).map(c => Sw(STICKY[c], selEls.some(x => x.color === c), () => patchSel(() => ({ color: c }), x => x.t === 'sticky'), 'Post-it ' + c))}</span>`}
-      ${has(isShape) && html`<span class="grp">${Object.entries(WB_FILL).map(([c, v]) => Sw(v, selEls.some(x => x.fill === c), () => patchSel(() => ({ fill: c }), isShape), 'Fundo ' + c))}</span>`}
-      ${one && one.t === 'mind' && one.lv > 0 && html`<span class="grp">${BRANCH.map(c => Sw(c, one.bc === c, () => patchSel(() => ({ color: c })), 'Cor do ramo', true))}</span>`}
+      ${has(x => x.t === 'sticky') && html`<span class="grp">${Object.keys(STICKY).map(c => Sw(STICKY[c], selEls.some(x => x.color === c), () => patchSel(() => ({ color: c }), x => x.t === 'sticky'), 'Post-it ' + c))}<${ColorPick} label="Post-it" value=${(selEls.find(x => x.t === 'sticky' && isHex(x.color)) || {}).color} onPick=${c => patchSel(() => ({ color: c }), x => x.t === 'sticky')} /></span>`}
+      ${has(isShape) && html`<span class="grp">${Object.entries(WB_FILL).map(([c, v]) => Sw(v, selEls.some(x => x.fill === c), () => patchSel(() => ({ fill: c }), isShape), 'Fundo ' + c))}<${ColorPick} label="Fundo" value=${(selEls.find(x => isShape(x) && isHex(x.fill)) || {}).fill} onPick=${c => patchSel(() => ({ fill: c }), isShape)} /></span>`}
+      ${one && one.t === 'mind' && one.lv > 0 && html`<span class="grp">${BRANCH.map(c => Sw(c, one.bc === c, () => patchSel(() => ({ color: c })), 'Cor do ramo', true))}<${ColorPick} label="Cor do ramo" round value=${BRANCH.includes(one.bc) ? null : one.bc} onPick=${c => patchSel(() => ({ color: c }))} /></span>`}
       ${has(x => x.t === 'text' || isShape(x)) && html`<span class="grp seg-mini">${WB_SIZES.map(([l, v]) => html`<button key=${l} class=${cx(selEls.some(x => (x.size || (x.t === 'text' ? 20 : 15)) === v) && 'on')} title=${'Tamanho ' + l} onClick=${() => patchSel(() => ({ size: v }), x => x.t === 'text' || isShape(x))}>${l}</button>`)}</span>`}
       ${has(x => x.t === 'sticky' || x.t === 'text' || isShape(x)) && B('bold', 'Negrito', () => patchSel(x => ({ bold: !x.bold }), x => x.t === 'sticky' || x.t === 'text' || isShape(x)), all(x => x.bold))}
-      ${has(x => x.t === 'text' || isShape(x) || x.t === 'arrow') && html`<span class="grp">${WB_INK.map(c => Sw(c, selEls.some(x => x.ink === c), () => patchSel(() => ({ ink: c }), x => x.t === 'text' || isShape(x) || x.t === 'arrow'), 'Cor', true))}</span>`}
+      ${has(x => x.t === 'text' || isShape(x) || x.t === 'arrow') && html`<span class="grp">${WB_INK.map(c => Sw(c, selEls.some(x => x.ink === c), () => patchSel(() => ({ ink: c }), x => x.t === 'text' || isShape(x) || x.t === 'arrow'), 'Cor', true))}<${ColorPick} label="Cor" round value=${(selEls.find(x => (x.t === 'text' || isShape(x) || x.t === 'arrow') && isHex(x.ink)) || {}).ink} onPick=${c => patchSel(() => ({ ink: c }), x => x.t === 'text' || isShape(x) || x.t === 'arrow')} /></span>`}
       ${all(x => x.t === 'arrow') && html`<span class="grp">${[['straight', 'lnS', 'Reta'], ['curve', 'lnC', 'Curva'], ['elbow', 'lnE', 'Em ângulo']].map(([v, ic, l]) => B(ic, l, () => patchSel(() => ({ style: v })), selEls.every(x => (x.style || 'straight') === v)))}</span>
         <span class="grp">${[['none', 'hdN', 'Sem seta'], ['end', 'hdE', 'Seta no fim'], ['both', 'hdB', 'Seta nas duas pontas']].map(([v, ic, l]) => B(ic, l, () => patchSel(() => ({ head: v })), selEls.every(x => (x.head || 'end') === v)))}${B('dash', 'Tracejada', () => patchSel(x => ({ dash: !x.dash })), all(x => x.dash))}${B('type', 'Escrever um rótulo', () => setEditing(selEls[0].id))}</span>`}
-      ${one && one.t === 'mind' && html`<span class="grp"><button class="btn sm" onClick=${() => mindAdd(one.id, 'child')}><${Icon} n="plus" s=${13} />Tópico filho</button>${one.parent && html`<button class="btn sm" onClick=${() => mindAdd(one.id, 'sibling')}>Irmão</button>`}</span>
+      ${one && one.t === 'mind' && html`<span class="grp"><button class="btn sm" onClick=${() => mindAdd(one.id, 'child')}><${Icon} n="plus" s=${13} />Tópico filho</button>${one.parent && html`<button class="btn sm" onClick=${() => mindAdd(one.id, 'sibling')}>Irmão</button>`}${one.lv === 1 && html`<button class="btn sm" title="Leva o ramo para o outro lado da ideia central" onClick=${() => { const L = elsRef.current; save(L.map(x => (x.id === one.id ? { ...x, side: one.dir < 0 ? 'r' : 'l', ox: 0, oy: 0 } : x)), L); }}><${Icon} n="swap" s=${13} />Outro lado</button>`}</span>
         <span class="grp seg-mini" title="Prioridade">${[1, 2, 3].map(n => html`<button key=${n} class=${cx('prio-b p' + n, one.prio === n && 'on')} title=${'Prioridade ' + n} onClick=${() => patchSel(() => ({ prio: one.prio === n ? null : n }))}>${n}</button>`)}</span>`}
       ${one && one.t === 'mind' && (() => { const r = rootOf(one); const gx = r.gx ?? MIND.hgap, gy = r.gy ?? MIND.vgap; const offs = mindTree(els, r.id).some(id => { const n = map[id]; return n && n.parent && (n.ox || n.oy); });
         return html`<span class="grp"><label class="rng" title="Distância entre um nível e o próximo, no mapa inteiro"><${Icon} n="dsH" s=${14} /><input type="range" min="16" max="240" step="4" value=${gx} aria-label="Distância entre níveis" onInput=${ev => spaceSet(r.id, { gx: +ev.target.value }, false)} onChange=${ev => spaceSet(r.id, { gx: +ev.target.value }, true)} /></label><label class="rng" title="Distância entre tópicos irmãos, no mapa inteiro"><${Icon} n="dsV" s=${14} /><input type="range" min="0" max="120" step="2" value=${gy} aria-label="Distância entre tópicos" onInput=${ev => spaceSet(r.id, { gy: +ev.target.value }, false)} onChange=${ev => spaceSet(r.id, { gy: +ev.target.value }, true)} /></label>
@@ -5057,10 +5045,10 @@ function Whiteboard({ board }) {
       <span class="tl-sep h"></span>
       <button class="tl" title="Desfazer (⌘Z)" aria-label="Desfazer" disabled=${!hist.current.length} onClick=${undo}><${Icon} n="undo" s=${18} /></button>
       <button class="tl" title="Refazer (⇧⌘Z)" aria-label="Refazer" disabled=${!fut.current.length} onClick=${redo}><${Icon} n="redo" s=${18} /></button>
-      ${tool === 'sticky' && html`<div class="wb-fly" style=${flyTop(toolIdx('sticky') + (me && me.copilot ? 1 : 0))}>${Object.keys(STICKY).map(c => Sw(STICKY[c], opt.color === c, () => setOpt({ color: c }), 'Post-it ' + c))}</div>`}
+      ${tool === 'sticky' && html`<div class="wb-fly" style=${flyTop(toolIdx('sticky') + (me && me.copilot ? 1 : 0))}>${Object.keys(STICKY).map(c => Sw(STICKY[c], opt.color === c, () => setOpt({ color: c }), 'Post-it ' + c))}<${ColorPick} label="Post-it" value=${opt.color} onPick=${c => setOpt({ color: c })} /></div>`}
       ${tool === 'shape' && html`<div class="wb-fly" style=${flyTop(toolIdx('shape') + (me && me.copilot ? 1 : 0))}>${SHAPE_T.map(s => B(SHAPE_IC[s], SHAPE_L[s], () => setOpt({ shape: s }), opt.shape === s))}</div>`}
       ${tool === 'line' && html`<div class="wb-fly" style=${flyTop(toolIdx('line') + (me && me.copilot ? 1 : 0))}>${[['straight', 'lnS', 'Reta'], ['curve', 'lnC', 'Curva'], ['elbow', 'lnE', 'Em ângulo']].map(([v, ic, l]) => B(ic, l, () => setOpt({ line: v }), opt.line === v))}<span class="tl-sep"></span>${[['none', 'hdN', 'Sem seta'], ['end', 'hdE', 'Seta no fim'], ['both', 'hdB', 'Seta nas duas pontas']].map(([v, ic, l]) => B(ic, l, () => setOpt({ head: v }), opt.head === v))}${B('dash', 'Tracejada', () => setOpt({ dash: !opt.dash }), opt.dash)}</div>`}
-      ${tool === 'pen' && html`<div class="wb-fly" style=${flyTop(toolIdx('pen') + (me && me.copilot ? 1 : 0))}>${B('pen', 'Caneta', () => setOpt({ pen: 'pen' }), opt.pen === 'pen')}${B('hl', 'Marca-texto', () => setOpt({ pen: 'hl' }), opt.pen === 'hl')}${B('eraser', 'Borracha (E)', () => setOpt({ pen: 'eraser' }), opt.pen === 'eraser')}<span class="tl-sep"></span>${WB_INK.slice(0, 4).map(c => Sw(c, opt.ink === c, () => setOpt({ ink: c, pen: opt.pen === 'eraser' ? 'pen' : opt.pen }), 'Cor da caneta', true))}</div>`}
+      ${tool === 'pen' && html`<div class="wb-fly" style=${flyTop(toolIdx('pen') + (me && me.copilot ? 1 : 0))}>${B('pen', 'Caneta', () => setOpt({ pen: 'pen' }), opt.pen === 'pen')}${B('hl', 'Marca-texto', () => setOpt({ pen: 'hl' }), opt.pen === 'hl')}${B('eraser', 'Borracha (E)', () => setOpt({ pen: 'eraser' }), opt.pen === 'eraser')}<span class="tl-sep"></span>${WB_INK.slice(0, 4).map(c => Sw(c, opt.ink === c, () => setOpt({ ink: c, pen: opt.pen === 'eraser' ? 'pen' : opt.pen }), 'Cor da caneta', true))}<${ColorPick} label="Cor da caneta" round value=${opt.ink} onPick=${c => setOpt({ ink: c, pen: opt.pen === 'eraser' ? 'pen' : opt.pen })} /></div>`}
       ${(panel === 'more' || tool === 'stamp') && html`<div class="wb-fly col" style=${flyTop(toolIdx('more') + (me && me.copilot ? 1 : 0) - 2)}>
         <button class="btn sm ghost" onClick=${() => { setPanel(null); fileRef.current.click(); }}><${Icon} n="image" s=${15} />Imagem</button>
         <button class="btn sm ghost" onClick=${() => { setLinkV(''); setPanel('link'); }}><${Icon} n="link" s=${15} />Link</button>
@@ -5073,7 +5061,7 @@ function Whiteboard({ board }) {
         ${panel === 'frames' && html`<div class="pop wb-frames">${frames.length ? frames.map((f, i) => html`<button key=${f.id} onClick=${() => { fitFrame(f); setSel([f.id]); setPanel(null); }}><span class="n">${i + 1}</span>${f.title}</button>`) : html`<p class="muted">Nenhuma moldura. Use a ferramenta Moldura (F) para separar o quadro em partes e apresentar uma de cada vez.</p>`}</div>`}</div>
       <button class="btn sm pri" disabled=${!frames.length} title=${frames.length ? 'Apresentar as molduras, uma por tela' : 'Crie uma moldura (F) para apresentar'} onClick=${() => present(0)}><${Icon} n="play" s=${14} />Apresentar</button>
       <div class="p-menu"><button class=${cx('btn sm icon', panel === 'help' && 'on')} aria-label="Atalhos" title="Atalhos do quadro" onClick=${() => setPanel(panel === 'help' ? null : 'help')}><${Icon} n="help" s=${15} /></button>
-        ${panel === 'help' && html`<div class="pop wb-help"><b>Atalhos</b><dl>${[['V', 'Selecionar'], ['H ou Espaço', 'Mover a lousa'], ['N', 'Post-it'], ['T', 'Texto'], ['S', 'Formas'], ['L', 'Conector'], ['P / E', 'Caneta e borracha'], ['M', 'Mapa mental'], ['F', 'Moldura'], ['Digitar', 'Escreve no que está selecionado'], ['Tab', 'Próximo post-it, ou tópico filho no mapa mental'], ['Enter / ⇧Enter', 'Tópico irmão depois ou antes'], ['L entre tópicos', 'Relação tracejada no mapa mental'], ['Setas', 'Andar pelo mapa mental ou mover'], ['Arrastar tópico', 'Solto no vazio, fica ali. Solto em cima de outro, vira filho dele'], ['⌥ + arrastar', 'Só move o tópico, sem trocar de pai'], ['⌥ + setas', 'Move o tópico selecionado'], ['⌘⇧↑ / ↓', 'Muda a ordem entre os irmãos'], ['F2', 'Edita o texto'], ['⇧Delete', 'Apaga só o tópico; os filhos sobem um nível'], ['⌘Z / ⇧⌘Z', 'Desfazer e refazer'], ['⌘C / ⌘V', 'Copiar e colar, inclusive imagem e link'], ['⌘D', 'Duplicar'], ['⌘A', 'Selecionar tudo'], ['⇧⌘L', 'Travar no lugar'], ['PgUp / PgDn', 'Frente e trás'], ['⌥1', 'Enquadrar tudo'], ['⌘ + rolagem', 'Zoom']].map(([a, b]) => html`<dt key=${a}>${a}</dt><dd>${b}</dd>`)}</dl></div>`}</div>
+        ${panel === 'help' && html`<div class="pop wb-help"><b>Atalhos</b><dl>${[['V', 'Selecionar'], ['H ou Espaço', 'Mover a lousa'], ['N', 'Post-it'], ['T', 'Texto'], ['S', 'Formas'], ['L', 'Conector'], ['P / E', 'Caneta e borracha'], ['M', 'Mapa mental'], ['F', 'Moldura'], ['Digitar', 'Escreve no que está selecionado'], ['Tab', 'Próximo post-it, ou tópico filho no mapa mental'], ['Enter / ⇧Enter', 'Tópico irmão depois ou antes'], ['L entre tópicos', 'Relação tracejada no mapa mental'], ['Setas', 'Andar pelo mapa mental ou mover'], ['Arrastar tópico', 'Solto no vazio, fica ali. Solto em cima de outro, vira filho dele'], ['⌥ + arrastar', 'Só move o tópico, sem trocar de pai'], ['Ramo para o outro lado', 'Arraste por cima da ideia central, ou use Outro lado'], ['⌥ + setas', 'Move o tópico selecionado'], ['⌘⇧↑ / ↓', 'Muda a ordem entre os irmãos'], ['F2', 'Edita o texto'], ['⇧Delete', 'Apaga só o tópico; os filhos sobem um nível'], ['⌘Z / ⇧⌘Z', 'Desfazer e refazer'], ['⌘C / ⌘V', 'Copiar e colar, inclusive imagem e link'], ['⌘D', 'Duplicar'], ['⌘A', 'Selecionar tudo'], ['⇧⌘L', 'Travar no lugar'], ['PgUp / PgDn', 'Frente e trás'], ['⌥1', 'Enquadrar tudo'], ['⌘ + rolagem', 'Zoom']].map(([a, b]) => html`<dt key=${a}>${a}</dt><dd>${b}</dd>`)}</dl></div>`}</div>
     </div>`}
 
     ${panel === 'link' && html`<form class="wb-linkask wb-ui" onPointerDown=${e => e.stopPropagation()} onSubmit=${e => { e.preventDefault(); const u = linkV.trim(); if (!u) return; addLink(/^(https?:)/.test(u) ? u : 'https://' + u); setPanel(null); }}><${Icon} n="link" s=${15} /><input class="inp" ref=${autoF} placeholder="Cole um link: YouTube, Google Docs, Drive, Figma…" value=${linkV} onInput=${e => setLinkV(e.target.value)} /><button class="btn pri sm" type="submit" disabled=${!linkV.trim()}>Pôr no quadro</button><button type="button" class="btn sm icon ghost" aria-label="Fechar" onClick=${() => setPanel(null)}><${Icon} n="x" s=${14} /></button></form>`}
@@ -5099,7 +5087,7 @@ function WbMini({ els, vp, box, onNav }) {
   const X = x => (x - x1) * s, Y = y => (y - y1) * s; const drag = useRef(false);
   const nav = e => { const r = e.currentTarget.getBoundingClientRect(); onNav((e.clientX - r.left) / s + x1, (e.clientY - r.top) / s + y1); };
   return html`<svg class="wb-mini wb-ui" width=${W} height=${Hh} onPointerDown=${e => { e.stopPropagation(); e.currentTarget.setPointerCapture(e.pointerId); drag.current = true; nav(e); }} onPointerMove=${e => drag.current && nav(e)} onPointerUp=${() => { drag.current = false; }} aria-label="Minimapa">
-    ${vis.map(e => hasBox(e) ? html`<rect key=${e.id} x=${X(e.x)} y=${Y(e.y)} width=${Math.max(1.5, e.w * s)} height=${Math.max(1.5, e.h * s)} rx="1" fill=${e.t === 'frame' ? 'none' : e.t === 'sticky' ? STICKY[e.color] || STICKY.sand : e.t === 'mind' ? (e.lv === 0 ? '#222831' : e.bc || '#6A655D') : 'var(--line-strong)'} stroke=${e.t === 'frame' ? 'var(--text-3)' : 'none'} stroke-width="1" />` : null)}
+    ${vis.map(e => hasBox(e) ? html`<rect key=${e.id} x=${X(e.x)} y=${Y(e.y)} width=${Math.max(1.5, e.w * s)} height=${Math.max(1.5, e.h * s)} rx="1" fill=${e.t === 'frame' ? 'none' : e.t === 'sticky' ? stickyFill(e.color) : e.t === 'mind' ? (e.lv === 0 ? '#222831' : e.bc || '#6A655D') : 'var(--line-strong)'} stroke=${e.t === 'frame' ? 'var(--text-3)' : 'none'} stroke-width="1" />` : null)}
     <rect x=${X(view.x)} y=${Y(view.y)} width=${view.w * s} height=${view.h * s} rx="2" class="wb-mini-view" />
   </svg>`;
 }
@@ -5828,6 +5816,133 @@ function CMark({ c, lg }) {
   if (src) return html`<span class=${cx('cmark img', lg && 'lg', b.icon && 'fill')}><img src=${src} alt="" /></span>`;
   const bg = isHex(b.primary) ? b.primary : null;
   return html`<span class=${cx('cmark', lg && 'lg')} style=${bg ? { background: bg, color: onColor(bg) } : null}>${initials(c.name)}</span>`;
+}
+
+/* ================= v11: modelos de desenho no quadro, mapa mental dos dois lados, cor livre, funil só com o caminho ================= */
+Object.assign(IC, {
+  trap: ['M3 5h18l-3 14H6z'], trapU: ['M6 5h12l3 14H3z'],
+  swap: ['M7 4 3 8l4 4', 'M3 8h13', 'M17 20l4-4-4-4', 'M21 16H8'],
+});
+SHAPE_T.push('trap', 'trapU');
+Object.assign(SHAPE_L, { trap: 'Trapézio, como funil', trapU: 'Trapézio, como pirâmide' });
+Object.assign(SHAPE_IC, { trap: 'trap', trapU: 'trapU' });
+
+/* cor livre: além das bolinhas prontas, qualquer cor, e as últimas escolhidas ficam à mão */
+const stickyFill = c => STICKY[c] || (isHex(c) ? c : STICKY.sand);
+const fillOf = f => WB_FILL[f] || (isHex(f) ? f : WB_FILL.white);
+const darkFill = e => e.t !== 'text' && e.fill !== 'none' && onDarkOf(fillOf(e.fill));
+const markOf = c => (c && !WB_INK.includes(c) && isHex(c) ? `url(#wbhc${c.replace('#', '')})` : `url(#wbh${inkIdx(c)})`);
+const inkMarks = els => [...new Set(els.filter(a => a.t === 'arrow' && a.ink && !WB_INK.includes(a.ink) && isHex(a.ink)).map(a => a.ink))]
+  .map(c => html`<marker key=${'c' + c} id=${'wbhc' + c.replace('#', '')} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill=${c} /></marker>`);
+function ColorPick({ value, onPick, label, round }) {
+  const [, bump] = useState(0);
+  const recent = lsGet('mo.wb.cores', []);
+  const cur = isHex(value) ? String(value).toUpperCase() : null;
+  const pick = v => { const c = String(v).toUpperCase(); lsSet('mo.wb.cores', [c, ...recent.filter(x => x !== c)].slice(0, 3)); bump(x => x + 1); onPick(c); };
+  const free = cur && !recent.includes(cur);
+  return html`${recent.map(c => html`<button key=${'r' + c} class=${cx('sw', round && 'dot', cur === c && 'on')} style=${{ background: c }} aria-label=${label + ' ' + c} title=${c} onClick=${() => onPick(c)}></button>`)}<label key="free" class=${cx('sw sw-free', round && 'dot', free && 'on')} style=${free ? { background: cur } : null} title="Outra cor: qualquer uma, pelo seletor ou pelo código"><input type="color" aria-label=${'Outra cor: ' + label.toLowerCase()} value=${cur || '#E4572E'} onChange=${e => pick(e.target.value)} /></label>`;
+}
+
+/* mapa mental: os ramos nascem dos dois lados da ideia central, e cada ramo pode trocar de lado */
+function mindLayout(els) {
+  if (!els.some(e => e.t === 'mind')) return els;
+  const map = {}; els.forEach(e => { if (e.t === 'mind') map[e.id] = { ...e }; });
+  const kids = {}; Object.values(map).forEach(n => { if (n.parent && map[n.parent]) (kids[n.parent] = kids[n.parent] || []).push(n); });
+  const roots = Object.values(map).filter(n => !n.parent || !map[n.parent]);
+  roots.forEach(r => { const ks = kids[r.id] || []; const cnt = { r: 0, l: 0 }; ks.forEach(k => { if (k.side === 'l' || k.side === 'r') cnt[k.side]++; });
+    ks.forEach(k => { let s = k.side; if (s !== 'l' && s !== 'r') { s = cnt.l < cnt.r ? 'l' : 'r'; cnt[s]++; } k.dir = s === 'l' ? -1 : 1; }); });
+  const sub = {};
+  const size = (n, lv, col, dir) => { Object.assign(n, mindSize(n, lv), { lv, bc: lv === 0 ? null : col, dir }); (kids[n.id] || []).forEach((k, i) => size(k, lv + 1, lv === 0 ? (k.color || BRANCH[i % BRANCH.length]) : (k.color || col), lv === 0 ? k.dir : dir)); };
+  const H = (n, gy) => { const ks = n.collapsed ? [] : kids[n.id] || []; const tot = ks.reduce((a, k) => a + H(k, gy), 0) + Math.max(0, ks.length - 1) * gy; return (sub[n.id] = Math.max(n.h, tot)); };
+  const stack = (ks, gy) => ks.reduce((a, k) => a + sub[k.id], 0) + Math.max(0, ks.length - 1) * gy;
+  const place = (n, ax, cy, gx, gy) => { const d = n.dir; n.x = Math.round((d < 0 ? ax - n.w : ax) + (n.ox || 0)); n.y = Math.round(cy - n.h / 2 + (n.oy || 0));
+    const ks = n.collapsed ? [] : kids[n.id] || []; let y = n.y + n.h / 2 - stack(ks, gy) / 2;
+    ks.forEach(k => { place(k, d < 0 ? n.x - gx : n.x + n.w + gx, y + sub[k.id] / 2, gx, gy); y += sub[k.id] + gy; }); };
+  const hide = (n, h) => { n.hid = h; (kids[n.id] || []).forEach(k => hide(k, h || !!n.collapsed)); };
+  roots.forEach(r => { const gx = r.gx ?? MIND.hgap, gy = r.gy ?? MIND.vgap; const cy = r.y + (r.h || 40) / 2;
+    size(r, 0, null, 0); r.x = Math.round(r.x); r.y = Math.round(cy - r.h / 2);
+    const ks = r.collapsed ? [] : kids[r.id] || []; ks.forEach(k => H(k, gy));
+    [1, -1].forEach(dir => { const g = ks.filter(k => k.dir === dir); let y = cy - stack(g, gy) / 2; g.forEach(k => { place(k, dir > 0 ? r.x + r.w + gx : r.x - gx, y + sub[k.id] / 2, gx, gy); y += sub[k.id] + gy; }); });
+    hide(r, false); });
+  return els.map(e => (e.t === 'mind' ? map[e.id] : e));
+}
+/* o lado de cada ramo fica gravado quando o mapa muda, para nenhum ramo pular de lado sozinho */
+function mindFreeze(next, prev) {
+  const pd = {}; prev.forEach(e => { if (e.t === 'mind' && e.dir) pd[e.id] = e.dir; });
+  const M = {}; next.forEach(e => { if (e.t === 'mind') M[e.id] = e; });
+  return next.map(e => (e.t === 'mind' && !e.side && e.parent && M[e.parent] && !M[e.parent].parent && pd[e.id] ? { ...e, side: pd[e.id] < 0 ? 'l' : 'r' } : e));
+}
+
+/* modelos de desenho: servem para qualquer cliente */
+const P11 = { cream: '#F4EBDD', sand: '#DFD0B8', taupe: '#948979', slate: '#393E46', dark: '#222831' };
+const big = (e, size = 17) => Object.assign(e, { size, bold: true });
+WB_TPL.splice(2, 0,
+  { k: 'funil', name: 'Funil', desc: 'Quatro camadas, da atenção à compra, com o que acontece em cada uma.', make: () => {
+    const out = [wbF(0, 0, 1180, 560, 'Funil')]; let w = 660;
+    [['Atenção', 'Quem vê a marca pela primeira vez', P11.cream], ['Interesse', 'Quem clica, responde ou pergunta', P11.sand], ['Decisão', 'Quem compara e pede proposta', P11.taupe], ['Compra', 'Quem fecha', P11.dark]].forEach(([t, s, c], i) => {
+      const y = 44 + i * 118; out.push(big(wbSh('trap', Math.round(390 - w / 2), y, Math.round(w), 108, t, c), 18), wbT(760, y + 42, s, 15, 380, false)); w *= .76; });
+    return out; } },
+  { k: 'piramide', name: 'Pirâmide', desc: 'Níveis empilhados, da base que sustenta tudo até o topo.', make: () => {
+    const out = [wbF(0, 0, 1060, 540, 'Pirâmide')]; let w = 190, y = 40;
+    [['Visão', P11.dark], ['Estratégia', P11.slate], ['Tática', P11.taupe], ['Execução', P11.sand]].forEach(([t, c], i) => {
+      if (i) w = Math.round(w / .76); const h = i ? 100 : 124;
+      out.push(big(wbSh(i ? 'trapU' : 'tri', Math.round(360 - w / 2), y, w, h, t, c)), wbT(720, y + h / 2 - 12, 'O que entra neste nível', 15, 300, false)); y += h + 8; });
+    return out; } },
+  { k: 'ciclo', name: 'Ciclo', desc: 'Etapas que se repetem em roda, cada uma levando à seguinte.', make: () => {
+    const F = [P11.cream, P11.sand, P11.taupe, P11.slate, P11.dark];
+    const n = ['Planejar', 'Produzir', 'Publicar', 'Medir', 'Ajustar'].map((t, i) => { const a = -Math.PI / 2 + i * 2 * Math.PI / 5; return big(wbSh('ellipse', Math.round(450 + 220 * Math.cos(a) - 85), Math.round(330 + 220 * Math.sin(a) - 42), 170, 84, t, F[i]), 16); });
+    return [wbF(0, 0, 900, 640, 'Ciclo'), ...n, ...n.map((x, i) => wbA(x, n[(i + 1) % n.length]))]; } },
+  { k: 'etapas', name: 'Processo em etapas', desc: 'Passos numerados da esquerda para a direita, com o que acontece em cada um.', make: () => {
+    const c = [0, 1, 2, 3, 4].map(i => big(wbSh('ellipse', 71 + i * 240, 40, 96, 96, String(i + 1), i === 4 ? P11.dark : P11.slate), 26));
+    return [wbF(0, 0, 1200, 420, 'Processo em etapas'), ...c, ...c.slice(1).map((x, i) => wbA(c[i], x)), ...c.flatMap((x, i) => [wbT(34 + i * 240, 158, 'Etapa ' + (i + 1), 18, 200, true), wbS(34 + i * 240, 200, 'cream', '', 170, 170)])]; } },
+  { k: 'compara', name: 'Comparação', desc: 'Dois lados frente a frente: antes e depois, nós e eles, hoje e amanhã.', make: () => {
+    const out = [wbF(0, 0, 900, 600, 'Comparação'), big(wbSh('round', 40, 40, 350, 64, 'Antes', P11.slate), 20), big(wbSh('ellipse', 410, 42, 80, 60, 'vs', P11.sand), 16), big(wbSh('round', 510, 40, 350, 64, 'Depois', P11.dark), 20)];
+    [0, 1, 2, 3].forEach(i => out.push(wbS(40, 124 + i * 116, 'pink', '', 350, 102), wbS(510, 124 + i * 116, 'green', '', 350, 102)));
+    return out; } },
+  { k: 'prioridade', name: 'Matriz de prioridade', desc: 'Impacto contra esforço: o que fazer já, o que planejar e o que deixar de lado.', make: () => {
+    const out = [wbF(0, 0, 960, 720, 'Impacto e esforço'), wbT(80, 16, '↑ Mais impacto', 14, 200, true), wbT(770, 668, 'Mais esforço →', 14, 160, true)];
+    [['Fazer já', 'Muito impacto, pouco esforço', 'green', 80, 56], ['Planejar', 'Muito impacto, muito esforço', 'blue', 490, 56], ['Se sobrar tempo', 'Pouco impacto, pouco esforço', 'sand', 80, 366], ['Deixar de lado', 'Pouco impacto, muito esforço', 'pink', 490, 366]]
+      .forEach(([t, s, c, x, y]) => out.push(wbSh('rect', x, y, 390, 290, '', c), wbT(x + 20, y + 16, t, 20, 330, true), wbT(x + 20, y + 52, s, 14, 330, false)));
+    return out; } },
+  { k: 'persona', name: 'Persona', desc: 'O cliente ideal: o que quer, o que dói, o que trava a compra e onde encontrá-lo.', make: () => {
+    const out = [wbF(0, 0, 1000, 640, 'Persona'), wbSh('ellipse', 40, 40, 110, 110, '', P11.sand), wbT(170, 58, 'Nome, cargo e empresa', 24, 700, true), wbT(170, 104, 'Uma frase que ele diria sobre o problema', 16, 700, false)];
+    [['Quem é', 'cream'], ['O que quer', 'green'], ['O que dói', 'pink'], ['O que trava a compra', 'lilac'], ['Onde ele está', 'blue'], ['Como decide', 'sand']]
+      .forEach(([t, c], i) => { const x = 40 + (i % 3) * 315, y = 180 + Math.floor(i / 3) * 220; out.push(wbT(x, y, t, 16, 290, true), wbS(x, y + 34, c, '', 290, 160)); });
+    return out; } },
+);
+
+/* funil: o estilo "só o caminho" desenha etapas e setas, sem número nenhum na tela */
+const PN = (id, type, x, y, label) => ({ id, type, x, y, p: {}, label: label || FN[type].label });
+const PE = (a, b) => ({ id: 'e' + a + b, from: a, to: b, rate: 100 });
+const FNP = (id, title, nodes, edges) => ({ id, clientId: null, title, currency: 'US$', by: 'pedro', at: off(0), style: 'path', note: '', nodes, edges });
+const FN_PATH = {
+  simples: id => FNP(id, 'Caminho simples', [PN('a', 'meta', 0, 120, 'Anúncio'), PN('b', 'landing', 250, 120, 'Página'), PN('c', 'agente', 500, 120, 'Conversa no WhatsApp'), PN('d', 'reuniao', 750, 120)],
+    [PE('a', 'b'), PE('b', 'c'), PE('c', 'd')]),
+  caminho: id => FNP(id, 'Caminho com qualificação', [PN('a', 'meta', 0, 40), PN('b', 'organico', 0, 260), PN('c', 'quiz', 250, 150), PN('d', 'agente', 500, 150), PN('e', 'qualificado', 750, 150), PN('f', 'reuniao', 1000, 150), PN('g', 'venda', 1250, 150)],
+    [PE('a', 'c'), PE('b', 'c'), PE('c', 'd'), PE('d', 'e'), PE('e', 'f'), PE('f', 'g')]),
+  lancamento: id => FNP(id, 'Lançamento', [PN('a', 'meta', 0, 40, 'Anúncio'), PN('b', 'lista', 0, 260), PN('c', 'landing', 250, 150), PN('d', 'webinar', 500, 150), PN('e', 'vendas', 750, 150), PN('f', 'checkout', 1000, 150), PN('g', 'obrigado', 1250, 150)],
+    [PE('a', 'c'), PE('b', 'c'), PE('c', 'd'), PE('d', 'e'), PE('e', 'f'), PE('f', 'g')]),
+};
+const NF_TPL = {
+  path: [['simples', 'Caminho simples', 'Anúncio → página → conversa no WhatsApp → reunião'], ['caminho', 'Caminho com qualificação', 'Anúncio e orgânico → quiz → agente → lead qualificado → reunião → venda'], ['lancamento', 'Lançamento', 'Anúncio e lista → captura → webinar → página de vendas → checkout → obrigado']],
+  calc: [['qualif', 'Qualificação Imediata', 'Meta e orgânico → quiz → agente no WhatsApp → reunião → venda'], ['vsl', 'VSL com upsell e downsell', 'Anúncio → VSL → checkout → upsell → downsell → obrigado'], ['captura', 'Captura, e-mail e página de vendas', 'Anúncio e orgânico → página de captura → e-mail → página de vendas → checkout']],
+};
+function NewFunnel({ close, clientId }) {
+  const { db, act, go } = useApp();
+  const [f, setF] = useState({ title: '', style: 'path', tpl: 'simples', clientId: clientId || '' });
+  const L = [...NF_TPL[f.style], ['blank', 'Em branco', 'Comece do zero']];
+  const cur = L.find(t => t[0] === f.tpl) || L[0];
+  return html`<form onSubmit=${e => { e.preventDefault(); const id = act.addFunnel({ ...f, title: f.title.trim() || (f.tpl === 'blank' ? '' : cur[1]) }); close(); go({ v: 'funnel', id }); }}>
+    <div class="mhd"><div><h2>Novo funil</h2><p>Escolha o estilo e um ponto de partida. Dentro do funil dá para trocar de estilo a qualquer hora.</p></div><button type="button" class="btn icon ghost" aria-label="Fechar" onClick=${close}><${Icon} n="x" /></button></div>
+    <div class="mbd">
+      <div class="nf-style"><div class="seg" role="group" aria-label="Estilo do funil">${[['path', 'Só o caminho'], ['calc', 'Com números']].map(([k, l]) => html`<button type="button" key=${k} class=${cx(f.style === k && 'on')} aria-pressed=${f.style === k} onClick=${() => setF({ ...f, style: k, tpl: NF_TPL[k][0][0] })}>${l}</button>`)}</div>
+        <small class="muted">${f.style === 'path' ? 'Etapas e setas, sem número nenhum na tela. Serve para mostrar ao cliente por onde o lead passa.' : 'Cada ligação com a taxa de quem passa e, no fim, quanto custa cada reunião agendada.'}</small></div>
+      <div class="tpls">${L.map(([k, l, d]) => html`<button type="button" key=${k} class=${cx('tpl', f.tpl === k && 'on')} aria-pressed=${f.tpl === k} onClick=${() => setF({ ...f, tpl: k })}><b>${l}</b><small>${d}</small></button>`)}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><label class="field"><span>Nome</span><input class="inp" id="nf-name" placeholder=${f.tpl === 'blank' ? 'Funil sem título' : cur[1]} value=${f.title} onInput=${e => setF({ ...f, title: e.target.value })} /></label>
+        <label class="field"><span>Cliente</span><select class="sel" id="nf-client" value=${f.clientId} onChange=${e => setF({ ...f, clientId: e.target.value })}><option value="">Modelo interno</option>${db.clients.map(c => html`<option value=${c.id}>${c.name}</option>`)}</select></label></div>
+    </div>
+    <div class="mft"><button type="button" class="btn ghost" onClick=${close}>Cancelar</button><button class="btn pri" type="submit">Criar funil</button></div>
+  </form>`;
 }
 
 render(html`<${App} />`, document.getElementById('app'));

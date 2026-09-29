@@ -4,7 +4,7 @@ Protótipo clicável da plataforma de gestão da M&O Company, com a central do t
 cliente, pensada para substituir Notion, ClickUp e Trello. Os dados são de exemplo, tirados do
 trabalho real da M&O, e nada é salvo em servidor: recarregar a página volta ao começo.
 
-- **No ar:** https://claude.ai/artifact/8isLH3dQCDxv73eQGtguWV (versão 9, 28/09/2026)
+- **No ar:** https://claude.ai/artifact/8isLH3dQCDxv73eQGtguWV (versão 10, 29/09/2026)
 - **Este repositório** guarda a cópia exata da versão publicada, para versionar e para servir de ponto
   de partida da versão de verdade.
 
@@ -25,7 +25,7 @@ Depois abra http://localhost:8000 no navegador e escolha um dos acessos de exemp
 |---|---|
 | `index.html` | A página publicada, idêntica à que está no ar. |
 | `img/` | As 51 artes dos carrosséis da M&O usadas nos posts de exemplo. |
-| `fonte/` | A fonte de todas as versões, da v1 à v9, com os scripts que montaram cada uma. O guia está em `fonte/COMO-FUNCIONA.md`. |
+| `fonte/` | A fonte de todas as versões, da v1 à v10, com os scripts que montaram cada uma. O guia está em `fonte/COMO-FUNCIONA.md`. |
 | `decisoes/` | O porquê de cada escolha: as falas do Pedro volta a volta, os handoffs, a memória da plataforma e as pesquisas. O índice está em `decisoes/README.md`. |
 
 ## O que só funciona dentro do claude.ai
@@ -37,7 +37,7 @@ avisa:
 - o link do Drive que vira prévia do post;
 - o copiloto, a ata por IA e o desenho por IA no quadro e no funil.
 
-## O que tem, até a versão 9
+## O que tem, até a versão 10
 
 - Central do time: meu dia, caixa de entrada, visão geral, tarefas, postagens, roteiros, calendário,
   reuniões, quadros, funis, processos internos, equipe e automações.
@@ -48,10 +48,14 @@ avisa:
 - Roteiro com 10 modelos ou em texto livre.
 - Funil no padrão do Funnelytics, com o custo de cada reunião agendada.
 - Quadro branco no padrão do Miro, com mapa mental de posição livre.
+- Cadastro do cliente com logo, ícone, cores e nicho, e uma aba Sobre com a bio do cliente, só do time.
+- O cliente vê na produção só as etapas que o time liga para ele, adiciona os próprios links e avisa o
+  time do que faz.
+- Histórico de tudo o que cada pessoa mudou, do time e dos clientes, para os sócios consultarem.
 
 ## Histórico das versões
 
-Todas publicadas no mesmo link, entre 25 e 28/09/2026. O detalhe de cada uma está em
+Todas publicadas no mesmo link, entre 25 e 29/09/2026. O detalhe de cada uma está em
 `decisoes/memoria-plataforma.md` e no registro de feedback correspondente.
 
 - **v1 (25/09):** central da empresa, central por cliente e dois níveis de acesso (time e cliente).
@@ -78,11 +82,20 @@ Todas publicadas no mesmo link, entre 25 e 28/09/2026. O detalhe de cada uma est
   hex, RGB ou pela identidade visual, no painel do cliente e na Aparência do time; post com 8 formatos e
   prévia que recebe arquivo ou link; mapa mental com posição livre, troca de pai ao soltar e
   espaçamento.
+- **v10 (29/09):** o cadastro do cliente ganha logo, ícone, cores lidas do logo e nicho, e o ícone
+  aparece no lado do time; a aba Sobre guarda a bio do cliente para quem chega no time; cada etapa da
+  esteira tem a chave "o cliente vê", e as internas viram uma coluna só no painel dele; o cliente
+  adiciona e edita os próprios links, e o time é avisado; o Histórico registra quem mudou o quê, sem
+  notificar; o título do funil, do quadro, das páginas e das peças parou de duplicar o texto; a prévia
+  pelo Drive segue as partes da lista de arquivos.
 
 ## O que está em aberto
 
-- O Pedro testar a v9 dentro do claude.ai, em especial o link de pasta do Drive virando prévia do post
-  (esse caminho não rodou ao vivo).
+- O Pedro testar a v10 dentro do claude.ai, e o link de pasta do Drive virando prévia do post (esse
+  caminho não rodou ao vivo; a parte do conector foi conferida de fora em 29/09).
+- A v11, pedida em 29/09: mais modelos no quadro (funil, infográficos), mapa mental dos dois lados com a
+  ideia central móvel, cor livre além das seis de cada paleta, e modelos de funil por estilo de desenho
+  (só o caminho, ou com o cálculo no fim).
 - Qual falta do quadro vem depois: cursores ao vivo, comentários, votação com cronômetro, agrupar e
   guias de alinhamento, exportar.
 - Se o TikTok entra como fonte de tráfego no funil dos clientes.

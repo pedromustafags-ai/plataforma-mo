@@ -7,7 +7,7 @@ ao Claude (copiloto, ata por IA, desenho por IA).
 
 ## O arquivo que vale hoje
 
-- **`src.html`** é a fonte da versão 9, a que está no ar. Tem dois marcadores, `__LOGO__` e `__ICON__`,
+- **`src.html`** é a fonte da versão 10, a que está no ar. Tem dois marcadores, `__LOGO__` e `__ICON__`,
   onde entram os SVGs do logo da M&O.
 - **`build.py`** lê `src.html`, põe os dois SVGs de `logo/` nos marcadores (recolorindo os preenchimentos
   para as classes `lc`, `lm` e `lw`, que o tema pinta) e grava `index.html` e `test.html`.
@@ -35,11 +35,17 @@ costurar a seguinte.
 | v7 | 28/09 | `src-v6.html` | `v7.js`, `css_v7.txt` | `integrate7.py`, `integrate7b.py` |
 | v8 | 28/09 | `src-v7.html` | `v8a.js`, `v8b.js`, `v8c.js`, `css_v8.txt` | `integrate8a.py`, `integrate8b.py` |
 | v9 | 28/09 | `src-v8.html` | `v9.js`, `css_v9.txt` | `integrate9.py` (rodado por `make9.sh`) |
+| v10 | 29/09 | `src-v9.html` | `v10.js`, `css_v10.txt` | `integrate10.py` (rodado por `make10.sh`) |
 
 Os scripts de costura são registro histórico: eles esperam encontrar o texto exato da versão anterior
 e param com erro se não acharem. O `integrate9.py` confere, a cada troca, que o trecho antigo apareceu
 exatamente uma vez. O `make9.sh` refaz a v9 do zero: copia `src-v8.html` para `src.html`, costura, monta
-e confere a sintaxe do script com `node --check`.
+e confere a sintaxe do script com `node --check`. O `make10.sh` faz o mesmo para a v10, a partir de
+`src-v9.html`.
+
+A partir da v10, quando uma função inteira muda, o script tira a versão antiga do `src.html` (função
+`drop`) e a nova passa a morar no módulo da versão. Na v10 foram assim `CMark`, `NewClient`,
+`FlowSettings`, `PortalBoard`, `LinkCard`, `PortalLinks` e `Inbox`, todas em `v10.js`.
 
 ## As outras pastas
 

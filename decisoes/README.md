@@ -25,6 +25,7 @@ Cada arquivo traz as falas dele, literais, e as leis que saíram delas.
 | v8 | `2026-09-28-plataforma-mo-quadro-como-miro-e-menu-legivel.md` | o quadro no padrão do Miro e o menu legível |
 | v9 | `2026-09-28-plataforma-mo-cor-do-cliente-formato-do-post-mapa-livre.md` | as cores do cliente, o formato do post e o mapa livre |
 | após a v9 | `2026-09-29-plataforma-mo-tudo-no-github-com-detalhe.md` | tudo neste repositório, com detalhe, e a plataforma morando em dois lugares |
+| v10 e v11 | `2026-09-29-plataforma-mo-cliente-com-a-cara-dele-historico-quadro-e-funil.md` | o cliente com a cara dele, a bio, o que ele vê da esteira, o histórico, o texto duplicado, e os pedidos do quadro e do funil |
 
 ## O estado de cada fim de sessão (`handoffs/`)
 

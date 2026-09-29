@@ -146,6 +146,11 @@ vendas" e "Quadro branco" a pedido dele.
 - **Não rodou ao vivo:** o caminho do Drive dentro do claude.ai. O formato da resposta foi
   conferido por chamada real; a exportação de Docs e Slides em PDF, não.
 
+**No GitHub desde 29/09:** repositório privado `github.com/pedromustafags-ai/plataforma-mo`, cópia local em
+`~/Downloads/plataforma-mo`. Tem a página publicada, a fonte da v1 à v9 (`fonte/`, com `build.py` que remonta
+a página a partir de `src.html` e dos logos em `fonte/logo/`), as falas do Pedro, os handoffs, esta memória e as
+pesquisas (`decisoes/`). Ao mudar a plataforma, atualizar também o repositório.
+
 **Arquitetura de custo fixo que a pesquisa recomendou:** VPS Hetzner CX33 + backup + Storage Box
 (~€15/mês), Next.js + Postgres + Better Auth (link mágico e OAuth do MCP), Excalidraw + Hocuspocus
 no quadro, arquivos no disco, e-mail Brevo com Resend de reserva. O copiloto do Pedro entra como

@@ -24,11 +24,14 @@ Cada arquivo traz as falas dele, literais, e as leis que saíram delas.
 | v7 | `2026-09-28-plataforma-mo-equipe-do-cliente-navegacao-tema-claro.md` | a equipe do cliente, a navegação e o tema claro |
 | v8 | `2026-09-28-plataforma-mo-quadro-como-miro-e-menu-legivel.md` | o quadro no padrão do Miro e o menu legível |
 | v9 | `2026-09-28-plataforma-mo-cor-do-cliente-formato-do-post-mapa-livre.md` | as cores do cliente, o formato do post e o mapa livre |
+| após a v9 | `2026-09-29-plataforma-mo-tudo-no-github-com-detalhe.md` | tudo neste repositório, com detalhe, e a plataforma morando em dois lugares |
 
 ## O estado de cada fim de sessão (`handoffs/`)
 
 - `handoff-2026-09-28-2126.md`: da v1 à v8, com os erros achados e as pendências daquele dia.
 - `handoff-2026-09-28-2259.md`: a v9, com o que não rodou ao vivo e a ordem das pendências.
+- `handoff-2026-09-29-0926.md`: a subida para este repositório, e o passo a passo para atualizá-lo a cada
+  versão nova.
 
 ## As pesquisas desta volta (`pesquisas/`)
 

@@ -1,5 +1,6 @@
-import json,re
-D="/Users/pedromustafa/Downloads/M&O COMPANY - Id. Visual/Versões Logotipo/SVG (vetor)/"
+import json,re,os
+# os dois SVGs do logo da M&O ficam em fonte/logo/ (2.svg = logo completo, 7.svg = só o símbolo)
+D=os.path.join(os.path.dirname(os.path.abspath(__file__)),"logo")+os.sep
 def recolor(path, classes):
     svg=open(D+path).read().strip(); it=iter(classes)
     return re.sub(r'fill="([^"]+)"', lambda m: m.group(0) if m.group(1).lower()=='none' else 'class="%s"'%next(it), svg)

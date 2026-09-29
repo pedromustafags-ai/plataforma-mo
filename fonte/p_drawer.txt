@@ -1,0 +1,15 @@
+function DrawerHost() {
+  const app = useApp(); const { drawer, setDrawer, db } = app;
+  const isM = drawer.k === 'meeting';
+  const x = isM ? allMeetings(app).find(m => m.key === drawer.id) : itemOf(db, drawer.k, drawer.id);
+  if (!x) return null;
+  const close = () => setDrawer(null);
+  const kind = isM ? 'Reunião' : drawer.k === 'task' ? (x.type === 'entrega' ? 'Entrega' : 'Tarefa') : drawer.k === 'post' ? 'Post' : 'Roteiro';
+  return html`<div class="scrim" onClick=${e => e.target === e.currentTarget && close()}>
+    <div class=${cx('drawer', drawer.k === 'task' && 'narrow')} role="dialog" aria-modal="true" aria-label=${x.title}>
+      <div class="dhead"><span class="crumb">${x.clientId ? html`<${CChip} id=${x.clientId} />` : null}${x.clientId && html`<${Icon} n="chevR" s=${12} />`}${kind}</span>
+        ${!isM && html`<${FavBtn} k=${drawer.k + ':' + x.id} />`}
+        <button class="btn icon ghost" aria-label="Fechar" onClick=${close}><${Icon} n="x" s=${18} /></button></div>
+      <div class="dbody">${isM ? html`<${MeetingBody} m=${x} key=${x.key} />` : drawer.k === 'task' ? html`<${TaskBody} t=${x} />` : drawer.k === 'post' ? html`<${PostBody} p=${x} />` : html`<${ScriptBody} s=${x} />`}</div>
+    </div></div>`;
+}

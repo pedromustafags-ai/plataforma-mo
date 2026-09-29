@@ -1,0 +1,33 @@
+function TeamShell() {
+  const { route, sideOpen, setSideOpen, mainRef, copilot, setCopilot, rail } = useApp();
+  let view; const full = route.v === 'board' || route.v === 'funnel';
+  const G = (t, sub, body) => html`<${GlobalPage} title=${t} sub=${sub}>${body}<//>`;
+  switch (route.v) {
+    case 'overview': view = html`<${Overview} />`; break;
+    case 'inbox': view = html`<${Inbox} />`; break;
+    case 'client': view = html`<${ClientArea} id=${route.id} tab=${route.tab || 'overview'} key=${route.id} />`; break;
+    case 'wiki': view = html`<${Wiki} pid=${route.pid} key=${route.pid || 'wiki'} />`; break;
+    case 'team': view = html`<${Team} />`; break;
+    case 'tasks': view = G('Tarefas', 'Todas as tarefas, de todos os clientes. Filtre por cliente ou por pessoa.', html`<${TasksTab} c=${null} />`); break;
+    case 'posts': view = G('Postagens', 'Todos os posts, de todos os clientes.', html`<${PostsTab} c=${null} />`); break;
+    case 'scripts': view = G('Roteiros', 'Caixinhas, Reels e anúncios de todos os clientes.', html`<${ScriptsTab} c=${null} />`); break;
+    case 'calendar': view = G('Calendário', 'Posts, entregas, gravações e reuniões de todos os clientes num lugar só.', html`<${TeamCalendar} c=${null} />`); break;
+    case 'meetings': view = G('Reuniões', 'Agenda, transcrição e o que saiu de cada reunião.', html`<${MeetingsView} />`); break;
+    case 'boards': view = G('Quadros', 'Lousas para mapear processo e pensar junto.', html`<${BoardsList} />`); break;
+    case 'funnels': view = G('Funis', 'Do anúncio à venda, com o custo de cada reunião agendada.', html`<${FunnelsList} />`); break;
+    case 'board': view = html`<${BoardPage} id=${route.id} key=${route.id} />`; break;
+    case 'funnel': view = html`<${FunnelPage} id=${route.id} key=${route.id} />`; break;
+    case 'automations': view = html`<${Automations} />`; break;
+    default: view = html`<${MyDay} />`;
+  }
+  return html`<div class=${cx('shell', rail && 'rail', copilot.open && 'cp')}>
+    <${SidebarV2} />
+    ${sideOpen && html`<div class="scrim-side" onClick=${() => setSideOpen(false)}></div>`}
+    <main class=${cx('main', full && 'full')} ref=${mainRef}>
+      <div class="topbar"><button class="btn icon" aria-label="Abrir menu" onClick=${() => setSideOpen(true)}><${Icon} n="menu" s=${18} /></button><${Logo} /><span style="flex:1"></span><button class="btn icon" aria-label="Copiloto" onClick=${() => setCopilot(c => ({ ...c, open: !c.open }))}><${Icon} n="sparkle" s=${18} /></button></div>
+      ${view}
+    </main>
+    ${copilot.open && html`<${Copilot} />`}
+  </div>`;
+}
+

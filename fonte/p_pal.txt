@@ -1,0 +1,5 @@
+    L.push(['Ações', 'sparkle', 'Abrir o copiloto', '⌘J', () => setCopilot(c => ({ ...c, open: true }))]);
+    [['tasks', 'tasks', 'Tarefas'], ['posts', 'image', 'Postagens'], ['scripts', 'script', 'Roteiros'], ['calendar', 'cal', 'Calendário'], ['meetings', 'video', 'Reuniões'], ['boards', 'whiteboard', 'Quadros'], ['funnels', 'funnel', 'Funis'], ['automations', 'zap', 'Automações']].forEach(([v, ic, l]) => L.push(['Ir para', ic, l, '', () => go({ v })]));
+    db.boards.forEach(b => L.push(['Quadros', 'whiteboard', b.title, 'quadro', () => go({ v: 'board', id: b.id })]));
+    db.funnels.forEach(f => L.push(['Funis', 'funnel', f.title, 'funil', () => go({ v: 'funnel', id: f.id })]));
+    db.clients.forEach(c => { L.push(['Clientes',

@@ -1,0 +1,15 @@
+    setRole: (id, role) => commit(d => { d.people.find(p => p.id === id).role = role; }, 'Nível de acesso alterado'),
+    saveBoard: (id, els) => commit(d => { const b = d.boards.find(x => x.id === id); b.els = els; b.at = off(0); b.by = me ? me.id : b.by; }),
+    renameBoard: (id, title) => commit(d => { d.boards.find(x => x.id === id).title = title; }),
+    addBoard: clientId => { const id = uid('b'); commit(d => d.boards.unshift({ id, clientId: clientId || null, title: 'Quadro sem título', by: me ? me.id : 'pedro', at: off(0), els: [] }), 'Quadro criado'); return id; },
+    setFunnel: (id, patch) => commit(d => { Object.assign(d.funnels.find(x => x.id === id), patch, { at: off(0) }); }),
+    addFunnel: f => { const id = uid('f'); const base = f.tpl === 'vsl' ? tplVSL(id, null) : f.tpl === 'qualif' ? tplQualif(id, null) : { currency: 'US$', nodes: [], edges: [], note: '' };
+      const title = f.title.trim() || (f.tpl === 'vsl' ? 'VSL com upsell e downsell' : f.tpl === 'qualif' ? 'Funil de Qualificação Imediata' : 'Funil sem título');
+      commit(d => d.funnels.unshift({ ...base, id, clientId: f.clientId || null, tpl: false, title, by: me ? me.id : 'pedro', at: off(0) }), 'Funil criado'); return id; },
+    setMeetingNote: (key, note) => commit(d => { d.meetingNotes[key] = note; }),
+    linkMeeting: (key, cid) => commit(d => { d.meetingClient[key] = cid; }),
+    createTasksFromMeeting: (key, list) => commit(d => { list.forEach(o => d.tasks.unshift({ id: uid('t'), type: 'interna', priority: 'media', checklist: [], comments: [], changeReq: false, status: 'todo', since: off(0), ...o })); d.meetingNotes[key].created = list.length; }, `${plural(list.length, 'tarefa criada', 'tarefas criadas')} a partir da reunião`),
+    toggleAuto: id => commit(d => { d.automations[id] = !d.automations[id]; }),
+    toggleFav: k => commit(d => { const L = d.favs[me.id] = d.favs[me.id] || []; const i = L.indexOf(k); if (i >= 0) L.splice(i, 1); else L.unshift(k); }),
+    addPage: clientId => { const id = uid('pg'); commit(d => d.pages.push({ id, clientId, title: 'Página sem título', by: me ? me.id : 'pedro', at: off(0), blocks: [{ type: 'p', text: '' }] }), 'Página criada'); return id; },
+  };

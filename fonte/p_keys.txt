@@ -1,0 +1,3 @@
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k' && me) { e.preventDefault(); setPalette(p => !p); }
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'j' && session && !preview) { e.preventDefault(); setCopilot(c => ({ ...c, open: !c.open })); }
+      if ((e.metaKey || e.ctrlKey) && e.key === '\\' && me) { e.preventDefault(); setRail(!rail); }

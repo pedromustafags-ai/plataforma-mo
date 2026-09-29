@@ -1,0 +1,21 @@
+/* v7: equipe do cliente, produção no painel */
+button.pc-card{text-align:left;width:100%;font:inherit;color:inherit;cursor:pointer}
+.pc-card.mine{box-shadow:inset 3px 0 0 var(--st-cli)}
+.pb-head{display:flex;gap:16px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
+.pb-acts{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.portal .est-board{padding-bottom:6px}
+.pp-sheet{width:min(720px,100%);max-height:min(88vh,100%);display:flex;flex-direction:column}
+.pp-sheet .mhd{flex:none}
+.pp-body{overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.pp-h{font-size:20px}
+.pp-title{font-size:16px;font-weight:600}
+.pp-appr{overflow-y:auto}
+.pp-appr .ap{box-shadow:none;border:0}
+.ct-form{display:flex;flex-direction:column;gap:12px;padding:14px}
+button.pcard,button.scard{font:inherit;color:inherit;text-align:left;cursor:pointer}
+button.pcard{border:0;background:none;padding:0}
+.pop-who{display:flex;flex-direction:column;padding:8px 10px 10px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.pop-who small{color:var(--text-3);font-size:12px}
+.p-body.wide{max-width:1400px}
+.pp-sheet .mhd .k{flex:1}
+.portal button.row{width:100%;text-align:left;border:0;background:none;font:inherit;color:inherit}

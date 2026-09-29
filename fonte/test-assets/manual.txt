@@ -1,0 +1,10 @@
+Manual de marca ACME Roofing
+
+Cores
+Primaria: #E4002B  (Pantone 186 C)
+Secundaria: HEX 0B2545
+Apoio: R 244 G 235 B 221
+
+Tipografia
+Titulos: Montserrat Bold
+Texto: Inter Regular

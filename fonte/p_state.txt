@@ -1,0 +1,6 @@
+  const [sideOpen, setSideOpen] = useState(false);
+  const [copilot, setCopilot] = useState({ open: false, msgs: [], busy: false });
+  const [live, setLive] = useState({ state: 'idle' });
+  const [rail, setRailS] = useState(() => lsGet('mo.rail', false));
+  const setRail = v => { setRailS(v); lsSet('mo.rail', v); };
+  useEffect(() => { document.body.classList.toggle('cp-open', !!(copilot.open && session && session.role !== 'cliente')); }, [copilot.open, session]);

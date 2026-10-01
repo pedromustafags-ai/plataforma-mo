@@ -28,6 +28,7 @@ Cada arquivo traz as falas dele, literais, e as leis que saíram delas.
 | v10 e v11 | `2026-09-29-plataforma-mo-cliente-com-a-cara-dele-historico-quadro-e-funil.md` | o cliente com a cara dele, a bio, o que ele vê da esteira, o histórico, o texto duplicado, e os pedidos do quadro e do funil |
 | v12 | `2026-09-30-plataforma-mo-socio-dois-ajustes-e-pesquisa-de-navegacao.md` | o Sócio confirmado, as 2 rodadas de ajuste com "Falar com a M&O", o CRM fora da plataforma, o aviso por e-mail e SMS nos EUA, o formulário, e todas as conclusões da pesquisa |
 | v13 e v14 | `2026-09-30-plataforma-mo-reuniao-com-link-e-horario.md` | o link e o horário da reunião, do lado do time e no painel do cliente, e o calendário lendo as Reuniões |
+| futura | `2026-10-01-plataforma-mo-fractal-camada-de-agentes-do-socio.md` | o Fractal como a camada que só o sócio vê, e o time de agentes da agência, com comercial e CS que também faz suporte |
 
 ## O estado de cada fim de sessão (`handoffs/`)
 
@@ -52,6 +53,10 @@ Cada arquivo traz as falas dele, literais, e as leis que saíram delas.
 - `2026-09-30-navegacao-funcoes-e-experiencia-do-cliente.md`: o passeio pela v11 como Sócio, colaborador e
   cliente, a navegação das ferramentas de referência, a aprovação e o limite de rodadas, e as funções que
   faltam. Página publicada em https://claude.ai/artifact/BGxbjd2zKeQ1zbBodrh9L7.
+- `2026-10-01-fractal-e-time-de-agentes.md`: o Fractal por dentro (arquitetura, organização em disco, modelo de dados,
+  design), o One Person Business do Dan Koe, como agências pequenas usam agentes e onde quebram, o preço do
+  WhatsApp desde 01/10/2026, e o time de 13 agentes da M&O para a camada do sócio, numa versão futura. Página
+  publicada em https://claude.ai/artifact/MyyaViyPCeW9BehkaqAi5M. Memória em `memoria-camada-de-agentes.md`.
 
 As pesquisas das versões anteriores (Funnelytics, Miro e MindMaster da v8, transcrição, Gmail, quadro
 branco) aparecem resumidas na memória e nos registros; as notas completas delas ficaram só nas

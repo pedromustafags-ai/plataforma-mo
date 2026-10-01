@@ -47,8 +47,10 @@ que respeitam o nível de acesso).
   "Internal", fica isento.
 - Quadro branco no produto: tldraw SDK (licença comercial sem preço público, pedir cotação) ou
   Excalidraw (MIT, colaboração por conta própria). Funis: React Flow (MIT).
-- Meta passa a cobrar por mensagem de serviço no WhatsApp a partir de 01/10/2026, inclusive
-  resposta de IA; entra no custo por reunião do funil.
+- Meta cobra a mensagem de serviço no WhatsApp desde 01/10/2026, inclusive resposta de IA; entra no
+  custo por reunião do funil. **Conferido na documentação da Meta em 01/10/2026:** 1.000 mensagens de
+  serviço grátis por mês em cada número, depois US$ 0,0034 na América do Norte e US$ 0,02 a 0,055 na
+  Europa; a página comercial da Meta ainda diz grátis e está desatualizada.
 
 **v3 publicada em 25/09 no mesmo link** (registro em
 `pedro/feedbacks/2026-09-25-plataforma-mo-marca-do-cliente-temas-idiomas.md`). Decisões do Pedro:
@@ -238,3 +240,7 @@ infra foi contratada.
 **How to apply:** Próximo passo é o Pedro navegar o protótipo e testar com o Bruno e com alguém de
 fora; só depois stack real (Next.js, Supabase com segurança por linha, repo próprio, fora do
 MVB-OS).
+
+**A camada de agentes do sócio (01/10/2026):** o Pedro decidiu que uma camada no estilo do Fractal, com
+agentes como membros do time, é o que o sócio vê, para uma versão futura. Detalhe e o time de 13 agentes em
+[[fractal-camada-de-agentes-do-socio]].

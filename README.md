@@ -4,7 +4,7 @@ Protótipo clicável da plataforma de gestão da M&O Company, com a central do t
 cliente, pensada para substituir Notion, ClickUp e Trello. Os dados são de exemplo, tirados do
 trabalho real da M&O, e nada é salvo em servidor: recarregar a página volta ao começo.
 
-- **No ar:** https://claude.ai/artifact/8isLH3dQCDxv73eQGtguWV (versão 13, 30/09/2026)
+- **No ar:** https://claude.ai/artifact/8isLH3dQCDxv73eQGtguWV (versão 14, 01/10/2026)
 - **Este repositório** guarda a cópia exata da versão publicada, para versionar e para servir de ponto
   de partida da versão de verdade.
 
@@ -25,7 +25,7 @@ Depois abra http://localhost:8000 no navegador e escolha um dos acessos de exemp
 |---|---|
 | `index.html` | A página publicada, idêntica à que está no ar. |
 | `img/` | As 51 artes dos carrosséis da M&O usadas nos posts de exemplo. |
-| `fonte/` | A fonte de todas as versões, da v1 à v13, com os scripts que montaram cada uma. O guia está em `fonte/COMO-FUNCIONA.md`. |
+| `fonte/` | A fonte de todas as versões, da v1 à v14, com os scripts que montaram cada uma. O guia está em `fonte/COMO-FUNCIONA.md`. |
 | `decisoes/` | O porquê de cada escolha: as falas do Pedro volta a volta, os handoffs, a memória da plataforma e as pesquisas. O índice está em `decisoes/README.md`. |
 
 ## O que só funciona dentro do claude.ai
@@ -37,7 +37,7 @@ avisa:
 - o link do Drive que vira prévia do post;
 - o copiloto, a ata por IA e o desenho por IA no quadro e no funil.
 
-## O que tem, até a versão 13
+## O que tem, até a versão 14
 
 - Central do time: meu dia, caixa de entrada, visão geral, tarefas, postagens, roteiros, calendário,
   reuniões, quadros, funis, processos internos, equipe e automações.
@@ -117,10 +117,12 @@ Todas publicadas no mesmo link, entre 25 e 29/09/2026. O detalhe de cada uma est
   Meet, Zoom ou Teams) e entra direto da lista; a da Google Agenda mostra o link de lá. No painel do cliente, a aba
   Reuniões abre com as próximas reuniões, o horário no fuso de quem vê e o botão "Entrar na reunião", nas quatro
   línguas. Só aparece para o cliente a reunião marcada como visível para ele, para reunião interna não vazar.
+- **v14 (01/10):** o calendário e as Reuniões viram uma lista só. O calendário do time, o do cliente e o pacote do
+  mês leem as reuniões da tela Reuniões, e a lista de eventos que o calendário tinha à parte saiu.
 
 ## O que está em aberto
 
-- O Pedro testar a v12 e a v13 dentro do claude.ai, e o link de pasta do Drive virando prévia do post (esse
+- O Pedro testar a v12, a v13 e a v14 dentro do claude.ai, e o link de pasta do Drive virando prévia do post (esse
   caminho não rodou ao vivo; a parte do conector foi conferida de fora em 29/09).
 - O teste de navegação com o Bruno, um colaborador e dois ou três clientes, que confirma o agrupamento das
   abas do cliente (hoje é hipótese).

@@ -27,7 +27,7 @@ Cada arquivo traz as falas dele, literais, e as leis que saíram delas.
 | após a v9 | `2026-09-29-plataforma-mo-tudo-no-github-com-detalhe.md` | tudo neste repositório, com detalhe, e a plataforma morando em dois lugares |
 | v10 e v11 | `2026-09-29-plataforma-mo-cliente-com-a-cara-dele-historico-quadro-e-funil.md` | o cliente com a cara dele, a bio, o que ele vê da esteira, o histórico, o texto duplicado, e os pedidos do quadro e do funil |
 | v12 | `2026-09-30-plataforma-mo-socio-dois-ajustes-e-pesquisa-de-navegacao.md` | o Sócio confirmado, as 2 rodadas de ajuste com "Falar com a M&O", o CRM fora da plataforma, o aviso por e-mail e SMS nos EUA, o formulário, e todas as conclusões da pesquisa |
-| v13 | `2026-09-30-plataforma-mo-reuniao-com-link-e-horario.md` | o link e o horário da reunião, do lado do time e no painel do cliente |
+| v13 e v14 | `2026-09-30-plataforma-mo-reuniao-com-link-e-horario.md` | o link e o horário da reunião, do lado do time e no painel do cliente, e o calendário lendo as Reuniões |
 
 ## O estado de cada fim de sessão (`handoffs/`)
 

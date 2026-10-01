@@ -1710,9 +1710,6 @@ function seed() {
       ['Close', 'The rule underneath all three: answer the fear, not the sentence.'],
     ] }),
   ];
-  const events = [];
-  for (let k = -35; k <= 70; k++) { const x = pd(off(k)); if (x.getDay() === 1) events.push({ id: 'e' + k, clientId: 'mo', title: 'Revisão da semana', date: off(k), time: '10:00' }); }
-  events.push({ id: 'erec', clientId: 'mo', title: 'Gravação das caixinhas', date: off(3), time: '14:00' });
   const pages = [
     { id: 'pg1', clientId: 'mo', kind: 'vendas', title: 'Processo de vendas', by: 'pedro', at: off(-4), blocks: [
       { type: 'p', text: 'O caminho de quem vê um anúncio da M&O até sentar numa reunião com o Pedro ou com o Bruno.' },
@@ -1757,7 +1754,7 @@ function seed() {
     { id: 'n6', to: 'felipe', who: 'pedro', verb: 'te atribuiu', k: 'task', ref: 't5', at: off(-3), read: true },
     { id: 'n7', to: 'bruno', who: 'pedro', verb: 'comentou em', k: 'task', ref: 't7', at: off(-2), read: false },
   ];
-  return { people, clients, tasks, posts, scripts, events, pages, notes, ...seedV2() };
+  return { people, clients, tasks, posts, scripts, pages, notes, ...seedV2() };
 }
 
 const PERM = { socio: new Set(['client.create', 'client.invite', 'people.invite', 'people.role', 'delete', 'log.view']), colab: new Set([]) };
@@ -2232,7 +2229,6 @@ function calItems(db, cid, forClient) {
   db.posts.filter(p => p.clientId === cid && p.date && (!forClient || POST_VISIBLE.includes(p.status))).forEach(p => it.push({ id: p.id, date: p.date, title: p.title, kind: 'post', k: 'post', cls: p.status === 'cliente' ? 'k-cli' : p.status === 'ajuste' ? 'k-adj' : ['aprovado', 'agendado', 'publicado'].includes(p.status) ? 'k-ok' : 'k-post', img: pieceCover(p), st: p.status }));
   db.scripts.filter(s => s.clientId === cid && s.record && (!forClient || SCRIPT_VISIBLE.includes(s.status))).forEach(s => it.push({ id: s.id, date: s.record, title: 'Gravação: ' + s.title, kind: 'script', k: 'script', cls: 'k-post', st: s.status }));
   db.tasks.filter(t => t.clientId === cid && t.due && (!forClient ? true : t.type === 'entrega')).forEach(t => it.push({ id: t.id, date: t.due, title: t.title, kind: t.type === 'entrega' ? 'entrega' : 'task', k: 'task', cls: t.status !== 'done' && diff(t.due) < 0 ? 'k-late' : t.type === 'entrega' ? 'k-cli' : 'k-task', st: t.status }));
-  db.events.filter(e => e.clientId === cid).forEach(e => it.push({ id: e.id, date: e.date, title: `${e.time} ${e.title}`, kind: 'meet', cls: 'k-meet' }));
   return it;
 }
 function MonthGrid({ items, onOpen, lang = 'pt', month, setMonth, legend }) {
@@ -2266,7 +2262,7 @@ function TeamCalendar({ c }) {
   const [cf, setCf] = useState(null);
   const ids = c ? [c.id] : db.clients.filter(x => !cf || x.id === cf).map(x => x.id);
   const meets = allMeetings(app).filter(m => ids.includes(m.clientId)).map(m => ({ id: m.key, date: dayOf(m.start), title: `${hhmm(m.start)} ${m.title}`, kind: 'meet', k: 'meeting', cls: 'k-meet' }));
-  const items = [...ids.flatMap(id => calItems(db, id, false)).filter(i => i.kind !== 'meet'), ...meets].filter(i => !hide.includes(i.kind));
+  const items = [...ids.flatMap(id => calItems(db, id, false)), ...meets].filter(i => !hide.includes(i.kind));
   const legend = html`<div class="legend">${!c && html`<${ClientFilter} value=${cf} onChange=${setCf} />`}${KINDS.map(([k, l, cls]) => html`<button key=${k} class=${cx('lg-btn', cls, hide.includes(k) && 'off')} aria-pressed=${!hide.includes(k)} onClick=${() => setHide(h => h.includes(k) ? h.filter(x => x !== k) : [...h, k])}><i style="background:var(--k-fg)"></i>${l}</button>`)}</div>`;
   return html`<${MonthGrid} items=${items} month=${month} setMonth=${setMonth} legend=${legend} onOpen=${i => i.k && open(i.k, i.id)} />`;
 }
@@ -2570,10 +2566,12 @@ function Preview() {
 
 /* ================= portal do cliente ================= */
 function PortalCal({ c, lang, openPiece, goMeet }) {
-  const { db } = useApp();
+  const app = useApp(); const { db } = app;
   const t = TX[lang];
   const [month, setMonth] = useState(new Date(T0.getFullYear(), T0.getMonth(), 1));
-  const items = calItems(db, c.id, true).map(i => i.kind === 'meet' ? { ...i, title: i.title } : i);
+  const tm = iso => new Date(iso).toLocaleTimeString(LOC(lang), { hour: 'numeric', minute: '2-digit' });
+  const meets = allMeetings(app).filter(m => m.clientId === c.id && m.show).map(m => ({ id: m.key, date: dayOf(m.start), title: `${tm(m.start)} ${m.title}`, kind: 'meet', cls: 'k-meet' }));
+  const items = [...calItems(db, c.id, true), ...meets];
   return html`<div class="sec" style="gap:16px"><h1 style="font-size:24px">${t.cal}</h1><${MonthGrid} items=${items} month=${month} setMonth=${setMonth} lang=${lang} onOpen=${i => i.kind === 'meet' ? goMeet() : (i.k === 'post' || i.k === 'script') && openPiece(i.k, i.id)} /></div>`;
 }
 function PortalContent({ c, lang, openPiece }) {
@@ -6406,12 +6404,12 @@ function ContractSec({ c }) {
     <p class="muted" style="font-size:12px">O pacote monta o mês no QG e avisa quando a entrega passa do que foi contratado.</p></section>`;
 }
 function PackCard({ c, setTab }) {
-  const { db, act, open } = useApp(); const p = (c.contract || {}).pack || {}; const mk = monthKey(); const inM = s => s && s.slice(0, 7) === mk;
+  const app = useApp(); const { db, act, open } = app; const p = (c.contract || {}).pack || {}; const mk = monthKey(); const inM = s => s && s.slice(0, 7) === mk;
   const has = p.posts || p.scripts || p.meetings;
   if (!has) return html`<section class="sec"><div class="sec-h"><h2>Pacote do mês</h2></div><div class="card docs-card"><p class="muted" style="font-size:13px">Cadastre o contrato na aba Sobre para acompanhar o que o mês inclui e o que passou dele.</p><button class="btn sm" style="align-self:flex-start" onClick=${() => setTab('about')}><${Icon} n="package" s=${13} />Cadastrar o contrato</button></div></section>`;
   const posts = db.posts.filter(x => x.clientId === c.id && inM(x.date)).length;
   const scripts = db.scripts.filter(x => x.clientId === c.id && inM(x.record)).length;
-  const meets = db.events.filter(e => e.clientId === c.id && inM(e.date)).length;
+  const meets = allMeetings(app).filter(m => m.clientId === c.id && inM(dayOf(m.start))).length;
   const Row = (label, n, max) => max ? html`<div class="pk-row" key=${label}><span>${label}</span><span class="bar"><i class=${n > max ? 'late' : ''} style=${{ width: Math.min(100, n / max * 100) + '%' }}></i></span><b class="tnum">${n} de ${max}</b>${n > max ? html`<span class="pill t-late">${n - max} a mais</span>` : null}</div>` : null;
   const gap = p.posts ? Math.max(0, p.posts - posts) : 0;
   return html`<section class="sec"><div class="sec-h"><h2>Pacote de ${monthName(mk)}</h2></div><div class="card docs-card">

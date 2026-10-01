@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Central M&amp;O</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>try{var l=JSON.parse(localStorage.getItem('mo.look2')||'null');document.documentElement.dataset.theme=l&&(l.mode==='dark'||(l.mode==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches))?'dark':'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
@@ -1460,8 +1459,8 @@ button.pick-row{width:100%;border:0;background:none;text-align:left;font:inherit
 <script type="module">
 import { html, render, useState, useEffect, useRef, useMemo, createContext, useContext } from 'https://cdn.jsdelivr.net/npm/htm@3.1.1/preact/standalone.module.js';
 
-const LOGO = "<svg role=\"img\" aria-label=\"M&amp;O Company\" width=\"1265\" height=\"192\" viewBox=\"0 0 1265 192\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<circle cx=\"95.7536\" cy=\"95.7536\" r=\"95.7536\" class=\"lc\"/>\n<path d=\"M63.1768 46.2798C63.1768 46.2801 63.177 46.2803 63.1772 46.2803H85.4165C85.4168 46.2803 85.417 46.2801 85.417 46.2798C85.417 46.2795 85.4172 46.2793 85.4175 46.2793H105.374C105.374 46.2793 105.374 46.2795 105.374 46.2798C105.374 46.2801 105.374 46.2803 105.375 46.2803H127.608C127.608 46.2803 127.608 46.2801 127.608 46.2798C127.608 46.2795 127.609 46.2793 127.609 46.2793H139.95C144.155 46.2793 147.564 49.6883 147.564 53.8936V138.789C147.564 142.336 144.689 145.212 141.141 145.212H89.2236C87.1213 145.212 85.4172 143.508 85.417 141.405V72.6604C85.417 69.113 82.5413 66.2373 78.9939 66.2373H69.5999C66.0525 66.2373 63.1768 69.113 63.1768 72.6604V141.405C63.1765 143.508 61.4716 145.212 59.3691 145.212H47.0264C44.9241 145.212 43.22 143.508 43.2197 141.405V53.8936C43.2198 49.6883 46.6287 46.2793 50.834 46.2793H63.1763C63.1765 46.2793 63.1768 46.2795 63.1768 46.2798ZM105.374 118.832C105.374 122.379 108.25 125.255 111.797 125.255H121.185C124.733 125.255 127.608 122.379 127.608 118.832V72.6604C127.608 69.113 124.733 66.2373 121.185 66.2373H111.797C108.25 66.2373 105.374 69.113 105.374 72.6604V118.832Z\" class=\"lm\"/>\n<path d=\"M305.151 112.525L333.528 29.9316H355.105V161.754H335.976V63.5671L337.154 69.3695L312.313 142.262H297.988L273.147 71.1827L274.598 63.5671V161.754H255.196V29.9316H277.045L305.151 112.525ZM442.01 161.754L400.578 108.898C394.775 101.343 390.151 93.818 386.706 86.3233C383.322 78.8285 381.629 70.8503 381.629 62.3885C381.629 51.6904 384.5 43.4402 390.242 37.6378C395.984 31.7751 404.083 28.8437 414.539 28.8437C424.935 28.8437 432.974 31.6844 438.656 37.3659C444.337 43.0473 447.178 51.086 447.178 61.4819V68.1002H426.416V61.4819C426.416 56.8279 425.389 53.2619 423.334 50.7838C421.279 48.2453 418.347 46.976 414.539 46.976C410.55 46.976 407.438 48.3057 405.201 50.9651C403.025 53.6246 401.937 57.4324 401.937 62.3885C401.937 68.0096 403.297 73.8724 406.017 79.9769C408.737 86.0211 412.605 92.2163 417.622 98.5626L467.123 161.754H442.01ZM411.457 107.175C404.385 107.175 398.885 108.868 394.957 112.253C391.088 115.637 389.154 120.442 389.154 126.668C389.154 132.289 390.907 136.671 394.413 139.814C397.979 142.957 402.965 144.528 409.372 144.528C418.68 144.528 425.902 140.086 431.04 131.201C436.177 122.316 438.746 109.956 438.746 94.1202H458.601C458.601 108.626 456.516 121.047 452.345 131.382C448.175 141.657 442.131 149.515 434.213 154.954C426.356 160.394 416.776 163.114 405.473 163.114C393.989 163.114 385.074 159.941 378.728 153.594C372.382 147.188 369.209 138.212 369.209 126.668C369.209 116.211 372.231 107.871 378.275 101.645C384.379 95.4197 392.932 91.8536 403.932 90.947L411.457 107.175ZM513.774 163.114C505.554 163.114 498.422 161.482 492.378 158.218C486.334 154.954 481.68 150.3 478.416 144.256C475.152 138.212 473.52 131.05 473.52 122.769V68.9162C473.52 60.5753 475.152 53.413 478.416 47.4293C481.68 41.3852 486.334 36.7312 492.378 33.4674C498.422 30.2036 505.554 28.5717 513.774 28.5717C522.055 28.5717 529.187 30.2036 535.171 33.4674C541.215 36.7312 545.869 41.3852 549.132 47.4293C552.396 53.413 554.028 60.5753 554.028 68.9162V122.769C554.028 131.05 552.396 138.212 549.132 144.256C545.869 150.3 541.215 154.954 535.171 158.218C529.187 161.482 522.055 163.114 513.774 163.114ZM513.774 142.534C519.637 142.534 524.261 140.751 527.646 137.185C531.091 133.558 532.813 128.662 532.813 122.497V69.0975C532.813 62.9929 531.091 58.1576 527.646 54.5916C524.261 50.9651 519.637 49.1519 513.774 49.1519C507.912 49.1519 503.258 50.9651 499.812 54.5916C496.428 58.1576 494.735 62.9929 494.735 69.0975V122.497C494.735 128.662 496.428 133.558 499.812 137.185C503.258 140.751 507.912 142.534 513.774 142.534ZM646.786 163.114C638.687 163.114 631.706 161.482 625.843 158.218C620.041 154.894 615.568 150.149 612.425 143.984C609.343 137.759 607.802 130.355 607.802 121.772V70.0041C607.802 61.361 609.343 53.957 612.425 47.792C615.568 41.5665 620.041 36.8219 625.843 33.5581C631.706 30.2338 638.687 28.5717 646.786 28.5717C654.704 28.5717 661.413 30.1431 666.913 33.2861C672.474 36.429 676.795 41.1434 679.878 47.4293C683.021 53.6548 684.894 61.3913 685.499 70.6388H664.284C663.921 65.9243 662.984 61.9957 661.473 58.8527C659.962 55.6493 657.968 53.2317 655.49 51.5998C653.012 49.9679 650.11 49.1519 646.786 49.1519C641.286 49.1519 636.934 51.0256 633.731 54.7729C630.588 58.4599 629.016 63.5369 629.016 70.0041V121.772C629.016 128.239 630.588 133.316 633.731 137.003C636.934 140.69 641.286 142.534 646.786 142.534C651.803 142.534 655.822 140.751 658.844 137.185C661.866 133.619 663.679 128.239 664.284 121.047H685.499C684.894 130.294 683.021 138.061 679.878 144.347C676.795 150.572 672.474 155.256 666.913 158.399C661.413 161.542 654.704 163.114 646.786 163.114ZM735.142 163.114C726.922 163.114 719.789 161.482 713.745 158.218C707.701 154.954 703.047 150.3 699.783 144.256C696.52 138.212 694.888 131.05 694.888 122.769V68.9162C694.888 60.5753 696.52 53.413 699.783 47.4293C703.047 41.3852 707.701 36.7312 713.745 33.4674C719.789 30.2036 726.922 28.5717 735.142 28.5717C743.422 28.5717 750.554 30.2036 756.538 33.4674C762.582 36.7312 767.236 41.3852 770.5 47.4293C773.763 53.413 775.395 60.5753 775.395 68.9162V122.769C775.395 131.05 773.763 138.212 770.5 144.256C767.236 150.3 762.582 154.954 756.538 158.218C750.554 161.482 743.422 163.114 735.142 163.114ZM735.142 142.534C741.004 142.534 745.628 140.751 749.013 137.185C752.458 133.558 754.181 128.662 754.181 122.497V69.0975C754.181 62.9929 752.458 58.1576 749.013 54.5916C745.628 50.9651 741.004 49.1519 735.142 49.1519C729.279 49.1519 724.625 50.9651 721.18 54.5916C717.795 58.1576 716.103 62.9929 716.103 69.0975V122.497C716.103 128.662 717.795 133.558 721.18 137.185C724.625 140.751 729.279 142.534 735.142 142.534ZM840.541 112.525L868.919 29.9316H890.496V161.754H871.366V63.5671L872.545 69.3695L847.704 142.262H833.379L808.538 71.1827L809.988 63.5671V161.754H790.587V29.9316H812.436L840.541 112.525ZM919.105 110.621V90.7657H952.288C956.458 90.7657 959.782 89.3453 962.26 86.5046C964.799 83.6034 966.068 79.7352 966.068 74.8999V65.9243C966.068 60.9682 964.829 57.0395 962.351 54.1383C959.873 51.2371 956.518 49.7865 952.288 49.7865H919.105V29.9316H952.016C959.268 29.9316 965.524 31.352 970.783 34.1927C976.101 37.0334 980.181 41.083 983.022 46.3414C985.923 51.5998 987.374 57.8554 987.374 65.1084V75.8971C987.374 83.0292 985.923 89.1942 983.022 94.3922C980.121 99.5901 976.011 103.609 970.692 106.45C965.433 109.23 959.208 110.621 952.016 110.621H919.105ZM908.86 161.754V29.9316H929.622V161.754H908.86ZM984.07 161.754L1024.32 29.9316H1040.1L1080.35 161.754H1058.5L1032.21 64.8364L1005.92 161.754H984.07ZM1006.01 136.913V117.239H1059.41V136.913H1006.01ZM1089.2 161.663V29.9316H1109.14L1154.38 127.937L1151.94 130.566V29.9316H1171.7V161.663H1151.57L1106.6 66.4683L1108.96 63.8391V161.663H1089.2ZM1264.04 29.9316L1231.95 109.261V161.754H1211.28V109.261L1178.73 29.9316H1200.58L1221.61 86.8672L1242.2 29.9316H1264.04Z\" class=\"lw\"/>\n</svg>";
-const ICON = "<svg aria-hidden=\"true\" width=\"260\" height=\"260\" viewBox=\"0 0 260 260\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<circle cx=\"129.515\" cy=\"129.515\" r=\"129.515\" class=\"lc\"/>\n<path d=\"M83.8193 97.3731C83.8193 92.0174 88.161 87.6758 93.5167 87.6758H105.663C111.019 87.6758 115.36 92.0174 115.36 97.3731V189.996C115.36 195.352 119.702 199.693 125.058 199.693H193.845C199.2 199.693 203.542 195.352 203.542 189.996V69.044C203.542 63.6883 199.2 59.3467 193.845 59.3467H175.241C175.236 59.3467 175.231 59.3508 175.231 59.356C175.231 59.3611 175.227 59.3652 175.222 59.3652H143.68C143.675 59.3652 143.671 59.3611 143.671 59.356C143.671 59.3508 143.667 59.3467 143.662 59.3467H115.37C115.365 59.3467 115.36 59.3508 115.36 59.356C115.36 59.3611 115.356 59.3652 115.351 59.3652H83.8286C83.8235 59.3652 83.8193 59.3611 83.8193 59.356C83.8193 59.3508 83.8152 59.3467 83.8101 59.3467H65.2052C59.8495 59.3467 55.5078 63.6883 55.5078 69.044V189.996C55.5078 195.352 59.8495 199.693 65.2052 199.693H74.122C79.4777 199.693 83.8193 195.352 83.8193 189.996V97.3731ZM153.368 171.383C148.013 171.383 143.671 167.041 143.671 161.685V97.3731C143.671 92.0174 148.013 87.6758 153.368 87.6758H165.534C170.89 87.6758 175.231 92.0174 175.231 97.3731V161.685C175.231 167.041 170.89 171.383 165.534 171.383H153.368Z\" class=\"lm\"/>\n</svg>";
+const LOGO = __LOGO__;
+const ICON = __ICON__;
 
 /* ================= utilidades ================= */
 const cx = (...a) => a.filter(Boolean).join(' ');
@@ -1711,6 +1710,9 @@ function seed() {
       ['Close', 'The rule underneath all three: answer the fear, not the sentence.'],
     ] }),
   ];
+  const events = [];
+  for (let k = -35; k <= 70; k++) { const x = pd(off(k)); if (x.getDay() === 1) events.push({ id: 'e' + k, clientId: 'mo', title: 'Revisão da semana', date: off(k), time: '10:00' }); }
+  events.push({ id: 'erec', clientId: 'mo', title: 'Gravação das caixinhas', date: off(3), time: '14:00' });
   const pages = [
     { id: 'pg1', clientId: 'mo', kind: 'vendas', title: 'Processo de vendas', by: 'pedro', at: off(-4), blocks: [
       { type: 'p', text: 'O caminho de quem vê um anúncio da M&O até sentar numa reunião com o Pedro ou com o Bruno.' },
@@ -1755,7 +1757,7 @@ function seed() {
     { id: 'n6', to: 'felipe', who: 'pedro', verb: 'te atribuiu', k: 'task', ref: 't5', at: off(-3), read: true },
     { id: 'n7', to: 'bruno', who: 'pedro', verb: 'comentou em', k: 'task', ref: 't7', at: off(-2), read: false },
   ];
-  return { people, clients, tasks, posts, scripts, pages, notes, ...seedV2() };
+  return { people, clients, tasks, posts, scripts, events, pages, notes, ...seedV2() };
 }
 
 const PERM = { socio: new Set(['client.create', 'client.invite', 'people.invite', 'people.role', 'delete', 'log.view']), colab: new Set([]) };
@@ -2230,6 +2232,7 @@ function calItems(db, cid, forClient) {
   db.posts.filter(p => p.clientId === cid && p.date && (!forClient || POST_VISIBLE.includes(p.status))).forEach(p => it.push({ id: p.id, date: p.date, title: p.title, kind: 'post', k: 'post', cls: p.status === 'cliente' ? 'k-cli' : p.status === 'ajuste' ? 'k-adj' : ['aprovado', 'agendado', 'publicado'].includes(p.status) ? 'k-ok' : 'k-post', img: pieceCover(p), st: p.status }));
   db.scripts.filter(s => s.clientId === cid && s.record && (!forClient || SCRIPT_VISIBLE.includes(s.status))).forEach(s => it.push({ id: s.id, date: s.record, title: 'Gravação: ' + s.title, kind: 'script', k: 'script', cls: 'k-post', st: s.status }));
   db.tasks.filter(t => t.clientId === cid && t.due && (!forClient ? true : t.type === 'entrega')).forEach(t => it.push({ id: t.id, date: t.due, title: t.title, kind: t.type === 'entrega' ? 'entrega' : 'task', k: 'task', cls: t.status !== 'done' && diff(t.due) < 0 ? 'k-late' : t.type === 'entrega' ? 'k-cli' : 'k-task', st: t.status }));
+  db.events.filter(e => e.clientId === cid).forEach(e => it.push({ id: e.id, date: e.date, title: `${e.time} ${e.title}`, kind: 'meet', cls: 'k-meet' }));
   return it;
 }
 function MonthGrid({ items, onOpen, lang = 'pt', month, setMonth, legend }) {
@@ -2263,7 +2266,7 @@ function TeamCalendar({ c }) {
   const [cf, setCf] = useState(null);
   const ids = c ? [c.id] : db.clients.filter(x => !cf || x.id === cf).map(x => x.id);
   const meets = allMeetings(app).filter(m => ids.includes(m.clientId)).map(m => ({ id: m.key, date: dayOf(m.start), title: `${hhmm(m.start)} ${m.title}`, kind: 'meet', k: 'meeting', cls: 'k-meet' }));
-  const items = [...ids.flatMap(id => calItems(db, id, false)), ...meets].filter(i => !hide.includes(i.kind));
+  const items = [...ids.flatMap(id => calItems(db, id, false)).filter(i => i.kind !== 'meet'), ...meets].filter(i => !hide.includes(i.kind));
   const legend = html`<div class="legend">${!c && html`<${ClientFilter} value=${cf} onChange=${setCf} />`}${KINDS.map(([k, l, cls]) => html`<button key=${k} class=${cx('lg-btn', cls, hide.includes(k) && 'off')} aria-pressed=${!hide.includes(k)} onClick=${() => setHide(h => h.includes(k) ? h.filter(x => x !== k) : [...h, k])}><i style="background:var(--k-fg)"></i>${l}</button>`)}</div>`;
   return html`<${MonthGrid} items=${items} month=${month} setMonth=${setMonth} legend=${legend} onOpen=${i => i.k && open(i.k, i.id)} />`;
 }
@@ -2567,12 +2570,10 @@ function Preview() {
 
 /* ================= portal do cliente ================= */
 function PortalCal({ c, lang, openPiece, goMeet }) {
-  const app = useApp(); const { db } = app;
+  const { db } = useApp();
   const t = TX[lang];
   const [month, setMonth] = useState(new Date(T0.getFullYear(), T0.getMonth(), 1));
-  const tm = iso => new Date(iso).toLocaleTimeString(LOC(lang), { hour: 'numeric', minute: '2-digit' });
-  const meets = allMeetings(app).filter(m => m.clientId === c.id && m.show).map(m => ({ id: m.key, date: dayOf(m.start), title: `${tm(m.start)} ${m.title}`, kind: 'meet', cls: 'k-meet' }));
-  const items = [...calItems(db, c.id, true), ...meets];
+  const items = calItems(db, c.id, true).map(i => i.kind === 'meet' ? { ...i, title: i.title } : i);
   return html`<div class="sec" style="gap:16px"><h1 style="font-size:24px">${t.cal}</h1><${MonthGrid} items=${items} month=${month} setMonth=${setMonth} lang=${lang} onOpen=${i => i.kind === 'meet' ? goMeet() : (i.k === 'post' || i.k === 'script') && openPiece(i.k, i.id)} /></div>`;
 }
 function PortalContent({ c, lang, openPiece }) {
@@ -6405,12 +6406,12 @@ function ContractSec({ c }) {
     <p class="muted" style="font-size:12px">O pacote monta o mês no QG e avisa quando a entrega passa do que foi contratado.</p></section>`;
 }
 function PackCard({ c, setTab }) {
-  const app = useApp(); const { db, act, open } = app; const p = (c.contract || {}).pack || {}; const mk = monthKey(); const inM = s => s && s.slice(0, 7) === mk;
+  const { db, act, open } = useApp(); const p = (c.contract || {}).pack || {}; const mk = monthKey(); const inM = s => s && s.slice(0, 7) === mk;
   const has = p.posts || p.scripts || p.meetings;
   if (!has) return html`<section class="sec"><div class="sec-h"><h2>Pacote do mês</h2></div><div class="card docs-card"><p class="muted" style="font-size:13px">Cadastre o contrato na aba Sobre para acompanhar o que o mês inclui e o que passou dele.</p><button class="btn sm" style="align-self:flex-start" onClick=${() => setTab('about')}><${Icon} n="package" s=${13} />Cadastrar o contrato</button></div></section>`;
   const posts = db.posts.filter(x => x.clientId === c.id && inM(x.date)).length;
   const scripts = db.scripts.filter(x => x.clientId === c.id && inM(x.record)).length;
-  const meets = allMeetings(app).filter(m => m.clientId === c.id && inM(dayOf(m.start))).length;
+  const meets = db.events.filter(e => e.clientId === c.id && inM(e.date)).length;
   const Row = (label, n, max) => max ? html`<div class="pk-row" key=${label}><span>${label}</span><span class="bar"><i class=${n > max ? 'late' : ''} style=${{ width: Math.min(100, n / max * 100) + '%' }}></i></span><b class="tnum">${n} de ${max}</b>${n > max ? html`<span class="pill t-late">${n - max} a mais</span>` : null}</div>` : null;
   const gap = p.posts ? Math.max(0, p.posts - posts) : 0;
   return html`<section class="sec"><div class="sec-h"><h2>Pacote de ${monthName(mk)}</h2></div><div class="card docs-card">
@@ -6571,5 +6572,3 @@ Object.assign(LOGD, {
 
 render(html`<${App} />`, document.getElementById('app'));
 </script>
-
-</body></html>

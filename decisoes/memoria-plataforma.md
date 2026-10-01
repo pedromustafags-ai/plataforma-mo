@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: ab2d7709-f116-409b-a64f-d0018981c666
-  modified: 2026-10-01T01:04:31.254Z
+  modified: 2026-10-01T13:28:32.409Z
 ---
 
 Em 25/09/2026 o Pedro decidiu construir um **sistema próprio de gestão para a M&O**, separado do
@@ -203,7 +203,11 @@ interessante deixar o link da reunião e horário."*
   reunião", nas 4 línguas; as atas vêm abaixo.
 - **Quem vê:** só reunião ligada ao cliente e com "O cliente vê o horário e o link" marcado. A marcada à mão nasce
   marcada; a da Agenda nasce desmarcada, para reunião interna sobre o cliente não vazar.
-- **Em aberto:** o calendário do cliente lê outra lista de eventos (`db.events`), que não bate com Reuniões.
+
+**v14 publicada em 01/10 no mesmo link** (mesmo registro, segunda volta). Pedido dele: *"pode juntar o calendário
+com as reuniões"*. O calendário do time, o do cliente e o pacote do mês leem as Reuniões; a lista à parte
+(`db.events`, com a "Revisão da semana" de toda segunda) saiu. Não existe reunião que se repete: a Google Agenda
+entrega cada ocorrência, e a marcada à mão é uma de cada vez.
 
 **No GitHub desde 29/09:** repositório privado `github.com/pedromustafags-ai/plataforma-mo`, cópia local em
 `~/Downloads/plataforma-mo`. Tem a página publicada, a fonte da v1 à v11 (`fonte/`, com `build.py` que remonta

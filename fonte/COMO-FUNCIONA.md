@@ -7,7 +7,7 @@ ao Claude (copiloto, ata por IA, desenho por IA).
 
 ## O arquivo que vale hoje
 
-- **`src.html`** é a fonte da versão 13, a que está no ar. Tem dois marcadores, `__LOGO__` e `__ICON__`,
+- **`src.html`** é a fonte da versão 14, a que está no ar. Tem dois marcadores, `__LOGO__` e `__ICON__`,
   onde entram os SVGs do logo da M&O.
 - **`build.py`** lê `src.html`, põe os dois SVGs de `logo/` nos marcadores (recolorindo os preenchimentos
   para as classes `lc`, `lm` e `lw`, que o tema pinta) e grava `index.html` e `test.html`.
@@ -39,13 +39,14 @@ costurar a seguinte.
 | v11 | 29/09 | `src-v10.html` | `v11.js`, `css_v11.txt` | `integrate11.py` (rodado por `make11.sh`) |
 | v12 | 30/09 | `src-v11.html` | `v12a.js` a `v12d.js`, `css_v12.txt` | `integrate12.py` (rodado por `make12.sh`) |
 | v13 | 30/09 | `src-v12.html` | `v13.js`, `css_v13.txt` | `integrate13.py` (rodado por `make13.sh`) |
+| v14 | 01/10 | `src-v13.html` | nenhum: só trocas no próprio script | `integrate14.py` (rodado por `make14.sh`) |
 
 Os scripts de costura são registro histórico: eles esperam encontrar o texto exato da versão anterior
 e param com erro se não acharem. O `integrate9.py` confere, a cada troca, que o trecho antigo apareceu
 exatamente uma vez. O `make9.sh` refaz a v9 do zero: copia `src-v8.html` para `src.html`, costura, monta
 e confere a sintaxe do script com `node --check`. O `make10.sh` faz o mesmo para a v10, a partir de
 `src-v9.html`, o `make11.sh` para a v11, a partir de `src-v10.html`, o `make12.sh` para a v12, a partir de
-`src-v11.html`, e o `make13.sh` para a v13, a partir de `src-v12.html`.
+`src-v11.html`, o `make13.sh` para a v13, a partir de `src-v12.html`, e o `make14.sh` para a v14, a partir de `src-v13.html`.
 
 A partir da v10, quando uma função inteira muda, o script tira a versão antiga do `src.html` (função
 `drop`) e a nova passa a morar no módulo da versão. Na v10 foram assim `CMark`, `NewClient`,

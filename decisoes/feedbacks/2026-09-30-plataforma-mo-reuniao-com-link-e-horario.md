@@ -5,7 +5,7 @@ canal: geral — produto interno da M&O, fora do escopo do MVB-OS
 tipo: pedido — o que a reunião precisa mostrar
 autor: Pedro
 peso: lei
-status: destilado — aplicado na v13, publicada em 30/09 no mesmo link; a regra mora no próprio protótipo e na memória plataforma-mo-sistema-proprio
+status: destilado — aplicado na v13 (30/09) e na v14 (01/10), publicadas no mesmo link; a regra mora no próprio protótipo e na memória plataforma-mo-sistema-proprio
 relacionado: pedro/feedbacks/2026-09-30-plataforma-mo-socio-dois-ajustes-e-pesquisa-de-navegacao.md, memória plataforma-mo-sistema-proprio
 quando-puxar: antes de mexer em Reuniões, na aba Reuniões do painel do cliente ou na integração com a Google Agenda
 ---
@@ -42,9 +42,21 @@ O QUE A V13 FEZ
   horário e o link" marcado. Reunião marcada à mão nasce marcada; a da Google Agenda nasce desmarcada,
   porque uma reunião interna sobre o cliente também fica ligada a ele e não pode vazar para o painel.
 
+SEGUNDA VOLTA (01/10), depois de ler que o calendário ainda lia outra lista (literal):
+
+*"pode juntar o calendário com as reuniões"*
+
+O QUE A V14 FEZ
+
+- **Uma lista só.** O calendário do time, o calendário do cliente e o pacote do mês (a contagem de
+  reuniões do contrato) passam a ler as reuniões da tela Reuniões. A lista de eventos à parte saiu:
+  ela tinha a "Revisão da semana" de toda segunda, que era dado de exemplo, e a "Gravação das
+  caixinhas", que já aparece pela data de gravação do roteiro.
+- **No calendário do cliente** entra só a reunião que ele vê (a mesma regra da aba Reuniões), com o
+  horário na língua dele. Clicar leva para a aba Reuniões, onde está o botão de entrar.
+
 O QUE FICOU EM ABERTO
 
-- O calendário do cliente ainda lê uma lista de eventos separada da de Reuniões (a "Revisão da
-  semana" de toda segunda). As duas listas não batem, e juntá-las é o próximo conserto se o Pedro
-  achar que vale.
+- Não há reunião que se repete (toda segunda, toda semana). A Google Agenda já entrega cada ocorrência
+  como uma reunião; a marcada à mão é uma de cada vez. Entra se o Pedro pedir.
 - O lembrete da reunião (WhatsApp, e-mail ou SMS antes de começar) não entrou: não foi pedido.

@@ -1372,68 +1372,6 @@ label.btn,.drop,.sw-lg,.idv-btn{position:relative}
 .fn-mode button{height:26px;padding:0 10px}
 .nf-style{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
 .nf-style small{font-size:12.5px;line-height:1.4}
-/* ---------- v12: navegação, rodadas de ajuste, entrada do cliente, resultados, pacote ---------- */
-.subtabs{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:-8px}
-.subtabs .seg{flex-wrap:wrap}
-button.pick-row{width:100%;border:0;background:none;text-align:left;font:inherit;color:inherit}
-.portal button.more-row{width:100%;text-align:left;border:0;background:none;font:inherit;color:inherit}
-.cv-seg{align-self:flex-start}
-@container portal (max-width:680px){.p-req span{display:inline}.p-req{width:auto;padding:0 10px}}
-.intake-cta{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:16px 18px;border-color:var(--st-cli-bg);background:color-mix(in srgb,var(--st-cli-bg) 40%,var(--surface))}
-.intake-cta > div{flex:1;min-width:200px;display:flex;flex-direction:column;gap:4px}
-.intake-cta p{font-size:13.5px}
-.acc-card{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
-.acc-card b{display:inline-flex;align-items:center;gap:6px}
-.acc-card p{font-size:13.5px;margin-top:4px}
-.acc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-@container portal (max-width:680px){.acc-grid{grid-template-columns:minmax(0,1fr)}}
-.inp.bad{border-color:var(--st-late)}
-.acc-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 12px}
-@container portal (max-width:520px){.acc-list{grid-template-columns:minmax(0,1fr)}}
-.acc-it{display:flex;gap:8px;align-items:center;font-size:14px}
-.batch{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--text-2)}
-.batch span{flex:1;min-width:200px}
-.ap-until{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--text-3)}
-.rounds-line{font-size:13px;color:var(--text-2);background:var(--surface-2);border-radius:8px;padding:8px 10px}
-.rounds-line.last{background:var(--st-adj-bg);color:var(--st-adj)}
-.changed{background:var(--st-ok-bg);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
-.changed .label{color:var(--st-ok)}
-.changed ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;font-size:14px}
-.changed li{display:flex;gap:6px;align-items:flex-start}
-.changed li .ic{color:var(--st-ok);margin-top:3px}
-.ap-more{display:flex;justify-content:center;padding:0 20px 18px;margin-top:-6px}
-.ap-more .linkbtn{font-size:13px;align-self:center}
-.round-list{display:flex;flex-direction:column;gap:6px;background:var(--surface-2);border-radius:10px;padding:10px 12px}
-.rl-it{display:flex;gap:8px;align-items:flex-start;font-size:14px}
-.rl-n{width:20px;height:20px;border-radius:50%;background:var(--primary);color:var(--on-primary);font:600 11px/20px var(--mono);text-align:center;flex:none}
-.rl-t{flex:1;min-width:0;overflow-wrap:anywhere}
-.slider .sl-nav{z-index:3}
-.rv-layer{position:absolute;inset:0;cursor:crosshair;z-index:2}
-.rv-pin{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:#C0392B;color:#fff;font:700 12px/26px var(--sans);text-align:center;box-shadow:0 0 0 3px rgba(255,255,255,.9),0 2px 8px rgba(0,0,0,.4);pointer-events:none}
-.rv-pin.draft{background:#2459C7}
-.rb{display:flex;flex-direction:column;gap:10px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
-.rb-line{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:13px}
-.rb-round ul{margin:6px 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px}
-.rb-talk{display:flex;flex-direction:column;gap:8px;background:var(--st-adj-bg);color:var(--st-adj);border-radius:10px;padding:10px 12px}
-.rb-talk .label{color:inherit}
-.rb-talk p{color:var(--text);font-size:14px}
-.rb-acts{display:flex;gap:6px;flex-wrap:wrap}
-.res-done{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:15px}
-.res-done li{display:flex;gap:8px;align-items:center}
-.res-done .ic{color:var(--st-ok)}
-.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
-.res-m{padding:14px 16px;display:flex;flex-direction:column;gap:4px}
-.res-m b{font:600 24px/1.15 var(--sans);font-variant-numeric:tabular-nums}
-.res-m small{color:var(--text-3)}
-.res-note{font-size:15px;line-height:1.65;white-space:pre-wrap;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-.rep-row{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr) auto;gap:6px;align-items:center}
-.pk-row{display:grid;grid-template-columns:72px minmax(0,1fr) auto auto;gap:10px;align-items:center;font-size:13px}
-.ct-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
-.nt-chips{display:inline-flex;gap:4px;flex-wrap:wrap}
-.nt-chips .see-chip{height:24px;padding:0 8px}
-.bl-form.col{flex-direction:column;align-items:stretch}
-.bl-form.col .inp{min-width:0}
-@container portal (max-width:680px){.p-top .p-brand .logo{height:15px}.p-top .p-brand{min-width:0;flex:0 1 auto}.p-top .p-brand .c-logo{max-width:108px}}
 </style>
 
 <div id="app"></div>
@@ -1619,7 +1557,7 @@ function seed() {
     { id: 'vinicius', name: 'Vinícius', ini: 'VI', role: 'colab', func: 'Tráfego pago' },
   ];
   const clients = [{
-    id: 'mo', name: 'M&O Company', lang: 'pt', owner: 'pedro', zero: true, country: 'br', notify: { ch: ['whatsapp'], weekly: true }, contact: 'Pedro e Bruno', about: structuredClone(MO_ABOUT),
+    id: 'mo', name: 'M&O Company', lang: 'pt', owner: 'pedro', zero: true, contact: 'Pedro e Bruno', about: structuredClone(MO_ABOUT),
     brand: { logo: null, logoDark: null, colors: ['#222831', '#DFD0B8', '#948979', '#F4EBDD'], primary: '#222831', font: null, theme: { mode: 'light', light: 'areia', dark: 'grafite' } },
     onboarding: ONB.map((t, i) => ({ t, done: i !== 4 })),
     links: [
@@ -1650,7 +1588,7 @@ function seed() {
     P(4, 'Ten minutes, your own operation', 'publicado', -5),
     P(5, 'The report that proves nothing', 'publicado', -2),
     P(1, 'The 5:47pm reply', 'agendado', 3),
-    P(6, '"Post more"', 'ajuste', 7, { sent: -3, since: -1, rounds: 1, lastRound: { n: 1, items: [{ slide: 5, text: 'Dá pra deixar a frase final mais curta?' }], at: off(-1) }, comments: [{ by: 'client', slide: 5, round: 1, text: 'Dá pra deixar a frase final mais curta?', at: off(-1) }] }),
+    P(6, '"Post more"', 'ajuste', 7, { sent: -3, since: -1, comments: [{ by: 'client', slide: 5, text: 'Dá pra deixar a frase final mais curta?', at: off(-1) }] }),
     P(3, 'The estimate that went quiet', 'aprovado', 10),
     P(7, 'The busy season that breaks you', 'cliente', 12, { sent: -4, since: -4 }),
     P(2, 'Forty open chats', 'cliente', 14, { sent: -1, since: -1 }),
@@ -1818,13 +1756,8 @@ function App() {
 
   const me = session && session.role !== 'cliente' ? db.people.find(p => p.id === session.userId) : null;
   const can = a => !!me && PERM[me.role].has(a);
-  const [recent, setRecent] = useState([]); const pushRecent = key => setRecent(r => [key, ...r.filter(x => x !== key)].slice(0, 6));
-  const go = r => { setRoute(r); setDrawer(null); setSideOpen(false); if (mainRef.current) mainRef.current.scrollTop = 0; const rk = r.v === 'client' ? 'client:' + r.id : r.v === 'board' ? 'board:' + r.id : r.v === 'funnel' ? 'funnel:' + r.id : null; if (rk) pushRecent(rk); };
-  const open = (k, id) => { setDrawer({ k, id }); if (k !== 'meeting') pushRecent(k + ':' + id); };
-  const initRoute = useRef(null); const [deep, setDeep] = useState(null);
-  useEffect(() => { const s = parseHash(location.hash); if (!s) return; if (s.portal) { if (dbRef.current.clients.some(c => c.id === s.portal.clientId)) { setSession({ role: 'cliente', clientId: s.portal.clientId, via: 'link' }); setDeep(s.portal.piece); } } else initRoute.current = s; }, []);
-  useEffect(() => { if (!session || session.role === 'cliente') return; const h = routeHash(route, drawer); try { if (location.hash.slice(1) !== h) history.pushState(null, '', '#' + h); } catch (e) {} }, [route, drawer, session]);
-  useEffect(() => { const h = () => { const s = parseHash(location.hash); if (!s || s.portal) return; setRoute(s.route); setDrawer(s.drawer); }; addEventListener('popstate', h); return () => removeEventListener('popstate', h); }, []);
+  const go = r => { setRoute(r); setDrawer(null); setSideOpen(false); if (mainRef.current) mainRef.current.scrollTop = 0; };
+  const open = (k, id) => setDrawer({ k, id });
   const notify = (d, to, who, verb, k, ref, x) => d.notes.unshift({ id: uid('n'), to, who, verb, k, ref, at: off(0), read: false, ...(x || {}) });
   const actorId = () => session && session.role === 'cliente' ? (session.userId || 'client:' + session.clientId) : (me ? me.id : null);
   const noteWho = by => /^client:/.test(String(by || '')) ? 'client' : by;
@@ -1857,7 +1790,7 @@ function App() {
     createClient: f => {
       const id = uid('c');
       commit(d => {
-        d.clients.push({ id, name: f.name, lang: f.lang, owner: f.owner, contact: f.contact || '—', country: f.country || 'other', notify: { ch: f.notify && f.notify.length ? f.notify : ['email'], weekly: true }, brand: newBrand(f.brand), about: { desc: '', niche: f.niche || '', needs: [], other: '', goals: [], limits: [], notes: '' }, flows: { post: 'enxuto', script: 'video', owners: Object.fromEntries(STAGE_ORDER.map(k => [k, f.owner])) }, drive: null, docs: [], lists: [], onboarding: ONB.map(t => ({ t, done: false })), links: [] });
+        d.clients.push({ id, name: f.name, lang: f.lang, owner: f.owner, contact: f.contact || '—', brand: newBrand(f.brand), about: { desc: '', niche: f.niche || '', needs: [], other: '', goals: [], limits: [], notes: '' }, flows: { post: 'enxuto', script: 'video', owners: Object.fromEntries(STAGE_ORDER.map(k => [k, f.owner])) }, drive: null, docs: [], lists: [], onboarding: ONB.map(t => ({ t, done: false })), links: [] });
         d.pages.push(...tplPages(id, f.lang));
       }, null);
       return id;
@@ -1901,7 +1834,6 @@ function App() {
     portalLinkEdit: (cid, lid, patch, msg) => commit(d => { const c = d.clients.find(x => x.id === cid); const l = c.links.find(x => x.id === lid); if (!l) return; Object.assign(l, patch); const by = actorId(); if (c.owner !== by) notify(d, c.owner, noteWho(by), 'editou um link no painel:', 'link', lid, { cid, label: l.name }); }, msg),
     portalLinkDel: (cid, lid, msg) => commit(d => { const c = d.clients.find(x => x.id === cid); const l = c.links.find(x => x.id === lid); if (!l) return; c.links = c.links.filter(x => x.id !== lid); const by = actorId(); if (c.owner !== by) notify(d, c.owner, noteWho(by), 'tirou um link do painel:', 'link', lid, { cid, label: l.name }); }, msg),
   };
-  Object.assign(act, actV12({ commit, notify, me, dbRef }));
   Object.keys(act).forEach(k => { const f = act[k]; act[k] = (...a) => { const p = curAct.current; curAct.current = { name: k, args: a }; try { return f(...a); } finally { curAct.current = p; } }; });
 
 
@@ -1916,11 +1848,11 @@ function App() {
     addEventListener('keydown', h); return () => removeEventListener('keydown', h);
   });
 
-  const ctx = { db, act, me, can, recent, initRoute, deep, setDeep, log: logRef.current, logTick, session, setSession, route, go, open, drawer, setDrawer, modal, setModal, palette, setPalette, preview, setPreview, toast, theme, setTheme, sideOpen, setSideOpen, mainRef, copilot, setCopilot, live, setLive, rail, setRail, look, setLook };
+  const ctx = { db, act, me, can, log: logRef.current, logTick, session, setSession, route, go, open, drawer, setDrawer, modal, setModal, palette, setPalette, preview, setPreview, toast, theme, setTheme, sideOpen, setSideOpen, mainRef, copilot, setCopilot, live, setLive, rail, setRail, look, setLook };
 
   let body;
   if (!session) body = html`<${Login} />`;
-  else if (session.role === 'cliente') body = html`<${Portal} clientId=${session.clientId} deep=${deep} />`;
+  else if (session.role === 'cliente') body = html`<${Portal} clientId=${session.clientId} />`;
   else body = html`<${TeamShell} />`;
   return html`<${Ctx.Provider} value=${ctx}>${body}
     ${preview && html`<${Preview} />`}
@@ -1933,9 +1865,9 @@ function App() {
 
 /* ================= login ================= */
 function Login() {
-  const { db, setSession, go, open, initRoute } = useApp();
+  const { db, setSession, go } = useApp();
   const [email, setEmail] = useState(''); const [sent, setSent] = useState(false); const [bl, setBl] = useState(null);
-  const enter = s => { setSession(s); const ir = initRoute.current; initRoute.current = null; if (s.role !== 'cliente' && ir) { go(ir.route); if (ir.drawer) open(ir.drawer.k, ir.drawer.id); } else go({ v: s.role === 'socio' ? 'overview' : 'myday' }); };
+  const enter = s => { setSession(s); go({ v: s.role === 'socio' ? 'overview' : 'myday' }); };
   const accs = [
     { s: { role: 'socio', userId: 'pedro' }, ini: 'PM', name: 'Pedro Mustafa', lvl: 'Sócio', what: 'Vê todos os clientes. Cadastra cliente e convida pessoas.' },
     { s: { role: 'colab', userId: 'felipe' }, ini: 'FE', name: 'Felipe', lvl: 'Colaborador', what: 'Vê todos os clientes e os processos internos.' },
@@ -2127,6 +2059,44 @@ function Overview() {
 /* ================= caixa de entrada ================= */
 
 /* ================= área do cliente (time) ================= */
+function ClientArea({ id, tab, pid }) {
+  const { db, go, can, setModal, setPreview } = useApp();
+  const c = db.clients.find(x => x.id === id);
+  if (!c) return html`<div class="page"><div class="card empty">Cliente não encontrado.</div></div>`;
+  const nTasks = db.tasks.filter(t => t.clientId === id && t.status !== 'done').length;
+  const nPosts = db.posts.filter(p => p.clientId === id).length;
+  const nScripts = db.scripts.filter(s => s.clientId === id).length;
+  const CNT = { tasks: nTasks, posts: nPosts, scripts: nScripts, links: c.links.length, boards: db.boards.filter(b => b.clientId === id).length, funnels: db.funnels.filter(f => f.clientId === id).length };
+  const tabs = CLIENT_TABS.map(([k, l]) => [k, l, CNT[k]]);
+  const setTab = t => go({ v: 'client', id, tab: t });
+  let view;
+  switch (tab) {
+    case 'tasks': view = html`<${TasksTab} c=${c} />`; break;
+    case 'posts': view = html`<${PostsTab} c=${c} />`; break;
+    case 'scripts': view = html`<${ScriptsTab} c=${c} />`; break;
+    case 'calendar': view = html`<${TeamCalendar} c=${c} />`; break;
+    case 'process': view = html`<${Docs} pages=${db.pages.filter(p => p.clientId === id)} editable clientPage initial=${pid} key=${pid || 'docs'} />`; break;
+    case 'links': view = html`<${LinksTab} c=${c} />`; break;
+    case 'brand': view = html`<${BrandEditor} c=${c} lang="pt" />`; break;
+    case 'about': view = html`<${AboutTab} c=${c} />`; break;
+    case 'meetings': view = html`<${MeetingsView} clientId=${id} />`; break;
+    case 'boards': view = html`<${BoardsList} clientId=${id} />`; break;
+    case 'funnels': view = html`<${FunnelsList} clientId=${id} />`; break;
+    default: view = html`<${ClientQG} c=${c} setTab=${setTab} />`;
+  }
+  return html`<div class="page">
+    <div class="chead"><${CMark} c=${c} lg />
+      <div><h1>${c.name}</h1>${c.about && c.about.niche && html`<p class="chead-niche">${c.about.niche}</p>`}<div class="badges">${c.zero && html`<span class="tag">CLIENTE ZERO</span>`}<span class="tag">${'PAINEL EM ' + LANG_PT[c.lang].toUpperCase()}</span><span class="tag">RESP. ${firstName(db, c.owner).toUpperCase()}</span></div></div>
+      <div class="acts">
+        ${can('log.view') && html`<button class="btn" onClick=${() => go({ v: 'history', cid: id })}><${Icon} n="history" />Histórico</button>`}
+        <button class="btn" onClick=${() => setPreview({ clientId: id, device: 'mobile' })}><${Icon} n="eye" />Ver como o cliente</button>
+        ${can('client.invite') && html`<button class="btn pri" onClick=${() => setModal({ t: 'invite', clientId: id })}><${Icon} n="send" />Mandar acesso</button>`}
+      </div>
+    </div>
+    <div class="tabs" role="tablist">${tabs.map(([k, l, n]) => html`<button role="tab" aria-selected=${tab === k} class=${cx('tab', tab === k && 'on')} onClick=${() => setTab(k)}>${l}${n != null && html`<span class="c">${n}</span>`}</button>`)}</div>
+    ${view}
+  </div>`;
+}
 
 /* ---------- tarefas ---------- */
 function TasksTab({ c }) {
@@ -2179,14 +2149,14 @@ function Thumb({ p, pillText, tone, lang = 'pt' }) {
     ${cover && fl && html`<span class="thumb-fmt">${p.video ? html`<${Icon} n="play" s=${10} />` : null}${fl}${n > 1 && !p.video ? ' · ' + n : ''}</span>`}</div>`;
 }
 function PostsTab({ c }) {
-  const { db, act, open, setModal } = useApp();
+  const { db, act, open } = useApp();
   const [f, setF] = useState('all'); const [cf, setCf] = useState(null);
   const mine = p => c ? p.clientId === c.id : (!cf || p.clientId === cf);
   const flt = POST_FILTERS.find(x => x[0] === f)[2];
   const posts = db.posts.filter(p => mine(p) && (!flt || flt.includes(p.status))).sort((a, b) => (a.date || '9999').localeCompare(b.date || '9999'));
   return html`<div class="sec" style="gap:16px">
     <div class="toolbar">${!c && html`<${ClientFilter} value=${cf} onChange=${setCf} />`}<div class="filter-chips">${POST_FILTERS.map(([k, l, s]) => html`<button key=${k} class=${cx(f === k && 'on')} onClick=${() => setF(k)}>${l} <span class="mono" style="opacity:.7">${db.posts.filter(p => mine(p) && (!s || s.includes(p.status))).length}</span></button>`)}</div>
-      <span class="spacer"></span><button class="btn pri" onClick=${() => (!c && !cf && db.clients.length > 1 ? setModal({ t: 'pickClient', k: 'post' }) : act.addPost(c ? c.id : (cf || db.clients[0].id)))}><${Icon} n="plus" />Novo post</button></div>
+      <span class="spacer"></span><button class="btn pri" onClick=${() => act.addPost(c ? c.id : (cf || db.clients[0].id))}><${Icon} n="plus" />Novo post</button></div>
     <div class="pgrid">${posts.map(p => html`<button class="pcard" key=${p.id} onClick=${() => open('post', p.id)}><${Thumb} p=${p} /><span class="pt">${p.title}</span>${!c && html`<${CChip} id=${p.clientId} />`}<span class="pd">${p.date ? `${p.status === 'publicado' ? 'Publicado' : 'Sai'} ${fmt(p.date)}` : 'Sem data'}</span></button>`)}
       ${posts.length === 0 && html`<div class="card empty" style="grid-column:1/-1">Nenhum post neste filtro.</div>`}</div>
   </div>`;
@@ -2194,11 +2164,11 @@ function PostsTab({ c }) {
 
 /* ---------- roteiros ---------- */
 function ScriptsTab({ c }) {
-  const { db, act, open, setModal } = useApp();
+  const { db, act, open } = useApp();
   const [cf, setCf] = useState(null);
   const list = db.scripts.filter(s => c ? s.clientId === c.id : (!cf || s.clientId === cf));
   return html`<div class="sec" style="gap:14px">
-    <div class="toolbar">${!c && html`<${ClientFilter} value=${cf} onChange=${setCf} />`}<span class="muted">Caixinhas, Reels e anúncios. O cliente vê o roteiro a partir do momento em que ele vai para aprovação.</span><span class="spacer"></span><button class="btn pri" onClick=${() => (!c && !cf && db.clients.length > 1 ? setModal({ t: 'pickClient', k: 'script' }) : act.addScript(c ? c.id : (cf || db.clients[0].id)))}><${Icon} n="plus" />Novo roteiro</button></div>
+    <div class="toolbar">${!c && html`<${ClientFilter} value=${cf} onChange=${setCf} />`}<span class="muted">Caixinhas, Reels e anúncios. O cliente vê o roteiro a partir do momento em que ele vai para aprovação.</span><span class="spacer"></span><button class="btn pri" onClick=${() => act.addScript(c ? c.id : (cf || db.clients[0].id))}><${Icon} n="plus" />Novo roteiro</button></div>
     <div class="slist">${list.map(s => html`<button class="scard" key=${s.id} onClick=${() => open('script', s.id)}>
       <span><span class="t">${s.title}</span><span class="m" style="margin-top:6px">${!c && html`<${CChip} id=${s.clientId} />`}<span class="tag">${s.kind.toUpperCase()}</span><span class="tag">${s.lang.toUpperCase()}</span>${s.angle && html`<span class="tag">${s.angle.split(' ·')[0]}</span>`}${s.record && html`<span class="due">Gravação ${fmt(s.record)}</span>`}</span></span>
       <span class="m" style="align-self:start"><${Pill} kind="script" st=${s.status} /><${Av} id=${s.assignee} /></span>
@@ -2366,7 +2336,7 @@ function Comments({ k, x }) {
   const [v, setV] = useState('');
   const send = e => { e.preventDefault(); if (!v.trim()) return; act.comment(k, x.id, v.trim(), me.id); setV(''); };
   return html`<section class="sec" style="gap:12px"><div class="sec-h" style="padding:0"><h2>Comentários</h2><span class="c">${x.comments.length}</span></div>
-    <div class="comments">${x.comments.map((c, i) => html`<div class=${cx('cmt', c.by === 'client' && 'client')} key=${i}><${Av} id=${c.by} /><div class="bub"><div class="who"><b>${c.by === 'client' ? 'Cliente' : personName(db, c.by)}</b>${c.slide ? html`<span class="tag">SLIDE ${c.slide}</span>` : null}${c.round ? html`<span class="tag">RODADA ${c.round}</span>` : null}${c.pin ? html`<span class="tag">PONTO MARCADO</span>` : null}${c.detail ? html`<span class="tag">DETALHE NA APROVAÇÃO</span>` : null}<span>${rel(c.at)}</span></div><div class="txt"><${Mentions} text=${c.text} /></div></div></div>`)}
+    <div class="comments">${x.comments.map((c, i) => html`<div class=${cx('cmt', c.by === 'client' && 'client')} key=${i}><${Av} id=${c.by} /><div class="bub"><div class="who"><b>${c.by === 'client' ? 'Cliente' : personName(db, c.by)}</b>${c.slide ? html`<span class="tag">SLIDE ${c.slide}</span>` : null}<span>${rel(c.at)}</span></div><div class="txt"><${Mentions} text=${c.text} /></div></div></div>`)}
       ${x.comments.length === 0 && html`<p class="muted" style="font-size:13px">Sem comentários. Use @nome pra chamar alguém.</p>`}</div>
     <form class="cform" onSubmit=${send}><label class="sr" for=${'cm-' + x.id}>Comentário</label><textarea id=${'cm-' + x.id} class="ta" placeholder="Escreva um comentário. Use @nome pra chamar alguém." value=${v} onInput=${e => setV(e.target.value)} onKeyDown=${e => { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) send(e); }}></textarea><button class="btn pri" type="submit">Enviar</button></form>
   </section>`;
@@ -2413,7 +2383,6 @@ function PostBody({ p }) {
     <${Title} value=${p.title} onSave=${v => set({ title: v })} />
     <${FormatPicker} x=${p} onPick=${f => set({ format: f, fmtAuto: false }, 'Formato: ' + FMT_T.pt[f])} />
     <${FlowBar} k="post" x=${p} />
-    <${RoundsBar} k="post" x=${p} />
     <div class="pd-grid">
       <${PieceMedia} k="post" x=${p} edit />
       <div class="sec" style="gap:18px">
@@ -2421,7 +2390,6 @@ function PostBody({ p }) {
           <dt>Etapa</dt><dd><${StageSelect} k="post" x=${p} /></dd>
           <dt>Publicação</dt><dd><input class="inp" id="p-date" type="date" value=${p.date || ''} onChange=${e => set({ date: e.target.value || null })} /></dd>
           <dt>Responsável</dt><dd><${PersonSel} id="p-who" clientId=${p.clientId} value=${p.assignee} onChange=${v => set({ assignee: v })} /></dd>
-          <dt>Cliente</dt><dd><${ClientSel} k="post" x=${p} /></dd>
           <dt>Cliente vê?</dt><dd class="muted">${POST_VISIBLE.includes(p.status) ? 'Sim, na área dele' : 'Ainda não. Só a partir de "Com o cliente"'}</dd>
         </dl>
         <section class="sec" style="gap:8px"><div class="sec-h" style="padding:0"><h2>Legenda</h2><span class="tag">EN</span></div>
@@ -2438,14 +2406,12 @@ function ScriptBody({ s }) {
   return html`
     <${Title} value=${s.title} onSave=${v => set({ title: v })} />
     <${FlowBar} k="script" x=${s} />
-    <${RoundsBar} k="script" x=${s} />
     <dl class="props">
       <dt>Etapa</dt><dd><${StageSelect} k="script" x=${s} /></dd>
       <dt>Modelo</dt><dd><${TplSelect} s=${s} /></dd>
       <dt>Formato</dt><dd>${s.kind}${s.angle ? ' · ' + s.angle : ''} · ${s.lang === 'en' ? 'inglês' : 'português'}</dd>
       <dt>Gravação</dt><dd><input class="inp" id="s-rec" type="date" value=${s.record || ''} onChange=${e => set({ record: e.target.value || null })} /></dd>
       <dt>Responsável</dt><dd><${PersonSel} id="s-who" clientId=${s.clientId} value=${s.assignee} onChange=${v => set({ assignee: v })} /></dd>
-      <dt>Cliente</dt><dd><${ClientSel} k="script" x=${s} /></dd>
       ${s.format && html`<dt>Como gravar</dt><dd>${s.format}</dd>`}
     </dl>
     <section class="sec" style="gap:12px"><div class="sec-h" style="padding:0"><h2>Roteiro</h2><span class="muted" style="font-size:12px">clique e escreva, salva sozinho</span></div>
@@ -2483,9 +2449,23 @@ function ModalHost() {
   else if (modal.t === 'flow') inner = html`<${FlowSettings} close=${close} clientId=${modal.clientId} />`;
   else if (modal.t === 'preview') inner = html`<${PreviewModal} close=${close} url=${modal.url} name=${modal.name} />`;
   else if (modal.t === 'newFunnel') inner = html`<${NewFunnel} close=${close} clientId=${modal.clientId} />`;
-  else if (modal.t === 'pickClient') inner = html`<${PickClient} close=${close} k=${modal.k} />`;
-  else if (modal.t === 'report') inner = html`<${ReportEditor} close=${close} clientId=${modal.clientId} />`;
   return html`<div class="modal-wrap" onClick=${e => e.target === e.currentTarget && close()}><div class="modal" role="dialog" aria-modal="true">${inner}</div></div>`;
+}
+function MessageModal({ kind, clientId, close, fresh }) {
+  const { db, toast } = useApp();
+  const c = db.clients.find(x => x.id === clientId);
+  const n = [...db.posts, ...db.scripts].filter(x => x.clientId === clientId && x.status === 'cliente').length + db.tasks.filter(t => t.clientId === clientId && t.status === 'client').length;
+  const who = c.contact && c.contact !== '—' ? c.contact.split(' ')[0] : '';
+  const M = MSG[c.lang] || MSG.pt;
+  const text = kind === 'invite' ? M.invite(who) : M.remind(who, n);
+  const parts = text.split(/(\[[^\]]+\])/);
+  return html`<div>
+    <div class="mhd"><div><h2>${fresh ? `Área de ${c.name} criada` : kind === 'invite' ? `Mandar acesso para ${c.name}` : `Lembrar ${c.name}`}</h2><p>${fresh ? 'Agora mande o acesso. O cliente entra pelo link, sem senha.' : kind === 'invite' ? 'O cliente entra pelo link, sem senha, e cai direto na área dele.' : 'O link abre direto nas peças que esperam por ele.'}</p></div><button class="btn icon ghost" aria-label="Fechar" onClick=${close}><${Icon} n="x" /></button></div>
+    <div class="mbd"><span class="wa"><${Icon} n="msg" s=${14} />Mensagem pro WhatsApp, em ${LANG_PT[c.lang]}</span>
+      <div class="msg">${parts.map((p, i) => p.startsWith('[') ? html`<span class="lnk" key=${i}>${p.slice(1, -1)}</span>` : p)}</div>
+      <p class="muted" style="font-size:12px">No produto, o link é gerado aqui e vale só pra esse cliente.</p></div>
+    <div class="mft"><button class="btn ghost" onClick=${close}>Fechar</button><a class="btn" href=${'https://wa.me/?text=' + encodeURIComponent(text)} target="_blank" rel="noopener" style="text-decoration:none"><${Icon} n="msg" s=${14} />Abrir no WhatsApp</a><button class="btn pri" onClick=${() => copyText(text, ok => { toast(ok ? 'Mensagem copiada. Cole no WhatsApp do cliente.' : 'Não deu pra copiar. Selecione o texto e copie.'); if (ok) close(); })}><${Icon} n="copy" s=${14} />Copiar mensagem</button></div>
+  </div>`;
 }
 function InvitePerson({ close }) {
   const { act } = useApp();
@@ -2525,8 +2505,7 @@ function Palette() {
     db.pages.forEach(p => L.push(['Páginas', 'file', p.title, p.clientId ? 'processo do cliente' : 'processo interno', () => p.clientId ? go({ v: 'client', id: p.clientId, tab: 'process', pid: p.id }) : go({ v: 'wiki', pid: p.id })]));
     return L;
   }, [db]);
-  const recentL = (app.recent || []).map(key => { const i = key.indexOf(':'); const k = key.slice(0, i), id = key.slice(i + 1); if (k === 'client') { const c = db.clients.find(x => x.id === id); return c && ['Recentes', 'building', c.name, 'cliente', () => go({ v: 'client', id, tab: 'overview' })]; } const t = favTarget(db, key); return t && ['Recentes', t.icon, t.title, { task: 'tarefa', post: 'post', script: 'roteiro', board: 'quadro', funnel: 'funil', page: 'página' }[k] || '', () => (t.route ? go(t.route) : open(t.drawer.k, t.drawer.id))]; }).filter(Boolean);
-  const res = (q ? all.filter(x => norm(x[2] + ' ' + x[3] + ' ' + x[0]).includes(norm(q))) : [...recentL, ...all.filter(x => x[0] === 'Ações' || x[0] === 'Ir para' || x[0] === 'Clientes')]).slice(0, 40);
+  const res = (q ? all.filter(x => norm(x[2] + ' ' + x[3] + ' ' + x[0]).includes(norm(q))) : all.filter(x => x[0] === 'Ações' || x[0] === 'Ir para' || x[0] === 'Clientes')).slice(0, 40);
   const run = x => { setPalette(false); x[4](); };
   let lastG = null;
   return html`<div class="pal" onClick=${e => e.target === e.currentTarget && setPalette(false)}><div class="pal-box" role="dialog" aria-modal="true" aria-label="Buscar">
@@ -2550,6 +2529,61 @@ function Preview() {
 }
 
 /* ================= portal do cliente ================= */
+function PortalHome({ c, lang, goCal, who, openPiece }) {
+  const { db, act, toast } = useApp();
+  const t = TX[lang] || TX.pt;
+  const [done, setDone] = useState([]);
+  const all = [
+    ...db.posts.filter(p => p.clientId === c.id && p.status === 'cliente').map(x => ['post', x]),
+    ...db.scripts.filter(s => s.clientId === c.id && s.status === 'cliente').map(x => ['script', x]),
+    ...db.tasks.filter(x => x.clientId === c.id && x.status === 'client').map(x => ['task', x]),
+  ];
+  const items = canApproveAs(who) ? all : []; const P = PX[lang] || PX.pt;
+  const decide = (k, x, ok, text, slide) => {
+    act.decide(k, x.id, ok, text, slide);
+    setDone(d => [...d, { k, id: x.id, title: x.title, ok }]);
+  };
+  const undo = d => { if (d.k === 'task') act.setItem(d.k, d.id, { status: 'client', changeReq: false }); else act.jumpStage(d.k, d.id, 'cliente'); setDone(ds => ds.filter(z => z.id !== d.id)); };
+  const next = db.posts.filter(p => p.clientId === c.id && p.date && ['agendado', 'aprovado'].includes(p.status) && diff(p.date) >= 0).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 4);
+  const inprod = db.posts.filter(p => p.clientId === c.id && ['producao', 'revisao', 'ajuste'].includes(p.status)).length + db.scripts.filter(s => s.clientId === c.id && ['rascunho', 'revisao', 'ajuste'].includes(s.status)).length;
+  return html`
+    <div class="hello"><h1>${t.hello}${who ? ', ' + who.name.split(' ')[0] : c.contact && c.contact !== '—' && c.id !== 'mo' ? ', ' + c.contact.split(' ')[0] : ''}.</h1><p>${items.length ? t.waiting(items.length) : !canApproveAs(who) && all.length ? P.othersAppr(all.length) : t.clearSub}</p></div>
+    <${PortalTasks} c=${c} lang=${lang} who=${who} openPiece=${openPiece} />
+    <div class="aps">
+      ${done.map(d => html`<div class=${cx('done-row', !d.ok && 'chg-sent')} key=${'d' + d.id}><span class="okc"><${Icon} n=${d.ok ? 'check' : 'msg'} s=${16} /></span><span class="t"><b>${d.ok ? t.approvedT : t.changeT}: ${d.title}</b><small>${d.ok ? t.approvedS : t.changeS}</small></span><button class="btn sm ghost" onClick=${() => undo(d)}>${t.undo}</button></div>`)}
+      ${items.map(([k, x]) => html`<${ApprovalCard} key=${x.id} k=${k} x=${x} lang=${lang} onDecide=${(ok, text, slide) => decide(k, x, ok, text, slide)} />`)}
+      ${!items.length && canApproveAs(who) && html`<div class="card allclear"><span class="okc"><${Icon} n="check" s=${20} /></span><b>${t.clear}</b></div>`}
+    </div>
+    <${MyRequests} c=${c} lang=${lang} />
+    ${next.length > 0 && html`<section class="sec" style="gap:12px"><div class="sec-h" style="padding:0"><h2>${t.upnext}</h2><button class="linkbtn" style="margin-left:auto;font-size:13px" onClick=${goCal}>${t.cal}</button></div>
+      <div class="upnext">${next.map(p => html`<button class="pcard" key=${p.id} onClick=${() => openPiece('post', p.id)}><${Thumb} p=${p} pillText=${t.st[p.status]} tone=${PTONE[p.status]} lang=${lang} /><span class="pt">${p.title}</span><span class="pd">${t.goes(fmt(p.date, lang))}</span></button>`)}</div></section>`}
+    ${inprod > 0 && html`<p class="muted" style="font-size:13px;display:flex;gap:8px;align-items:center"><${Icon} n="clock" s=${14} />${t.inprod(inprod)}</p>`}`;
+}
+function ApprovalCard({ k, x, lang, onDecide }) {
+  const { db } = useApp();
+  const t = TX[lang];
+  const [mode, setMode] = useState(null); const [txt, setTxt] = useState(''); const [slide, setSlide] = useState(0); const [full, setFull] = useState(false);
+  const kind = k === 'post' ? pieceKind(lang, x) : k === 'script' ? `${t.script} · ${x.kind}` : t.delivery;
+  const when = k === 'post' && x.date ? t.goes(fmt(x.date, lang)) : k === 'script' && x.record ? t.record(fmt(x.record, lang)) : k === 'task' && x.due ? fmt(x.due, lang) : '';
+  const blocks = k === 'script' ? (full ? x.blocks : x.blocks.slice(0, 2)) : [];
+  return html`<article class="ap">
+    <div class="ap-h"><span class="k"><span class="pill t-cli">${t.st.cliente}</span><span>${kind}</span>${when && html`<span>· ${when}</span>`}</span><h2>${x.title}</h2></div>
+    ${k === 'post' && html`<${PieceMedia} k="post" x=${x} lang=${lang} />`}
+    <div class="ap-b">
+      ${(x.media || []).length > 0 && html`<div class="lp-grid">${x.media.map((md, i) => html`<${LinkPreview} key=${i} url=${md.url} name=${md.name} kind=${md.kind} lang=${lang} />`)}</div>`}
+      ${k === 'post' && x.caption && html`<p style="white-space:pre-wrap;font-size:14px">${x.caption}</p>`}
+      ${k === 'script' && html`<div class="sblk-read">${blocks.map(([l, v], i) => html`<div key=${i}>${l && html`<div class="label">${l}</div>`}<p style="white-space:pre-wrap">${v}</p></div>`)}${x.blocks.length > 2 && html`<button class="linkbtn" onClick=${() => setFull(!full)}>${full ? t.collapse : t.readAll}</button>`}</div>`}
+      ${k === 'task' && html`<p style="font-size:14px">${x.desc}</p><p class="muted" style="font-size:13px">${t.entregaOpen}</p>`}
+      <span class="from">${t.sentBy(firstName(db, x.assignee), rel(x.sentAt || x.since, lang))}</span>
+    </div>
+    ${mode === 'change' ? html`<form class="chg" onSubmit=${e => { e.preventDefault(); if (txt.trim()) onDecide(false, txt.trim(), slide || null); }}>
+        ${k === 'post' && x.imgs.length > 1 && html`<div class="field"><span>${t.whichSlide}</span><div class="chips">${[0, ...x.imgs.map((_, i) => i + 1)].map(n => html`<button type="button" key=${n} class=${cx(slide === n && 'on')} onClick=${() => setSlide(n)}>${n === 0 ? t.general : n}</button>`)}</div></div>`}
+        <label class="field"><span>${t.whatChange}</span><textarea class="ta" id=${'chg-' + x.id} ref=${autoF} placeholder=${t.phChange} value=${txt} onInput=${e => setTxt(e.target.value)}></textarea></label>
+        <div class="ap-acts" style="padding:0"><button type="button" class="btn lg" onClick=${() => setMode(null)}>${t.cancel}</button><button class="btn pri lg" type="submit" disabled=${!txt.trim()}>${t.sendChange}</button></div>
+      </form>`
+    : html`<div class="ap-acts"><button class="btn lg" onClick=${() => setMode('change')}><${Icon} n="msg" />${t.change}</button><button class="btn pri lg" onClick=${() => onDecide(true)}><${Icon} n="check" />${t.approve}</button></div>`}
+  </article>`;
+}
 function PortalCal({ c, lang, openPiece, goMeet }) {
   const { db } = useApp();
   const t = TX[lang];
@@ -2685,7 +2719,7 @@ Vinícius: Então preciso que o Felipe marque no CRM quando a reunião é agenda
 Pedro: Eu falo com ele hoje. Semana que vem a gente olha junto na segunda.` },
     { key: 'ex:m3', example: true, clientId: 'mo', title: 'Revisão da semana M&O', start: dtOff(3, '10:00'), end: dtOff(3, '10:45'), attendees: team },
   ];
-  return { boards, funnels, meetings, meetingNotes: {}, meetingClient: {}, automations: { au0: true, au1: true, au2: true, au3: false, au4: true },
+  return { boards, funnels, meetings, meetingNotes: {}, meetingClient: {}, automations: { au0: true, au1: true, au2: true, au3: false },
     favs: { pedro: ['funnel:f1', 'board:b1'], felipe: ['board:b1'], bruno: ['board:b1'], vinicius: ['funnel:f1'] } };
 }
 function tplVSL(id, clientId) {
@@ -2768,7 +2802,7 @@ function computeFunnel(nodes, edges) {
 const SECTIONS = [
   { id: 'work', label: 'Trabalho', items: [['tasks', 'tasks', 'Tarefas'], ['posts', 'image', 'Postagens'], ['scripts', 'script', 'Roteiros'], ['calendar', 'cal', 'Calendário'], ['meetings', 'video', 'Reuniões']] },
   { id: 'strategy', label: 'Estratégia', items: [['boards', 'whiteboard', 'Quadros'], ['funnels', 'funnel', 'Funis']] },
-  { id: 'company', label: 'Empresa', items: [['wiki', 'book', 'Processos internos'], ['team', 'users', 'Equipe'], ['automations', 'zap', 'Automações'], ['history', 'history', 'Histórico']] },
+  { id: 'company', label: 'Empresa', items: [['overview', 'grid', 'Visão geral'], ['wiki', 'book', 'Processos internos'], ['team', 'users', 'Equipe'], ['automations', 'zap', 'Automações'], ['history', 'history', 'Histórico']] },
 ];
 const CLIENT_TABS = [['overview', 'QG', 'grid'], ['about', 'Sobre', 'info'], ['tasks', 'Tarefas', 'tasks'], ['posts', 'Postagens', 'image'], ['scripts', 'Roteiros', 'script'], ['calendar', 'Calendário', 'cal'], ['meetings', 'Reuniões', 'video'], ['boards', 'Quadros', 'whiteboard'], ['funnels', 'Funis', 'funnel'], ['process', 'Processos', 'file'], ['links', 'Links', 'link'], ['brand', 'Marca', 'sliders']];
 const SIDE_DEFAULT = { hidden: [], collapsed: [], order: ['favs', 'work', 'strategy', 'clients', 'company'], open: { mo: false } };
@@ -2798,7 +2832,13 @@ function SidebarV2() {
   const blocks = {
     favs: favs.length ? html`<div class="side-sec" key="favs">${SecH('favs', 'Favoritos')}${!collapsed('favs') && favs.map(([k, t]) => html`<button key=${k} class="nav" title=${t.title} onClick=${() => t.route ? go(t.route) : open(t.drawer.k, t.drawer.id)}><${Icon} n=${t.icon} /><span class="lb">${t.title}</span></button>`)}</div>` : null,
     clients: html`<div class="side-sec" key="clients">${SecH('clients', 'Clientes')}
-      ${!collapsed('clients') && db.clients.map(c => { const here = route.v === 'client' && route.id === c.id; return html`<button key=${c.id} class=${cx('nav', here && 'on')} title=${c.name} aria-current=${here ? 'page' : null} onClick=${() => go({ v: 'client', id: c.id, tab: 'overview' })}><${CMark} c=${c} /><span class="lb">${c.name}</span>${waiting(c.id) ? html`<span class="n soft" title="Esperando o cliente">${waiting(c.id)}</span>` : null}</button>`; })}
+      ${!collapsed('clients') && db.clients.map(c => { const isOpen = !!prefs.open[c.id]; const here = route.v === 'client' && route.id === c.id; return html`<div key=${c.id} class="tree">
+        <div class=${cx('nav tree-row', here && !isOpen && 'on')}>
+          <button class="tree-tog" aria-label=${isOpen ? 'Recolher' : 'Expandir'} aria-expanded=${isOpen} onClick=${() => setPrefs({ ...prefs, open: { ...prefs.open, [c.id]: !isOpen } })}><span class=${cx('chev', !isOpen && 'shut')}><${Icon} n="chevD" s=${12} /></span></button>
+          <button class="tree-main" title=${c.name} onClick=${() => go({ v: 'client', id: c.id, tab: 'overview' })}><${CMark} c=${c} /><span class="lb">${c.name}</span>${waiting(c.id) ? html`<span class="n soft" title="Esperando o cliente">${waiting(c.id)}</span>` : null}</button>
+        </div>
+        ${isOpen && html`<div class="tree-kids">${CLIENT_TABS.map(([k, l, ic]) => html`<button key=${k} class=${cx('nav kid', here && route.tab === k && 'on')} onClick=${() => go({ v: 'client', id: c.id, tab: k })}><${Icon} n=${ic} s=${14} /><span class="lb">${l}</span></button>`)}</div>`}
+      </div>`; })}
       ${!collapsed('clients') && can('client.create') && html`<button class="nav add-row" title="Cadastrar um cliente novo" onClick=${() => setModal({ t: 'newClient' })}><${Icon} n="plus" /><span class="lb">Novo cliente</span></button>`}</div>`,
   };
   SECTIONS.forEach(s => {
@@ -2815,7 +2855,6 @@ function SidebarV2() {
     </div>
     ${N('myday', 'sun', 'Meu dia', 0)}
     ${N('inbox', 'inbox', 'Caixa de entrada', unread)}
-    ${N('overview', 'grid', 'Visão geral', 0)}
     ${prefs.order.map(id => blocks[id])}
     <div class="side-foot p-menu">
       <button class=${cx('me me-btn', menu === 'me' && 'on')} title="Sua conta, aparência e barra" aria-expanded=${menu === 'me'} onClick=${() => setMenu(menu === 'me' ? null : 'me')}><span class="av">${me.ini}</span><span class="lb"><b>${me.name}</b><small>${me.role === 'socio' ? 'Sócio' : 'Colaborador'}</small></span><span class="lb me-chev"><${Icon} n="chevUp" s=${14} /></span></button>
@@ -2838,6 +2877,20 @@ function SidePrefs({ prefs, setPrefs, close }) {
       ${s && s.items.filter(([v]) => v !== 'history' || can('log.view')).map(([v, , l]) => html`<label class="pref-it" key=${v}><input type="checkbox" checked=${!prefs.hidden.includes(v)} onChange=${() => toggle(v)} />${l}</label>`)}
     </div>`; })}
     <button class="btn sm" onClick=${() => setPrefs({ ...SIDE_DEFAULT })}>Restaurar padrão</button>
+  </div>`;
+}
+function NewMenu({ close }) {
+  const { db, act, can, setModal, go, route, me } = useApp();
+  const cid = route.v === 'client' ? route.id : db.clients[0].id;
+  const it = (icon, label, fn) => html`<button onClick=${() => { close(); fn(); }}><${Icon} n=${icon} />${label}</button>`;
+  return html`<div class="pop new-pop" role="menu">
+    ${it('tasks', 'Tarefa', () => setModal({ t: 'newTask', clientId: cid }))}
+    ${it('image', 'Post', () => act.addPost(cid))}
+    ${it('script', 'Roteiro', () => act.addScript(cid))}
+    ${it('whiteboard', 'Quadro branco', () => { const id = act.addBoard(route.v === 'client' ? route.id : null); go({ v: 'board', id }); })}
+    ${it('funnel', 'Funil', () => setModal({ t: 'newFunnel', clientId: route.v === 'client' ? route.id : null }))}
+    ${it('file', 'Página de processo', () => { const id = act.addPage(null); go({ v: 'wiki', pid: id }); })}
+    ${can('client.create') && it('building', 'Cliente', () => setModal({ t: 'newClient' }))}
   </div>`;
 }
 
@@ -3013,7 +3066,6 @@ function Automations() {
     ${Card('au1', 'Pós-reunião', 'Terminou uma reunião no Meet: o sistema busca a transcrição, resume e propõe as tarefas.', [['video', 'Reunião do Meet termina'], ['script', 'Transcrição do Tactiq'], ['sparkle', 'Resumo, decisões e tarefas com IA'], ['building', 'Liga ao cliente pelos participantes'], ['check', 'Você confere e confirma'], ['mail', 'Rascunho do follow-up no Gmail']],
       html`<div class="auto-note"><b>Onde isso está hoje.</b> No protótipo, roda quando você abre a reunião e clica em Gerar com IA. No produto, um serviço no servidor escuta o fim do evento na Google Agenda e roda sozinho. O gargalo é o texto da transcrição: o Tactiq não tem API, e pelo conector o plano atual entrega a lista de reuniões, mas não o texto. Com Gmail pessoal, a API do Google Meet não entrega transcrição, então o caminho é o Fathom: grava a reunião e avisa o sistema quando a transcrição fica pronta, já no plano grátis. O resumo roda no Claude do Pedro, sem custo por uso. <button class="linkbtn" onClick=${() => go({ v: 'meetings' })}>Abrir Reuniões</button></div>`)}
     ${Card('au2', 'Ajuste pedido pelo cliente', 'O cliente pediu ajuste: a peça volta para quem produziu, com o comentário preso ao slide.', [['msg', 'Cliente pede ajuste'], ['sun', 'Sobe para o topo do Meu dia'], ['inbox', 'Aviso na caixa de entrada']], null)}
-    ${Card('au4', 'Avisos ao cliente', 'Peça pronta para aprovar vira uma mensagem por lote, no canal de cada cliente, com um lembrete só e um resumo na segunda.', [['inbox', 'Peças prontas esperam o cliente'], ['msg', 'Uma mensagem para o lote, com o link que já é o acesso'], ['clock', 'Um lembrete só, dois dias depois'], ['cal', 'Resumo da semana, toda segunda às 9h']], html`<div class="auto-note">O canal sai do cadastro do cliente: WhatsApp no Brasil, e-mail e SMS nos EUA. O WhatsApp vai à mão pelo número da M&O, sem custo. Pela API do WhatsApp, a mensagem fora da janela de 24 horas é cobrada, e por isso o produto não manda WhatsApp sozinho. E-mail e SMS saem pelo sistema; o SMS nos EUA pede o registro A2P 10DLC.</div>`)}
     ${Card('au3', 'Resumo da segunda-feira', 'Toda segunda às 8h, o copiloto monta a semana de cada cliente: o que atrasou, o que espera aprovação, o que sai.', [['clock', 'Segunda, 8h'], ['sparkle', 'Copiloto lê as áreas dos clientes'], ['sun', 'Resumo no Meu dia de cada pessoa']], html`<div class="auto-note">Desligada: fica para a fase do copiloto rodando no servidor.</div>`)}
     <section class="sec"><div class="sec-h"><h2>Execuções nesta sessão</h2><span class="c">${runs.length}</span></div>
       <div class="list">${runs.length ? runs.map(r => html`<div class="row" key=${r.k} role="button" tabindex="0" onClick=${() => open('meeting', r.k)} onKeyDown=${e => e.key === 'Enter' && open('meeting', r.k)}><${Icon} n="sparkle" /><div class="row-main"><div class="row-title">Resumo gerado: ${r.m ? r.m.title : 'reunião'}</div><div class="row-meta">${plural(r.n.tarefas.length, 'tarefa proposta', 'tarefas propostas')} · ${r.n.created ? plural(r.n.created, 'criada', 'criadas') : 'nenhuma criada ainda'}</div></div></div>`) : html`<div class="empty">Nada rodou ainda. Abra uma reunião e gere o resumo.</div>`}</div></section>
@@ -3704,6 +3756,19 @@ function BrandEditor({ c, lang = 'pt', asClient }) {
       ${b.logo && b.logoIsDark && !b.logoDark && html`<p class="be-warn">${t.darkLogo}</p>`}</aside>
   </div>`;
 }
+function BrandedLogin({ c, back, enter }) {
+  const sysDark = useSysDark(); const th = clientTheme(c, sysDark); const lang = c.lang;
+  const T = { pt: ['Entre no seu painel', 'A gente manda um link de acesso pro seu e-mail. Sem senha.', 'Receber link', 'Protótipo: entrar direto'], en: ['Sign in to your workspace', "We'll email you a sign-in link. No password.", 'Email me a link', 'Prototype: sign in now'], es: ['Entra a tu panel', 'Te enviamos un enlace de acceso por correo. Sin contraseña.', 'Recibir enlace', 'Prototipo: entrar ahora'], fr: ['Accédez à votre espace', 'Nous vous envoyons un lien de connexion par e-mail. Sans mot de passe.', 'Recevoir le lien', 'Prototype : entrer maintenant'] }[lang] || [];
+  const [email, setEmail] = useState(''); const [sent, setSent] = useState(false);
+  return html`<div class="blogin" style=${portalStyle(c, th)}><div class="bl-box">
+    <div class="bl-logo"><${ClientLogo} c=${c} dark=${th.mode === 'dark'} /></div>
+    <div><h1>${T[0]}</h1><p class="muted" style="margin-top:8px">${T[1]}</p></div>
+    <form class="bl-form" onSubmit=${e => { e.preventDefault(); if (email.includes('@')) setSent(true); }}><label class="sr" for="bl-email">E-mail</label><input id="bl-email" class="inp" type="email" placeholder="you@company.com" value=${email} onInput=${e => setEmail(e.target.value)} /><button class="btn pri" type="submit">${T[2]}</button></form>
+    ${sent && html`<p class="muted" style="font-size:13px">✓ ${email}</p>`}
+    <button class="btn" onClick=${enter}>${T[3]}<${Icon} n="arrowR" s=${14} /></button>
+    <div class="bl-foot"><button class="linkbtn" onClick=${back}>← M&O</button><${PoweredBy} lang=${lang} /></div>
+  </div></div>`;
+}
 
 /* ================= v3: painel do cliente ================= */
 const RQ = {
@@ -3722,6 +3787,53 @@ function RequestSheet({ c, lang, close }) {
         <label class="field"><span>${R.details}</span><textarea class="ta" id="rq-desc" placeholder=${R.phD} value=${f.desc} onInput=${e => setF({ ...f, desc: e.target.value })}></textarea></label></div>
       <div class="mft"><button type="button" class="btn ghost" onClick=${close}>${t.cancel}</button><button class="btn pri" type="submit" disabled=${!f.title.trim()}>${R.send}</button></div>`}
   </form></div>`;
+}
+function Portal({ clientId, preview }) {
+  const { db, setSession, session } = useApp();
+  const who = !preview && session && session.userId ? db.people.find(p => p.id === session.userId) : null;
+  const [piece, setPiece] = useState(null); const openPiece = (k, id) => setPiece({ k, id });
+  const c = db.clients.find(x => x.id === clientId);
+  const sysDark = useSysDark();
+  const [lang, setLangS] = useState(() => lsGet('mo.lang.' + clientId, c.lang));
+  const setLang = l => { setLangS(l); lsSet('mo.lang.' + clientId, l); };
+  const [tab, setTab] = useState('home'); const [menu, setMenu] = useState(false); const [ask, setAsk] = useState(false);
+  const scRef = useRef();
+  const t = TX[lang] || TX.pt; const R = RQ[lang] || RQ.pt; const th = clientTheme(c, sysDark); const sideDark = onDarkOf(th.side ? th.side.bg : th.surface2);
+  const pending = (canApproveAs(who) ? [...db.posts.filter(p => p.clientId === clientId && p.status === 'cliente'), ...db.scripts.filter(s => s.clientId === clientId && s.status === 'cliente'), ...db.tasks.filter(x => x.clientId === clientId && x.status === 'client')].length : 0) + (who ? db.tasks.filter(x => x.assignee === who.id && x.status !== 'done' && x.piece).length : 0);
+  const PL = PX[lang] || PX.pt;
+  const tabs = [['home', t.forYou, 'home', pending], ['board', PL.board, 'board'], ['cal', t.cal, 'cal'], ['content', t.content, 'image'], ['meet', (MT[lang] || MT.pt).tab, 'video'], ['proc', t.proc, 'file'], ['links', t.links, 'link']];
+  const pick = k => { setTab(k); if (scRef.current) scRef.current.scrollTop = 0; };
+  let view;
+  if (tab === 'cal') view = html`<${PortalCal} c=${c} lang=${lang} openPiece=${openPiece} goMeet=${() => pick('meet')} />`;
+  else if (tab === 'board') view = html`<${PortalBoard} c=${c} lang=${lang} who=${who} openPiece=${openPiece} />`;
+  else if (tab === 'team') view = html`<${ClientTeam} c=${c} lang=${lang} asClient canEdit=${canApproveAs(who)} />`;
+  else if (tab === 'content') view = html`<${PortalContent} c=${c} lang=${lang} openPiece=${openPiece} />`;
+  else if (tab === 'proc') view = html`<div class="sec" style="gap:18px"><h1 style="font-size:24px">${t.proc}</h1><${Docs} pages=${db.pages.filter(p => p.clientId === clientId)} clientPage lang=${lang} /></div>`;
+  else if (tab === 'links') view = html`<${PortalLinks} c=${c} lang=${lang} />`;
+  else if (tab === 'meet') view = html`<${PortalMeetings} c=${c} lang=${lang} />`;
+  else if (tab === 'brand') view = html`<${BrandEditor} c=${c} lang=${lang} asClient />`;
+  else view = html`<${PortalHome} c=${c} lang=${lang} goCal=${() => pick('cal')} who=${who} openPiece=${openPiece} />`;
+  return html`<div class="portal" style=${portalStyle(c, th)}>
+    <div class="p-frame">
+    <aside class="p-side">
+      <button class="p-brand" onClick=${() => pick('home')} aria-label=${c.name}><${ClientLogo} c=${c} dark=${sideDark} /></button>
+      <nav class="p-tabs" aria-label="Seções">${tabs.map(([k, l, ic, n]) => html`<button key=${k} class=${cx('p-tab', tab === k && 'on')} aria-current=${tab === k ? 'page' : null} onClick=${() => pick(k)}><${Icon} n=${ic} s=${20} /><span class="pt-l">${l}</span>${n ? html`<span class="badge">${n}</span>` : null}</button>`)}</nav>
+      <div class="p-side-foot"><${PoweredBy} lang=${lang} /></div>
+    </aside>
+    <div class="p-main">
+    <header class="p-top"><button class="p-brand p-brand-m" onClick=${() => pick('home')} aria-label=${c.name}><${ClientLogo} c=${c} dark=${th.mode === 'dark'} /></button>
+      <div class="right">
+        <button class="btn sm p-req" onClick=${() => setAsk(true)} title=${R.ask}><${Icon} n="plus" s=${14} /><span>${R.ask}</span></button>
+        <${LangPop} lang=${lang} setLang=${setLang} />
+        <div class="p-menu"><button class="btn icon ghost" aria-label="Menu" aria-expanded=${menu} onClick=${() => setMenu(!menu)}><${CMark} c=${c} /></button>
+          ${menu && html`<div class="pop">${who && html`<div class="pop-who"><b>${who.name}</b><small>${who.func || PL.team}</small></div>`}<button onClick=${() => { pick('team'); setMenu(false); }}><${Icon} n="users" />${PL.team}</button><button onClick=${() => { pick('brand'); setMenu(false); }}><${Icon} n="sliders" />${t.personalize}</button>${!preview && html`<button onClick=${() => setSession(null)}><${Icon} n="logout" />${t.switchAcc}</button>`}<div class="pop-foot"><${PoweredBy} lang=${lang} /></div></div>`}</div>
+      </div></header>
+    <div class="p-scroll" ref=${scRef}><div class=${cx('p-body', tab === 'board' && 'wide')}>${view}<footer class="p-foot"><${PoweredBy} lang=${lang} /></footer></div></div>
+    </div>
+    </div>
+    ${ask && html`<${RequestSheet} c=${c} lang=${lang} close=${() => setAsk(false)} />`}
+    ${piece && html`<${PortalPiece} k=${piece.k} id=${piece.id} c=${c} lang=${lang} who=${who} close=${() => setPiece(null)} />`}
+  </div>`;
 }
 function MyRequests({ c, lang }) {
   const { db } = useApp(); const R = RQ[lang] || RQ.pt;
@@ -4002,15 +4114,13 @@ function ClientQG({ c, setTab }) {
             ${!nextMeet && !atas.length && html`<div class="empty">Nenhuma reunião ligada a este cliente.</div>`}</div></section>
       </div>
       <div class="side-col">
-        <${PackCard} c=${c} setTab=${setTab} />
-        <${ReportCard} c=${c} />
         <${DocsDrive} c=${c} />
         <${Lists} c=${c} />
         <section class="sec"><div class="sec-h"><h2>Onboarding</h2><span class="c">${c.onboarding.filter(o => o.done).length}/${c.onboarding.length}</span></div>
           <div class="card onb"><span class="bar"><i style=${{ width: (c.onboarding.filter(o => o.done).length / c.onboarding.length * 100) + '%' }}></i></span>
             ${c.onboarding.map((o, i) => html`<button class=${cx('onb-item', o.done && 'done')} key=${i} onClick=${() => act.toggleOnb(c.id, i)}><span class=${cx('chk sq', o.done && 'on')}>${o.done && html`<${Icon} n="check" s=${12} />`}</span><span>${o.t}</span></button>`)}</div></section>
         <section class="sec"><div class="sec-h"><h2>Conta</h2></div>
-          <dl class="card kv"><dt>Contato</dt><dd>${c.contact}</dd><dt>Responsável</dt><dd>${personName(db, c.owner)}</dd><dt>Idioma do painel</dt><dd>${(LANGS.find(l => l[0] === c.lang) || [0, ''])[1]}</dd><dt>Avisar por</dt><dd><${NotifyChips} c=${c} /></dd><dt>Links</dt><dd><button class="linkbtn" onClick=${() => setTab('links')}>${plural(c.links.length, 'link')}</button></dd></dl></section>
+          <dl class="card kv"><dt>Contato</dt><dd>${c.contact}</dd><dt>Responsável</dt><dd>${personName(db, c.owner)}</dd><dt>Idioma do painel</dt><dd>${(LANGS.find(l => l[0] === c.lang) || [0, ''])[1]}</dd><dt>Links</dt><dd><button class="linkbtn" onClick=${() => setTab('links')}>${plural(c.links.length, 'link')}</button></dd></dl></section>
         <${ClientTeam} c=${c} canEdit=${true} />
       </div>
     </div>
@@ -4399,8 +4509,8 @@ function PortalTasks({ c, lang, who, openPiece }) {
       <${Icon} n=${t.piece.k === 'post' ? 'image' : 'script'} /><div class="row-main"><div class="row-title">${x.title}</div><div class="row-meta">${stageT(lang, t.piece.stage)}${t.due ? html` · <${Due} date=${t.due} />` : ''}</div></div><span class="btn sm">${P.open}</span></button>`; })}</div></section>`;
 }
 
-function PortalPiece({ k, id, c, lang, who, close, openPiece }) {
-  const { db, act, toast } = useApp(); const P = PX[lang] || PX.pt; const t = TX[lang] || TX.pt; const X = XT[lang] || XT.pt;
+function PortalPiece({ k, id, c, lang, who, close }) {
+  const { db, act } = useApp(); const P = PX[lang] || PX.pt; const t = TX[lang] || TX.pt;
   const x = pieceOf(db, k, id); if (!x) return null;
   const fl = flowFor(c, k); const idx = fl.stages.findIndex(s => s.key === x.stage); const st = fl.stages[idx];
   const task = openPieceTask(db, k, x.id); const own = task ? task.assignee : st && ownerOf(c, st.key);
@@ -4416,7 +4526,7 @@ function PortalPiece({ k, id, c, lang, who, close, openPiece }) {
   else action = !clientSees(db, c, st.key, k) ? html`<span class="hint">${clientStageName(db, c, k, st.key, lang)}</span>` : html`<span class="hint">${stageT(lang, st.key)} · ${P.with(own ? (who && own === who.id ? P.you : firstName(db, own)) : P.nobody)}</span>`;
   if (st && st.type === 'client' && canApproveAs(who)) return html`<div class="p-sheet-wrap" onClick=${e => e.target === e.currentTarget && close()}><div class="p-sheet pp-sheet pp-appr" role="dialog" aria-modal="true" aria-label=${x.title}>
     <div class="mhd"><span></span><button type="button" class="btn icon ghost" aria-label=${P.close} onClick=${close}><${Icon} n="x" /></button></div>
-    <${ApprovalCard} k=${k} x=${x} lang=${lang} onReview=${r => { act.review(k, x.id, r); toast(r.ok ? (r.detail ? X.detailT : t.approvedT) + ': ' + x.title : X.roundSent((x.rounds || 0) + 1, roundsOf(x))); const nx2 = pendingOf(db, c.id, who).find(([, y]) => y.id !== x.id); if (nx2 && openPiece) openPiece(nx2[0], nx2[1].id); else close(); }} onTalk=${tx => { act.talk(k, x.id, tx); toast(X.talkT); close(); }} /></div></div>`;
+    <${ApprovalCard} k=${k} x=${x} lang=${lang} onDecide=${(ok, text, slide) => { act.decide(k, x.id, ok, text, slide); close(); }} /></div></div>`;
   return html`<div class="p-sheet-wrap" onClick=${e => e.target === e.currentTarget && close()}><div class="p-sheet pp-sheet" role="dialog" aria-modal="true" aria-label=${x.title}>
     <div class="mhd"><span class="k" style="display:flex;gap:8px;align-items:center;font-size:13px;color:var(--text-3);padding-top:6px"><${Icon} n=${k === 'post' ? 'image' : 'script'} s=${15} />${k === 'post' ? P.posts : P.videos}${st ? ' · ' + clientStageName(db, c, k, st.key, lang) : ' · ' + P.ideas}</span>
       <button type="button" class="btn icon ghost" aria-label=${P.close} onClick=${close}><${Icon} n="x" /></button></div>
@@ -5388,7 +5498,7 @@ async function driveList(input, want = Infinity, pages = 6) {
 /* ---------- cadastro do cliente ---------- */
 function NewClient({ close }) {
   const { act, go, setModal, me } = useApp();
-  const [f, setF] = useState({ name: '', lang: 'en', owner: me.id, contact: '', niche: '', country: 'us', notify: ['email', 'sms'] });
+  const [f, setF] = useState({ name: '', lang: 'en', owner: me.id, contact: '', niche: '' });
   const [br, setBr] = useState(null); const [busy, setBusy] = useState('');
   const ok = f.name.trim().length > 1;
   const pick = key => async e => { const file = e.target.files && e.target.files[0]; e.target.value = ''; if (!file) return; setBusy(key === 'logo' ? 'Lendo as cores do logo…' : 'Carregando o ícone…');
@@ -5409,7 +5519,6 @@ function NewClient({ close }) {
       <label class="field"><span>Nicho</span><input class="inp" id="nc-niche" placeholder="Ex.: telhados residenciais na Flórida" value=${f.niche} onInput=${e => setF({ ...f, niche: e.target.value })} /></label>
       <div class="field"><span>Idioma da área do cliente</span><div class="seg" style="align-self:flex-start;flex-wrap:wrap">${LANGS.map(([k, l]) => html`<button type="button" key=${k} class=${cx(f.lang === k && 'on')} onClick=${() => setF({ ...f, lang: k })}>${l}</button>`)}</div>
         <p class="muted" style="font-size:12px">É o idioma padrão do painel do cliente. Cada pessoa do cliente pode trocar. O time continua em português.</p></div>
-      <${NotifyField} f=${f} setF=${setF} />
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
         <label class="field"><span>Contato no cliente</span><input class="inp" id="nc-contact" placeholder="Nome de quem aprova" value=${f.contact} onInput=${e => setF({ ...f, contact: e.target.value })} /></label>
         <label class="field"><span>Responsável na M&O</span><${PersonSel} id="nc-owner" value=${f.owner} onChange=${v => setF({ ...f, owner: v })} /></label>
@@ -5453,11 +5562,10 @@ function AboutTab({ c }) {
         <input class="inp" id="ab-other" key=${'o:' + (a.other || '')} aria-label="Outra entrega" placeholder="Outra entrega, se tiver" defaultValue=${a.other || ''} onChange=${e => set({ other: e.target.value.trim() })} /></section>
       <section class="ab-sec"><h2>Objetivos</h2><${AboutList} items=${a.goals || []} onChange=${L => set({ goals: L })} label="Objetivo" add="Adicionar objetivo" /></section>
       <section class="ab-sec"><h2>Limitações de hoje</h2><${AboutList} items=${a.limits || []} onChange=${L => set({ limits: L })} label="Limitação" add="Adicionar limitação" /></section>
-      <${ContractSec} c=${c} />
       <section class="ab-sec"><h2>Anotações</h2>${T('ab-notes', 'notes', 4, 'Tom, cuidados, o que já foi tentado, o que não pode acontecer.')}</section>
     </div>
     <aside class="card ab-side"><span class="label">Resumo</span>
-      <dl class="ab-kv"><dt>Nicho</dt><dd>${a.niche || '—'}</dd><dt>Contato</dt><dd>${c.contact || '—'}</dd><dt>Responsável na M&O</dt><dd>${personName(db, c.owner)}</dd><dt>Painel do cliente</dt><dd>em ${LANG_PT[c.lang]}</dd><dt>Entregas</dt><dd>${ent.length ? ent.join(', ') : '—'}</dd><dt>Avisar por</dt><dd>${((c.notify && c.notify.ch) || ['whatsapp']).map(k => CHN[k]).join(', ')}</dd><dt>Contrato</dt><dd>${c.contract && c.contract.fee ? (c.contract.currency || 'US$') + ' ' + c.contract.fee + ' por mês' : '—'}</dd><dt>Formulário de entrada</dt><dd>${c.intake && c.intake.done ? 'preenchido ' + rel(c.intake.at) : 'ainda não'}</dd></dl>
+      <dl class="ab-kv"><dt>Nicho</dt><dd>${a.niche || '—'}</dd><dt>Contato</dt><dd>${c.contact || '—'}</dd><dt>Responsável na M&O</dt><dd>${personName(db, c.owner)}</dd><dt>Painel do cliente</dt><dd>em ${LANG_PT[c.lang]}</dd><dt>Entregas</dt><dd>${ent.length ? ent.join(', ') : '—'}</dd></dl>
     </aside>
   </div>`;
 }
@@ -5573,8 +5681,8 @@ function Inbox() {
   const { db, me, act, open, go } = useApp();
   const [only, setOnly] = useState(false);
   const mine = db.notes.filter(n => n.to === me.id && (!only || !n.read));
-  const refOf = n => n.k === 'link' || n.k === 'client' ? { title: n.label || 'link', clientId: n.cid } : itemOf(db, n.k, n.ref);
-  const hit = n => { act.readNote(n.id); if (n.k === 'link') go({ v: 'client', id: n.cid, tab: 'links' }); else if (n.k === 'client') go({ v: 'client', id: n.cid, tab: 'about' }); else open(n.k, n.ref); };
+  const refOf = n => n.k === 'link' ? { title: n.label || 'link', clientId: n.cid } : itemOf(db, n.k, n.ref);
+  const hit = n => { act.readNote(n.id); if (n.k === 'link') go({ v: 'client', id: n.cid, tab: 'links' }); else open(n.k, n.ref); };
   return html`<div class="page">
     <${PageHead} title="Caixa de entrada" sub="Menções, aprovações e ajustes do que é seu.">
       <div class="seg"><button class=${cx(!only && 'on')} onClick=${() => setOnly(false)}>Todas</button><button class=${cx(only && 'on')} onClick=${() => setOnly(true)}>Não lidas</button></div>
@@ -5836,635 +5944,6 @@ function NewFunnel({ close, clientId }) {
     <div class="mft"><button type="button" class="btn ghost" onClick=${close}>Cancelar</button><button class="btn pri" type="submit">Criar funil</button></div>
   </form>`;
 }
-
-/* ================= v12: um endereço por tela, recentes e navegação do time ================= */
-Object.assign(IC, { chart: ['M3 3v18h18', 'M7 15l4-4 3 3 6-7'], package: ['M21 8 12 3 3 8v8l9 5 9-5z', 'M3 8l9 5 9-5', 'M12 13v8'], key: ['M15 7a4 4 0 1 1-3.9 4.9L4 19v-3h3v-3h3l1.1-1.1A4 4 0 0 1 15 7z', 'M16.5 8.5h.01'], pin: ['M12 21s-7-6.2-7-12a7 7 0 1 1 14 0c0 5.8-7 12-7 12z', 'M14.5 9a2.5 2.5 0 1 1-5 0a2.5 2.5 0 1 1 5 0'] });
-PERM.socio.add('round.grant');
-
-/* o endereço da tela: só letras, números, ponto, til, hífen e sublinhado, para o link chegar inteiro */
-const ROUTE_V = ['myday', 'inbox', 'overview', 'tasks', 'posts', 'scripts', 'calendar', 'meetings', 'boards', 'funnels', 'wiki', 'team', 'automations', 'history'];
-const HID = s => /^[A-Za-z0-9_-]+$/.test(String(s || ''));
-function routeHash(r, dr) {
-  let h = 'myday';
-  if (r.v === 'client') h = 'c.' + r.id + '.' + (r.tab || 'overview') + (r.pid && HID(r.pid) ? '.' + r.pid : '');
-  else if (r.v === 'board') h = 'b.' + r.id;
-  else if (r.v === 'funnel') h = 'f.' + r.id;
-  else if (r.v === 'wiki' && r.pid) h = 'wiki.' + r.pid;
-  else if (r.v === 'history' && r.cid) h = 'history.' + r.cid;
-  else if (ROUTE_V.includes(r.v)) h = r.v;
-  if (dr && ['task', 'post', 'script'].includes(dr.k) && HID(dr.id)) h += '~' + dr.k + '.' + dr.id;
-  return h;
-}
-function parseHash(h) {
-  h = String(h || '').replace(/^#/, ''); if (!h) return null;
-  const [a, b] = h.split('~'); const p = a.split('.');
-  if (p[0] === 'a' && p[1]) return { portal: { clientId: p[1], piece: p[2] && p[3] && ['post', 'script', 'task'].includes(p[2]) ? { k: p[2], id: p[3] } : null } };
-  let route = null;
-  if (p[0] === 'c' && p[1]) route = { v: 'client', id: p[1], tab: p[2] || 'overview', pid: p[3] };
-  else if (p[0] === 'b' && p[1]) route = { v: 'board', id: p[1] };
-  else if (p[0] === 'f' && p[1]) route = { v: 'funnel', id: p[1] };
-  else if (p[0] === 'wiki') route = { v: 'wiki', pid: p[1] };
-  else if (p[0] === 'history') route = { v: 'history', cid: p[1] };
-  else if (ROUTE_V.includes(p[0])) route = { v: p[0] };
-  if (!route) return null;
-  const q = b ? b.split('.') : [];
-  return { route, drawer: q[0] && q[1] && ['task', 'post', 'script'].includes(q[0]) ? { k: q[0], id: q[1] } : null };
-}
-
-/* a área do cliente em seis abas; as sub-abas guardam o nome antigo, para os links de dentro do sistema continuarem valendo */
-const CLIENT_GROUPS = [['overview', 'QG', ['overview']], ['prod', 'Produção', ['posts', 'scripts', 'tasks']], ['calendar', 'Calendário', ['calendar']], ['meetings', 'Reuniões', ['meetings']], ['strategy', 'Estratégia', ['boards', 'funnels']], ['about', 'Sobre', ['about', 'brand', 'process', 'links']]];
-const SUB_L = { posts: 'Postagens', scripts: 'Roteiros', tasks: 'Tarefas', boards: 'Quadros', funnels: 'Funis', about: 'Bio do cliente', brand: 'Marca', process: 'Processos', links: 'Links' };
-const groupOf = tab => CLIENT_GROUPS.find(g => g[2].includes(tab)) || CLIENT_GROUPS[0];
-function ClientArea({ id, tab, pid }) {
-  const { db, go, can, setModal, setPreview } = useApp();
-  const c = db.clients.find(x => x.id === id);
-  if (!c) return html`<div class="page"><div class="card empty">Cliente não encontrado.</div></div>`;
-  const CNT = { tasks: db.tasks.filter(t => t.clientId === id && t.status !== 'done').length, posts: db.posts.filter(p => p.clientId === id).length, scripts: db.scripts.filter(s => s.clientId === id).length, links: c.links.length, boards: db.boards.filter(b => b.clientId === id).length, funnels: db.funnels.filter(f => f.clientId === id).length };
-  const setTab = t => go({ v: 'client', id, tab: t });
-  const g = groupOf(tab);
-  let view;
-  switch (tab) {
-    case 'tasks': view = html`<${TasksTab} c=${c} />`; break;
-    case 'posts': view = html`<${PostsTab} c=${c} />`; break;
-    case 'scripts': view = html`<${ScriptsTab} c=${c} />`; break;
-    case 'calendar': view = html`<${TeamCalendar} c=${c} />`; break;
-    case 'process': view = html`<${Docs} pages=${db.pages.filter(p => p.clientId === id)} editable clientPage initial=${pid} key=${pid || 'docs'} />`; break;
-    case 'links': view = html`<${LinksTab} c=${c} />`; break;
-    case 'brand': view = html`<${BrandEditor} c=${c} lang="pt" />`; break;
-    case 'about': view = html`<${AboutTab} c=${c} />`; break;
-    case 'meetings': view = html`<${MeetingsView} clientId=${id} />`; break;
-    case 'boards': view = html`<${BoardsList} clientId=${id} />`; break;
-    case 'funnels': view = html`<${FunnelsList} clientId=${id} />`; break;
-    default: view = html`<${ClientQG} c=${c} setTab=${setTab} />`;
-  }
-  return html`<div class="page">
-    <div class="chead"><${CMark} c=${c} lg />
-      <div><h1>${c.name}</h1>${c.about && c.about.niche && html`<p class="chead-niche">${c.about.niche}</p>`}<div class="badges">${c.zero && html`<span class="tag">CLIENTE ZERO</span>`}<span class="tag">${'PAINEL EM ' + LANG_PT[c.lang].toUpperCase()}</span><span class="tag">RESP. ${firstName(db, c.owner).toUpperCase()}</span></div></div>
-      <div class="acts">
-        ${can('log.view') && html`<button class="btn" onClick=${() => go({ v: 'history', cid: id })}><${Icon} n="history" />Histórico</button>`}
-        <button class="btn" onClick=${() => setPreview({ clientId: id, device: 'mobile' })}><${Icon} n="eye" />Ver como o cliente</button>
-        ${can('client.invite') && html`<button class="btn pri" onClick=${() => setModal({ t: 'invite', clientId: id })}><${Icon} n="send" />Mandar acesso</button>`}
-      </div>
-    </div>
-    <div class="tabs" role="tablist">${CLIENT_GROUPS.map(([gk, l, subs]) => html`<button key=${gk} role="tab" aria-selected=${g[0] === gk} class=${cx('tab', g[0] === gk && 'on')} onClick=${() => setTab(subs[0])}>${l}</button>`)}</div>
-    ${g[2].length > 1 && html`<div class="subtabs"><div class="seg" role="tablist" aria-label=${g[1]}>${g[2].map(k => html`<button key=${k} role="tab" aria-selected=${tab === k} class=${cx(tab === k && 'on')} onClick=${() => setTab(k)}>${SUB_L[k]}${CNT[k] != null ? html` <span class="mono" style="opacity:.6">${CNT[k]}</span>` : null}</button>`)}</div>
-      ${g[0] === 'prod' && html`<button class="linkbtn" style="font-size:13px" onClick=${() => go({ v: tab })}>Ver de todos os clientes</button>`}</div>`}
-    ${view}
-  </div>`;
-}
-
-/* criar sem cair no cliente errado: fora de um cliente, com mais de um, o sistema pergunta */
-function NewMenu({ close }) {
-  const { db, act, can, setModal, go, route } = useApp();
-  const here = route.v === 'client' ? route.id : null;
-  const cid = here || db.clients[0].id; const ask = !here && db.clients.length > 1;
-  const it = (icon, label, fn) => html`<button onClick=${() => { close(); fn(); }}><${Icon} n=${icon} />${label}</button>`;
-  return html`<div class="pop new-pop" role="menu">
-    ${it('tasks', 'Tarefa', () => setModal({ t: 'newTask', clientId: here }))}
-    ${it('image', 'Post', () => ask ? setModal({ t: 'pickClient', k: 'post' }) : act.addPost(cid))}
-    ${it('script', 'Roteiro', () => ask ? setModal({ t: 'pickClient', k: 'script' }) : act.addScript(cid))}
-    ${it('whiteboard', 'Quadro branco', () => { const id = act.addBoard(here); go({ v: 'board', id }); })}
-    ${it('funnel', 'Funil', () => setModal({ t: 'newFunnel', clientId: here }))}
-    ${it('file', 'Página de processo', () => { const id = act.addPage(null); go({ v: 'wiki', pid: id }); })}
-    ${can('client.create') && it('building', 'Cliente', () => setModal({ t: 'newClient' }))}
-  </div>`;
-}
-function PickClient({ close, k }) {
-  const { db, act } = useApp();
-  return html`<div><div class="mhd"><div><h2>${k === 'post' ? 'Novo post' : 'Novo roteiro'}: de qual cliente?</h2><p>A peça entra na esteira desse cliente, com os responsáveis dele.</p></div><button class="btn icon ghost" aria-label="Fechar" onClick=${close}><${Icon} n="x" /></button></div>
-    <div class="mbd"><div class="list">${db.clients.map(c => html`<button key=${c.id} class="row pick-row" onClick=${() => { close(); k === 'post' ? act.addPost(c.id) : act.addScript(c.id); }}><${CMark} c=${c} /><div class="row-main"><div class="row-title">${c.name}</div>${c.about && c.about.niche && html`<div class="row-meta">${c.about.niche}</div>`}</div><${Icon} n="chevR" s=${14} /></button>`)}</div></div></div>`;
-}
-function ClientSel({ k, x }) {
-  const { db, act } = useApp();
-  return html`<select class="sel" id=${'cl-' + x.id} value=${x.clientId} onChange=${e => act.moveClient(k, x.id, e.target.value)}>${db.clients.map(c => html`<option key=${c.id} value=${c.id}>${c.name}</option>`)}</select>`;
-}
-
-/* ações novas da v12 */
-const roundsOf = x => 2 + (x.extra || 0);
-function approveBy(k, x) {
-  const base = k === 'post' && x.date ? x.date : k === 'script' && x.record ? x.record : k === 'task' && x.due ? x.due : null;
-  if (base) { const d = pd(base); if (k !== 'task') d.setDate(d.getDate() - 1); return iso(d); }
-  const d = pd(x.sentAt || x.since || off(0)); d.setDate(d.getDate() + 3); return iso(d);
-}
-const pendingOf = (db, cid, who) => canApproveAs(who) ? [
-  ...db.posts.filter(p => p.clientId === cid && p.status === 'cliente').map(x => ['post', x]),
-  ...db.scripts.filter(s => s.clientId === cid && s.status === 'cliente').map(x => ['script', x]),
-  ...db.tasks.filter(x => x.clientId === cid && x.status === 'client').map(x => ['task', x])] : [];
-const monthKey = (s = off(0)) => s.slice(0, 7);
-const monthName = (mk, lang = 'pt') => new Intl.DateTimeFormat(LOC(lang), { month: 'long', year: 'numeric' }).format(pd(mk + '-01'));
-const capFirst = s => s ? s[0].toUpperCase() + s.slice(1) : s;
-
-function actV12({ commit, notify, me, dbRef }) {
-  const pieceTasks = (d, k, id) => d.tasks.filter(t => t.piece && t.piece.k === k && t.piece.id === id);
-  return {
-    moveClient: (k, id, cid) => { const nm = (dbRef.current.clients.find(c => c.id === cid) || {}).name || 'outro cliente'; commit(d => { const x = itemOf(d, k, id); if (!x || x.clientId === cid) return; x.clientId = cid; pieceTasks(d, k, id).forEach(t => { t.clientId = cid; }); }, 'Peça movida para ' + nm); },
-    review: (k, id, r) => commit(d => {
-      const x = itemOf(d, k, id); if (!x) return; x.since = off(0); const c = d.clients.find(y => y.id === x.clientId);
-      if (r.ok) {
-        if (k === 'task') { x.status = 'done'; x.changeReq = false; } else { const nx = nextOf(flowFor(c, k), 'cliente'); moveTo(d, k, x, nx ? nx.key : null); }
-        if (r.detail) { x.comments.push({ by: 'client', text: r.detail, detail: true, at: off(0) }); const t = d.tasks.find(t2 => t2.piece && t2.piece.k === k && t2.piece.id === id && t2.status !== 'done'); if (t) t.desc = `Antes de publicar, ajustar o detalhe que o cliente pediu ao aprovar: "${r.detail}"` + (t.desc ? '\n\n' + t.desc : ''); }
-        x.lastRound = null;
-        notify(d, x.assignee, 'client', r.detail ? 'aprovou com um detalhe' : 'aprovou', k, id);
-      } else {
-        x.rounds = (x.rounds || 0) + 1; x.lastRound = { n: x.rounds, items: r.list, at: off(0) };
-        r.list.forEach(it => x.comments.push({ by: 'client', text: it.text, slide: it.slide || null, pin: it.pin || null, round: x.rounds, at: off(0) }));
-        if (k === 'task') { x.status = 'doing'; x.changeReq = true; } else moveTo(d, k, x, prevWorkOf(flowFor(c, k), 'cliente').key, { note: `Ajuste do cliente (rodada ${x.rounds})`, status: 'ajuste', changeReq: true });
-        notify(d, x.assignee, 'client', `pediu a rodada ${x.rounds} de ${roundsOf(x)} em`, k, id);
-      }
-    }),
-    undoReview: (k, id, kind) => commit(d => {
-      const x = itemOf(d, k, id); if (!x) return;
-      if (k === 'task') { x.status = 'client'; x.changeReq = false; } else moveTo(d, k, x, 'cliente');
-      if (kind === 'round' && x.rounds) { const n = x.rounds; x.comments = x.comments.filter(cm => !(cm.by === 'client' && cm.round === n)); x.rounds = n - 1; x.lastRound = null; }
-      if (kind === 'detail') { const i = x.comments.map(cm => !!cm.detail).lastIndexOf(true); if (i >= 0) x.comments.splice(i, 1); }
-    }),
-    talk: (k, id, text) => commit(d => {
-      const x = itemOf(d, k, id); if (!x) return; const c = d.clients.find(y => y.id === x.clientId);
-      x.talk = { text, at: off(0), state: 'open' };
-      d.tasks.unshift({ id: uid('t'), clientId: x.clientId, title: `Falar com ${c.name} sobre o 3º ajuste: ${x.title}`, desc: `O cliente já usou as ${roundsOf(x)} rodadas incluídas e pediu: "${text}". Um sócio decide na própria peça: liberar sem custo, cobrar à parte ou tratar como peça nova.`, type: 'interna', req: true, priority: 'alta', checklist: [], comments: [], changeReq: false, status: 'todo', due: off(1), since: off(0), assignee: c.owner, talkOf: { k, id } });
-      new Set([c.owner, ...d.people.filter(p => p.role === 'socio').map(p => p.id)]).forEach(p => notify(d, p, 'client', 'quer falar sobre um 3º ajuste em', k, id));
-    }),
-    resolveTalk: (k, id, how) => commit(d => {
-      const x = itemOf(d, k, id); if (!x || !x.talk) return; const c = d.clients.find(y => y.id === x.clientId); const text = x.talk.text;
-      x.talk = { ...x.talk, state: 'done', how, by: me ? me.id : null, done: off(0) };
-      d.tasks.forEach(t => { if (t.talkOf && t.talkOf.k === k && t.talkOf.id === id && t.status !== 'done') { t.status = 'done'; t.since = off(0); } });
-      if (how === 'free' || how === 'paid') {
-        x.extra = (x.extra || 0) + 1; if (how === 'paid') x.paidRounds = (x.paidRounds || 0) + 1;
-        x.rounds = (x.rounds || 0) + 1; x.lastRound = { n: x.rounds, items: [{ text }], at: off(0) }; x.comments.push({ by: 'client', text, round: x.rounds, at: off(0) });
-        if (k === 'task') { x.status = 'doing'; x.changeReq = true; } else moveTo(d, k, x, prevWorkOf(flowFor(c, k), 'cliente').key, { note: `Rodada extra ${how === 'paid' ? 'cobrada à parte' : 'liberada sem custo'}`, status: 'ajuste', changeReq: true });
-      }
-      if (how === 'new') {
-        const nid = uid(k === 'post' ? 'p' : 's'); const base = { id: nid, n: 99, clientId: x.clientId, title: x.title + ' (peça nova)', stage: null, media: [], assignee: c.owner, comments: [{ by: 'client', text, at: off(0) }], sentAt: null, since: off(0), from: 'talk' };
-        if (k === 'post') d.posts.unshift({ ...base, status: 'ideia', format: x.format, fmtAuto: true, video: null, date: null, caption: '', cta: '', imgs: [] });
-        else if (k === 'script') d.scripts.unshift({ ...base, status: 'rascunho', kind: x.kind, lang: x.lang, format: '', angle: '', record: null, tpl: 'livre', blocks: [['', '']] });
-        x.talk.newId = nid;
-      }
-    }, how === 'new' ? 'Peça nova criada com o pedido do cliente' : how === 'paid' ? 'Rodada extra liberada e marcada para cobrar' : 'Rodada extra liberada sem custo'),
-    uncountRound: (k, id) => commit(d => { const x = itemOf(d, k, id); if (x && x.rounds > 0) { x.rounds--; x.uncounted = (x.uncounted || 0) + 1; } }, 'Rodada devolvida ao cliente: o ajuste foi erro da M&O'),
-    intakeSubmit: (cid, f, by) => commit(d => {
-      const c = d.clients.find(x => x.id === cid); if (!c) return; const a = c.about || {};
-      c.about = { ...a, desc: f.desc || a.desc || '', niche: f.niche || a.niche || '', goals: f.goals.length ? f.goals : (a.goals || []) };
-      if (f.approver) c.contact = f.approver;
-      c.notify = { ...(c.notify || {}), ch: f.ch.length ? f.ch : ((c.notify || {}).ch || ['whatsapp']), phone: f.phone, email: f.email };
-      c.intake = { ...f, done: true, at: off(0), by };
-      const tick = (word, on) => { if (!on) return; const o = c.onboarding.find(y => y.t.includes(word)); if (o) o.done = true; };
-      tick('Gerenciador', f.access.includes('meta')); tick('Instagram', f.access.includes('instagram')); tick('WhatsApp', f.access.includes('wa'));
-      notify(d, c.owner, by || 'client', 'preencheu o formulário de entrada de', 'client', cid, { cid, label: c.name });
-    }),
-    saveAccess: (cid, key, f) => commit(d => { const c = d.clients.find(x => x.id === cid); if (!c) return; c.access = { ...(c.access || {}), [key]: { name: f.name, email: f.email, password: !!f.password, at: off(0) } }; }),
-    setContract: (cid, patch) => commit(d => { const c = d.clients.find(x => x.id === cid); c.contract = { ...(c.contract || {}), ...patch }; }),
-    buildMonth: (cid, n, mk) => commit(d => {
-      const c = d.clients.find(x => x.id === cid); const last = new Date(pd(mk + '-01').getFullYear(), pd(mk + '-01').getMonth() + 1, 0); const first = Math.max(diff(mk + '-01'), 0); const span = Math.max(0, diff(iso(last)) - first);
-      for (let i = 0; i < n; i++) d.posts.unshift({ id: uid('p'), n: 99, clientId: cid, title: `Post ${i + 1} do pacote de ${monthName(mk)}`, status: 'ideia', stage: null, media: [], format: null, fmtAuto: true, video: null, assignee: c.owner, comments: [], date: off(first + Math.round(span * i / Math.max(1, n - 1))), caption: '', cta: '', imgs: [], sentAt: null, since: off(0) });
-    }, `${plural(n, 'ideia de post criada', 'ideias de post criadas')} para fechar o pacote`),
-    saveReport: (cid, rep, publish) => commit(d => {
-      const c = d.clients.find(x => x.id === cid); const L = c.reports || []; const i = L.findIndex(r => r.month === rep.month);
-      const r = { ...rep, published: !!publish, at: off(0), by: me ? me.id : null }; c.reports = i >= 0 ? L.map((y, j) => (j === i ? r : y)) : [...L, r];
-    }, publish ? 'Relatório publicado no painel do cliente' : 'Rascunho do relatório salvo'),
-  };
-}
-
-/* ================= v12: textos novos do painel do cliente ================= */
-const XT = {
-  pt: { more: 'Mais', moreS: 'O que não cabe na barra.', results: 'Resultados', list: 'Lista', calendar: 'Calendário', production: 'Produção',
-    version: n => `Versão ${n}`, until: d => `Aprove até ${d}`,
-    r0: m => `Esta peça tem ${m} rodadas de ajuste incluídas. Junte tudo o que quer mudar num envio só.`, rLeft: n => `Restam ${n} rodadas de ajuste incluídas.`, rLast: 'Esta é a última rodada de ajuste incluída nesta peça.', rNone: m => `As ${m} rodadas de ajuste incluídas já foram usadas. Para mudar mais alguma coisa, fale com a M&O.`,
-    addAnother: 'Adicionar outro comentário', sendRound: n => `Enviar a rodada (${n} ${n === 1 ? 'comentário' : 'comentários'})`, tapToPin: 'Toque na imagem para marcar o ponto exato.', pinned: 'ponto marcado', inRound: 'Nesta rodada', remove: 'Tirar',
-    detail: 'Aprovar com um detalhe pequeno', detailPh: 'Ex.: falta o acento em "ação" no slide 2.', detailSend: 'Aprovar com este detalhe', detailNote: 'Não abre rodada nova. A M&O corrige antes de publicar.',
-    talk: 'Falar com a M&O', talkPh: 'O que você quer mudar?', talkSend: 'Enviar para a M&O', talkNote: 'Um sócio da M&O lê o seu pedido e responde por aqui.', talkSent: 'Você pediu para conversar sobre esta peça. A M&O responde em breve.',
-    changed: n => `O que você pediu na rodada ${n}, e a M&O ajustou`, roundSent: (n, m) => `Rodada ${n} de ${m} enviada`, detailT: 'Aprovado com um detalhe', talkT: 'Pedido enviado à M&O',
-    approveAll: n => `Aprovar as ${n}`, approveAllQ: n => `Aprovar as ${n} peças de uma vez? Cada uma vai para a agenda de publicação.`, confirm: 'Aprovar todas',
-    intakeT: 'Conte sobre a sua empresa', intakeS: 'Cinco minutos, uma vez só. É o que a M&O precisa para começar do jeito certo.', intakeBtn: 'Preencher agora',
-    desc: 'O que a sua empresa faz', descPh: 'O que você vende, para quem e onde.', niche: 'Onde e para quem você atende', nichePh: 'Ex.: telhados residenciais em Orlando', goals: 'Suas metas, de 1 a 3, com número', goalPh: 'Ex.: 20 orçamentos por mês até dezembro',
-    approver: 'Quem aprova as peças', approverPh: 'Nome de quem aprova', notifyQ: 'Como você prefere ser avisado', phone: 'WhatsApp ou telefone', email: 'E-mail',
-    access: 'Acessos que você já liberou para a M&O', accessNote: 'Nunca mande senha. Na Meta, o caminho é o acesso de parceiro no portfólio empresarial; no Google Ads, um convite. A M&O mostra como no kickoff.',
-    acc: { meta: 'Meta (acesso de parceiro)', instagram: 'Instagram', google: 'Google Ads (convite)', site: 'Site ou domínio', wa: 'WhatsApp Business' }, send: 'Enviar', sentT: 'Obrigado. A M&O já recebeu suas respostas.',
-    accessT: 'Crie seu acesso', accessS: 'Você entrou pelo link. Com e-mail e senha, você entra depois sem esperar link novo. A senha é opcional: sem ela, você segue entrando pelo link.', name: 'Nome', password: 'Senha (opcional)', pwHint: 'Mínimo de 8 caracteres', saveAcc: 'Salvar meu acesso', later: 'Agora não', accessOk: 'Acesso salvo. Da próxima vez, entre com o seu e-mail.',
-    ch: { whatsapp: 'WhatsApp', email: 'E-mail', sms: 'SMS' },
-    rDone: 'O que fizemos', rNumbers: 'Os números', rGoal: g => `Meta: ${g}`, rBy: (n, d) => `Feito por ${n}, ${d}`, rPosts: n => `${n} ${n === 1 ? 'post publicado' : 'posts publicados'}`, rVideos: n => `${n} ${n === 1 ? 'vídeo no ar' : 'vídeos no ar'}`, rMeets: n => `${n} ${n === 1 ? 'reunião com ata' : 'reuniões com ata'}`, rDeliv: n => `${n} ${n === 1 ? 'entrega concluída' : 'entregas concluídas'}`, rOther: 'Outros meses',
-    login: ['Entre no seu painel', 'A gente manda um link de acesso pro seu e-mail. Sem senha.', 'Receber link', 'Protótipo: entrar direto', 'voce@empresa.com', 'Link por e-mail', 'Senha', 'Entrar', 'Esqueci a senha: receber um link'] },
-  en: { more: 'More', moreS: 'Everything that does not fit in the bar.', results: 'Results', list: 'List', calendar: 'Calendar', production: 'Production',
-    version: n => `Version ${n}`, until: d => `Approve by ${d}`,
-    r0: m => `This piece includes ${m} rounds of changes. Put everything you want changed in a single request.`, rLeft: n => `${n} rounds of changes left.`, rLast: 'This is the last included round of changes for this piece.', rNone: m => `The ${m} included rounds of changes have been used. To change anything else, talk to M&O.`,
-    addAnother: 'Add another comment', sendRound: n => `Send this round (${n} ${n === 1 ? 'comment' : 'comments'})`, tapToPin: 'Tap the image to mark the exact spot.', pinned: 'spot marked', inRound: 'In this round', remove: 'Remove',
-    detail: 'Approve with a small fix', detailPh: 'E.g. a typo in "estimate" on slide 2.', detailSend: 'Approve with this fix', detailNote: 'This does not open a new round. M&O fixes it before publishing.',
-    talk: 'Talk to M&O', talkPh: 'What would you like to change?', talkSend: 'Send to M&O', talkNote: 'An M&O partner reads your request and replies here.', talkSent: 'You asked to talk about this piece. M&O will reply soon.',
-    changed: n => `What you asked for in round ${n}, and M&O changed`, roundSent: (n, m) => `Round ${n} of ${m} sent`, detailT: 'Approved with a small fix', talkT: 'Request sent to M&O',
-    approveAll: n => `Approve all ${n}`, approveAllQ: n => `Approve all ${n} pieces at once? Each one goes on the publishing schedule.`, confirm: 'Approve all',
-    intakeT: 'Tell us about your business', intakeS: 'Five minutes, one time. It is what M&O needs to start the right way.', intakeBtn: 'Fill it in now',
-    desc: 'What your business does', descPh: 'What you sell, to whom and where.', niche: 'Where and who you serve', nichePh: 'E.g. residential roofing in Orlando', goals: 'Your goals, 1 to 3, with a number', goalPh: 'E.g. 20 estimate requests a month by December',
-    approver: 'Who approves the content', approverPh: 'Approver’s name', notifyQ: 'How you prefer to be notified', phone: 'WhatsApp or phone', email: 'Email',
-    access: 'Access you have already given M&O', accessNote: 'Never send a password. On Meta, use partner access in your business portfolio; on Google Ads, send an invite. M&O shows you how at the kickoff.',
-    acc: { meta: 'Meta (partner access)', instagram: 'Instagram', google: 'Google Ads (invite)', site: 'Website or domain', wa: 'WhatsApp Business' }, send: 'Send', sentT: 'Thank you. M&O has your answers.',
-    accessT: 'Create your login', accessS: 'You came in through the link. With an email and password, you can sign in later without waiting for a new link. The password is optional: without it, you keep signing in through the link.', name: 'Name', password: 'Password (optional)', pwHint: 'At least 8 characters', saveAcc: 'Save my login', later: 'Not now', accessOk: 'Login saved. Next time, sign in with your email.',
-    ch: { whatsapp: 'WhatsApp', email: 'Email', sms: 'SMS' },
-    rDone: 'What we did', rNumbers: 'The numbers', rGoal: g => `Goal: ${g}`, rBy: (n, d) => `By ${n}, ${d}`, rPosts: n => `${n} ${n === 1 ? 'post published' : 'posts published'}`, rVideos: n => `${n} ${n === 1 ? 'video live' : 'videos live'}`, rMeets: n => `${n} ${n === 1 ? 'meeting with notes' : 'meetings with notes'}`, rDeliv: n => `${n} ${n === 1 ? 'deliverable done' : 'deliverables done'}`, rOther: 'Other months',
-    login: ['Sign in to your workspace', "We'll email you a sign-in link. No password.", 'Email me a link', 'Prototype: sign in now', 'you@company.com', 'Email link', 'Password', 'Sign in', 'Forgot your password? Get a link'] },
-  es: { more: 'Más', moreS: 'Lo que no cabe en la barra.', results: 'Resultados', list: 'Lista', calendar: 'Calendario', production: 'Producción',
-    version: n => `Versión ${n}`, until: d => `Aprueba antes del ${d}`,
-    r0: m => `Esta pieza incluye ${m} rondas de cambios. Junta todo lo que quieres cambiar en un solo envío.`, rLeft: n => `Quedan ${n} rondas de cambios.`, rLast: 'Esta es la última ronda de cambios incluida en esta pieza.', rNone: m => `Ya se usaron las ${m} rondas de cambios incluidas. Para cambiar algo más, habla con M&O.`,
-    addAnother: 'Añadir otro comentario', sendRound: n => `Enviar la ronda (${n} ${n === 1 ? 'comentario' : 'comentarios'})`, tapToPin: 'Toca la imagen para marcar el punto exacto.', pinned: 'punto marcado', inRound: 'En esta ronda', remove: 'Quitar',
-    detail: 'Aprobar con un detalle pequeño', detailPh: 'Ej.: falta una tilde en la diapositiva 2.', detailSend: 'Aprobar con este detalle', detailNote: 'No abre una ronda nueva. M&O lo corrige antes de publicar.',
-    talk: 'Hablar con M&O', talkPh: '¿Qué quieres cambiar?', talkSend: 'Enviar a M&O', talkNote: 'Un socio de M&O lee tu pedido y responde por aquí.', talkSent: 'Pediste hablar sobre esta pieza. M&O responde pronto.',
-    changed: n => `Lo que pediste en la ronda ${n}, y M&O ajustó`, roundSent: (n, m) => `Ronda ${n} de ${m} enviada`, detailT: 'Aprobado con un detalle', talkT: 'Pedido enviado a M&O',
-    approveAll: n => `Aprobar las ${n}`, approveAllQ: n => `¿Aprobar las ${n} piezas de una vez? Cada una entra en la agenda de publicación.`, confirm: 'Aprobar todas',
-    intakeT: 'Cuéntanos sobre tu empresa', intakeS: 'Cinco minutos, una sola vez. Es lo que M&O necesita para empezar bien.', intakeBtn: 'Completar ahora',
-    desc: 'Qué hace tu empresa', descPh: 'Qué vendes, a quién y dónde.', niche: 'Dónde y a quién atiendes', nichePh: 'Ej.: techos residenciales en Orlando', goals: 'Tus metas, de 1 a 3, con número', goalPh: 'Ej.: 20 presupuestos al mes hasta diciembre',
-    approver: 'Quién aprueba las piezas', approverPh: 'Nombre de quien aprueba', notifyQ: 'Cómo prefieres que te avisemos', phone: 'WhatsApp o teléfono', email: 'Correo',
-    access: 'Accesos que ya diste a M&O', accessNote: 'Nunca envíes una contraseña. En Meta, usa el acceso de socio en tu portafolio comercial; en Google Ads, una invitación. M&O te muestra cómo en el kickoff.',
-    acc: { meta: 'Meta (acceso de socio)', instagram: 'Instagram', google: 'Google Ads (invitación)', site: 'Sitio o dominio', wa: 'WhatsApp Business' }, send: 'Enviar', sentT: 'Gracias. M&O ya recibió tus respuestas.',
-    accessT: 'Crea tu acceso', accessS: 'Entraste por el enlace. Con correo y contraseña, entras después sin esperar un enlace nuevo. La contraseña es opcional: sin ella, sigues entrando por el enlace.', name: 'Nombre', password: 'Contraseña (opcional)', pwHint: 'Mínimo 8 caracteres', saveAcc: 'Guardar mi acceso', later: 'Ahora no', accessOk: 'Acceso guardado. La próxima vez, entra con tu correo.',
-    ch: { whatsapp: 'WhatsApp', email: 'Correo', sms: 'SMS' },
-    rDone: 'Lo que hicimos', rNumbers: 'Los números', rGoal: g => `Meta: ${g}`, rBy: (n, d) => `Hecho por ${n}, ${d}`, rPosts: n => `${n} ${n === 1 ? 'publicación' : 'publicaciones'}`, rVideos: n => `${n} ${n === 1 ? 'video publicado' : 'videos publicados'}`, rMeets: n => `${n} ${n === 1 ? 'reunión con acta' : 'reuniones con acta'}`, rDeliv: n => `${n} ${n === 1 ? 'entrega terminada' : 'entregas terminadas'}`, rOther: 'Otros meses',
-    login: ['Entra a tu panel', 'Te enviamos un enlace de acceso por correo. Sin contraseña.', 'Recibir enlace', 'Prototipo: entrar ahora', 'tu@empresa.com', 'Enlace por correo', 'Contraseña', 'Entrar', '¿Olvidaste la contraseña? Recibir un enlace'] },
-  fr: { more: 'Plus', moreS: 'Ce qui ne tient pas dans la barre.', results: 'Résultats', list: 'Liste', calendar: 'Calendrier', production: 'Production',
-    version: n => `Version ${n}`, until: d => `À valider avant le ${d}`,
-    r0: m => `Ce contenu inclut ${m} séries de modifications. Regroupez tout ce que vous voulez changer en un seul envoi.`, rLeft: n => `Il reste ${n} séries de modifications.`, rLast: 'C’est la dernière série de modifications incluse pour ce contenu.', rNone: m => `Les ${m} séries de modifications incluses ont été utilisées. Pour changer autre chose, parlez à M&O.`,
-    addAnother: 'Ajouter un autre commentaire', sendRound: n => `Envoyer la série (${n} ${n === 1 ? 'commentaire' : 'commentaires'})`, tapToPin: 'Touchez l’image pour marquer l’endroit exact.', pinned: 'endroit marqué', inRound: 'Dans cette série', remove: 'Retirer',
-    detail: 'Valider avec un petit détail', detailPh: 'Ex. : une faute d’accent sur la diapositive 2.', detailSend: 'Valider avec ce détail', detailNote: 'Cela n’ouvre pas de nouvelle série. M&O corrige avant de publier.',
-    talk: 'Parler à M&O', talkPh: 'Que souhaitez-vous modifier ?', talkSend: 'Envoyer à M&O', talkNote: 'Un associé de M&O lit votre demande et répond ici.', talkSent: 'Vous avez demandé à en parler. M&O vous répond bientôt.',
-    changed: n => `Ce que vous avez demandé dans la série ${n}, et que M&O a ajusté`, roundSent: (n, m) => `Série ${n} sur ${m} envoyée`, detailT: 'Validé avec un détail', talkT: 'Demande envoyée à M&O',
-    approveAll: n => `Valider les ${n}`, approveAllQ: n => `Valider les ${n} contenus d’un coup ? Chacun part au planning de publication.`, confirm: 'Tout valider',
-    intakeT: 'Parlez-nous de votre entreprise', intakeS: 'Cinq minutes, une seule fois. C’est ce dont M&O a besoin pour bien commencer.', intakeBtn: 'Remplir maintenant',
-    desc: 'Ce que fait votre entreprise', descPh: 'Ce que vous vendez, à qui et où.', niche: 'Où et pour qui vous travaillez', nichePh: 'Ex. : toitures résidentielles à Orlando', goals: 'Vos objectifs, de 1 à 3, chiffrés', goalPh: 'Ex. : 20 demandes de devis par mois d’ici décembre',
-    approver: 'Qui valide les contenus', approverPh: 'Nom de la personne', notifyQ: 'Comment préférez-vous être prévenu', phone: 'WhatsApp ou téléphone', email: 'E-mail',
-    access: 'Accès déjà donnés à M&O', accessNote: 'N’envoyez jamais de mot de passe. Sur Meta, passez par l’accès partenaire du portefeuille business ; sur Google Ads, par une invitation. M&O vous montre comment au lancement.',
-    acc: { meta: 'Meta (accès partenaire)', instagram: 'Instagram', google: 'Google Ads (invitation)', site: 'Site ou domaine', wa: 'WhatsApp Business' }, send: 'Envoyer', sentT: 'Merci. M&O a bien reçu vos réponses.',
-    accessT: 'Créez votre accès', accessS: 'Vous êtes entré par le lien. Avec un e-mail et un mot de passe, vous pourrez revenir sans attendre de nouveau lien. Le mot de passe est facultatif : sans lui, vous continuez par le lien.', name: 'Nom', password: 'Mot de passe (facultatif)', pwHint: '8 caractères minimum', saveAcc: 'Enregistrer mon accès', later: 'Plus tard', accessOk: 'Accès enregistré. La prochaine fois, connectez-vous avec votre e-mail.',
-    ch: { whatsapp: 'WhatsApp', email: 'E-mail', sms: 'SMS' },
-    rDone: 'Ce que nous avons fait', rNumbers: 'Les chiffres', rGoal: g => `Objectif : ${g}`, rBy: (n, d) => `Par ${n}, ${d}`, rPosts: n => `${n} ${n === 1 ? 'publication' : 'publications'}`, rVideos: n => `${n} ${n === 1 ? 'vidéo en ligne' : 'vidéos en ligne'}`, rMeets: n => `${n} ${n === 1 ? 'réunion avec compte rendu' : 'réunions avec compte rendu'}`, rDeliv: n => `${n} ${n === 1 ? 'livrable terminé' : 'livrables terminés'}`, rOther: 'Autres mois',
-    login: ['Accédez à votre espace', 'Nous vous envoyons un lien de connexion par e-mail. Sans mot de passe.', 'Recevoir le lien', 'Prototype : entrer maintenant', 'vous@entreprise.com', 'Lien par e-mail', 'Mot de passe', 'Entrer', 'Mot de passe oublié ? Recevoir un lien'] },
-};
-
-/* o aviso em cada canal: o WhatsApp vai à mão pelo número da M&O; e-mail e SMS saem pelo sistema no produto */
-const MSG2 = {
-  pt: { subj: n => n === 1 ? 'Uma peça espera sua aprovação' : `${n} peças esperam sua aprovação`, mail: (w, n, l) => `Oi${w ? ', ' + w : ''}!\n\n${n === 1 ? 'Uma peça está pronta' : n + ' peças estão prontas'} para você aprovar. Pelo celular, leva menos de um minuto cada:\n${l}\n\nSe quiser mudar alguma coisa, junte tudo num envio só: cada peça tem duas rodadas de ajuste incluídas.\n\nM&O`, sms: (n, l) => `M&O: ${n === 1 ? '1 peça espera' : n + ' peças esperam'} sua aprovação. ${l}` },
-  en: { subj: n => n === 1 ? 'One piece is waiting for your approval' : `${n} pieces are waiting for your approval`, mail: (w, n, l) => `Hi${w ? ' ' + w : ''},\n\n${n === 1 ? 'One piece is' : n + ' pieces are'} ready for you to approve. From your phone, each takes less than a minute:\n${l}\n\nIf you want changes, put them all in one request: every piece includes two rounds of changes.\n\nM&O`, sms: (n, l) => `M&O: ${n === 1 ? '1 piece is' : n + ' pieces are'} waiting for your approval. ${l} Reply STOP to opt out.` },
-  es: { subj: n => n === 1 ? 'Una pieza espera tu aprobación' : `${n} piezas esperan tu aprobación`, mail: (w, n, l) => `¡Hola${w ? ', ' + w : ''}!\n\n${n === 1 ? 'Una pieza está lista' : n + ' piezas están listas'} para que las apruebes. Desde el celular, cada una toma menos de un minuto:\n${l}\n\nSi quieres cambios, júntalos en un solo envío: cada pieza incluye dos rondas de cambios.\n\nM&O`, sms: (n, l) => `M&O: ${n === 1 ? '1 pieza espera' : n + ' piezas esperan'} tu aprobación. ${l}` },
-  fr: { subj: n => n === 1 ? 'Un contenu attend votre validation' : `${n} contenus attendent votre validation`, mail: (w, n, l) => `Bonjour${w ? ' ' + w : ''},\n\n${n === 1 ? 'Un contenu est prêt' : n + ' contenus sont prêts'} pour validation. Depuis votre téléphone, moins d’une minute chacun :\n${l}\n\nSi vous voulez des modifications, regroupez-les en un seul envoi : chaque contenu inclut deux séries de modifications.\n\nM&O`, sms: (n, l) => `M&O : ${n === 1 ? '1 contenu attend' : n + ' contenus attendent'} votre validation. ${l}` },
-};
-const CHN = { whatsapp: 'WhatsApp', email: 'E-mail', sms: 'SMS' };
-const COUNTRY = [['br', 'Brasil', ['whatsapp']], ['us', 'EUA', ['email', 'sms']], ['other', 'Outro país', ['email', 'whatsapp']]];
-const magicUrl = (cid, piece) => `https://central.moagency.io/#a.${cid}${piece ? '.' + piece[0] + '.' + piece[1].id : ''}`;
-
-/* ================= v12: painel do cliente com 5 destinos ================= */
-const MORE_TABS = ['proc', 'links', 'team', 'brand'];
-function Portal({ clientId, preview, deep }) {
-  const { db, setSession, session, setDeep } = useApp();
-  const who = !preview && session && session.userId ? db.people.find(p => p.id === session.userId) : null;
-  const [piece, setPiece] = useState(() => deep && pieceOf(db, deep.k, deep.id) ? deep : null); const openPiece = (k, id) => setPiece({ k, id });
-  useEffect(() => { if (deep && setDeep) setDeep(null); }, []);
-  const c = db.clients.find(x => x.id === clientId);
-  const sysDark = useSysDark();
-  const [lang, setLangS] = useState(() => lsGet('mo.lang.' + clientId, c.lang));
-  const setLang = l => { setLangS(l); lsSet('mo.lang.' + clientId, l); };
-  const [tab, setTab] = useState('home'); const [cview, setCview] = useState('list'); const [menu, setMenu] = useState(false); const [ask, setAsk] = useState(false);
-  const scRef = useRef();
-  const t = TX[lang] || TX.pt; const R = RQ[lang] || RQ.pt; const X = XT[lang] || XT.pt; const th = clientTheme(c, sysDark); const sideDark = onDarkOf(th.side ? th.side.bg : th.surface2);
-  const pending = pendingOf(db, clientId, who).length + (who ? db.tasks.filter(x => x.assignee === who.id && x.status !== 'done' && x.piece).length : 0);
-  const PL = PX[lang] || PX.pt;
-  const reports = (c.reports || []).filter(r => r.published);
-  const tabs = [['home', t.forYou, 'home', pending], ['content', t.content, 'image'], ['meet', (MT[lang] || MT.pt).tab, 'video'], ...(reports.length ? [['results', X.results, 'chart']] : []), ['more', X.more, 'menu']];
-  const isOn = k => tab === k || (k === 'more' && MORE_TABS.includes(tab));
-  const pick = k => { setTab(k); if (scRef.current) scRef.current.scrollTop = 0; };
-  let view;
-  if (tab === 'content') view = html`<${PortalContentHub} c=${c} lang=${lang} who=${who} openPiece=${openPiece} cview=${cview} setCview=${setCview} goMeet=${() => pick('meet')} />`;
-  else if (tab === 'team') view = html`<${ClientTeam} c=${c} lang=${lang} asClient canEdit=${canApproveAs(who)} />`;
-  else if (tab === 'proc') view = html`<div class="sec" style="gap:18px"><h1 style="font-size:24px">${t.proc}</h1><${Docs} pages=${db.pages.filter(p => p.clientId === clientId)} clientPage lang=${lang} /></div>`;
-  else if (tab === 'links') view = html`<${PortalLinks} c=${c} lang=${lang} />`;
-  else if (tab === 'meet') view = html`<${PortalMeetings} c=${c} lang=${lang} />`;
-  else if (tab === 'brand') view = html`<${BrandEditor} c=${c} lang=${lang} asClient />`;
-  else if (tab === 'results') view = html`<${PortalResults} c=${c} lang=${lang} />`;
-  else if (tab === 'more') view = html`<${PortalMore} lang=${lang} pick=${pick} />`;
-  else view = html`<${PortalHome} c=${c} lang=${lang} goCal=${() => { setCview('cal'); pick('content'); }} who=${who} openPiece=${openPiece} />`;
-  return html`<div class="portal" style=${portalStyle(c, th)}>
-    <div class="p-frame">
-    <aside class="p-side">
-      <button class="p-brand" onClick=${() => pick('home')} aria-label=${c.name}><${ClientLogo} c=${c} dark=${sideDark} /></button>
-      <nav class="p-tabs" aria-label="Seções">${tabs.map(([k, l, ic, n]) => html`<button key=${k} class=${cx('p-tab', isOn(k) && 'on')} aria-current=${isOn(k) ? 'page' : null} onClick=${() => pick(k)}><${Icon} n=${ic} s=${20} /><span class="pt-l">${l}</span>${n ? html`<span class="badge">${n}</span>` : null}</button>`)}</nav>
-      <div class="p-side-foot"><${PoweredBy} lang=${lang} /></div>
-    </aside>
-    <div class="p-main">
-    <header class="p-top"><button class="p-brand p-brand-m" onClick=${() => pick('home')} aria-label=${c.name}><${ClientLogo} c=${c} dark=${th.mode === 'dark'} /></button>
-      <div class="right">
-        <button class="btn sm p-req" onClick=${() => setAsk(true)}><${Icon} n="plus" s=${14} /><span>${R.ask}</span></button>
-        <${LangPop} lang=${lang} setLang=${setLang} />
-        <div class="p-menu"><button class="btn icon ghost" aria-label="Menu" aria-expanded=${menu} onClick=${() => setMenu(!menu)}><${CMark} c=${c} /></button>
-          ${menu && html`<div class="pop">${who && html`<div class="pop-who"><b>${who.name}</b><small>${who.func || PL.team}</small></div>`}<button onClick=${() => { pick('team'); setMenu(false); }}><${Icon} n="users" />${PL.team}</button><button onClick=${() => { pick('brand'); setMenu(false); }}><${Icon} n="sliders" />${t.personalize}</button>${!preview && html`<button onClick=${() => setSession(null)}><${Icon} n="logout" />${t.switchAcc}</button>`}<div class="pop-foot"><${PoweredBy} lang=${lang} /></div></div>`}</div>
-      </div></header>
-    <div class="p-scroll" ref=${scRef}><div class=${cx('p-body', tab === 'content' && cview === 'board' && 'wide')}>${view}<footer class="p-foot"><${PoweredBy} lang=${lang} /></footer></div></div>
-    </div>
-    </div>
-    ${ask && html`<${RequestSheet} c=${c} lang=${lang} close=${() => setAsk(false)} />`}
-    ${piece && html`<${PortalPiece} k=${piece.k} id=${piece.id} c=${c} lang=${lang} who=${who} close=${() => setPiece(null)} openPiece=${openPiece} />`}
-  </div>`;
-}
-/* lista, calendário e produção são três vistas das mesmas peças */
-function PortalContentHub({ c, lang, who, openPiece, cview, setCview, goMeet }) {
-  const X = XT[lang] || XT.pt;
-  return html`<div class="sec" style="gap:14px">
-    <div class="seg cv-seg" role="tablist">${[['list', X.list, 'list'], ['cal', X.calendar, 'cal'], ['board', X.production, 'board']].map(([k, l, ic]) => html`<button key=${k} role="tab" aria-selected=${cview === k} class=${cx(cview === k && 'on')} onClick=${() => setCview(k)}><${Icon} n=${ic} s=${14} />${l}</button>`)}</div>
-    ${cview === 'cal' ? html`<${PortalCal} c=${c} lang=${lang} openPiece=${openPiece} goMeet=${goMeet} />` : cview === 'board' ? html`<${PortalBoard} c=${c} lang=${lang} who=${who} openPiece=${openPiece} />` : html`<${PortalContent} c=${c} lang=${lang} openPiece=${openPiece} />`}
-  </div>`;
-}
-function PortalMore({ lang, pick }) {
-  const t = TX[lang] || TX.pt; const X = XT[lang] || XT.pt; const PL = PX[lang] || PX.pt;
-  const Row = (k, ic, l) => html`<button key=${k} class="row more-row" onClick=${() => pick(k)}><span class="av" style="border-radius:8px"><${Icon} n=${ic} s=${14} /></span><div class="row-main"><div class="row-title">${l}</div></div><${Icon} n="chevR" s=${14} /></button>`;
-  return html`<div class="sec" style="gap:14px"><div><h1 style="font-size:24px">${X.more}</h1><p class="muted" style="margin-top:6px">${X.moreS}</p></div>
-    <div class="list">${Row('proc', 'file', t.proc)}${Row('links', 'link', t.links)}${Row('team', 'users', PL.team)}${Row('brand', 'sliders', t.personalize)}</div></div>`;
-}
-
-/* para você: o que espera aprovação, com rodadas, lote, formulário de entrada e criar acesso */
-function PortalHome({ c, lang, goCal, who, openPiece }) {
-  const { db, act, session } = useApp();
-  const t = TX[lang] || TX.pt; const X = XT[lang] || XT.pt; const P = PX[lang] || PX.pt;
-  const [done, setDone] = useState([]); const [batch, setBatch] = useState(false); const [intake, setIntake] = useState(false); const [skipAcc, setSkipAcc] = useState(false);
-  const all = pendingOf(db, c.id, null); const items = canApproveAs(who) ? all : [];
-  const review = (k, x, r) => { act.review(k, x.id, r); setDone(d => [...d, { k, id: x.id, title: x.title, kind: r.ok ? (r.detail ? 'detail' : 'ok') : 'round', n: r.ok ? 0 : (x.rounds || 0) + 1, max: roundsOf(x) }]); };
-  const talk = (k, x, text) => { act.talk(k, x.id, text); setDone(d => [...d, { k, id: x.id, title: x.title, kind: 'talk' }]); };
-  const undo = d => { if (d.kind !== 'talk') act.undoReview(d.k, d.id, d.kind); setDone(ds => ds.filter(z => z.id !== d.id)); };
-  const next = db.posts.filter(p => p.clientId === c.id && p.date && ['agendado', 'aprovado'].includes(p.status) && diff(p.date) >= 0).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 4);
-  const inprod = db.posts.filter(p => p.clientId === c.id && ['producao', 'revisao', 'ajuste'].includes(p.status)).length + db.scripts.filter(s => s.clientId === c.id && ['rascunho', 'revisao', 'ajuste'].includes(s.status)).length;
-  const accKey = who ? who.id : 'main'; const needAcc = session && session.via === 'link' && !(c.access && c.access[accKey]) && !skipAcc;
-  const needIntake = canApproveAs(who) && !(c.intake && c.intake.done);
-  const doneTitle = d => d.kind === 'ok' ? t.approvedT : d.kind === 'detail' ? X.detailT : d.kind === 'talk' ? X.talkT : X.roundSent(d.n, d.max);
-  const doneSub = d => d.kind === 'ok' || d.kind === 'detail' ? t.approvedS : d.kind === 'talk' ? X.talkNote : t.changeS;
-  return html`
-    <div class="hello"><h1>${t.hello}${who ? ', ' + who.name.split(' ')[0] : c.contact && c.contact !== '—' && c.id !== 'mo' ? ', ' + c.contact.split(' ')[0] : ''}.</h1><p>${items.length ? t.waiting(items.length) : !canApproveAs(who) && all.length ? P.othersAppr(all.length) : t.clearSub}</p>
-</div>
-    <${PortalTasks} c=${c} lang=${lang} who=${who} openPiece=${openPiece} />
-    ${items.length > 1 && html`<div class="batch">${batch ? html`<span>${X.approveAllQ(items.length)}</span><button class="btn sm" onClick=${() => setBatch(false)}>${t.cancel}</button><button class="btn sm pri" onClick=${() => { items.forEach(([k, x]) => review(k, x, { ok: true })); setBatch(false); }}><${Icon} n="check" s=${14} />${X.confirm}</button>` : html`<button class="btn sm" onClick=${() => setBatch(true)}><${Icon} n="check" s=${14} />${X.approveAll(items.length)}</button>`}</div>`}
-    <div class="aps">
-      ${done.map(d => html`<div class=${cx('done-row', d.kind !== 'ok' && d.kind !== 'detail' && 'chg-sent')} key=${'d' + d.id}><span class="okc"><${Icon} n=${d.kind === 'ok' || d.kind === 'detail' ? 'check' : 'msg'} s=${16} /></span><span class="t"><b>${doneTitle(d)}: ${d.title}</b><small>${doneSub(d)}</small></span>${d.kind !== 'talk' && html`<button class="btn sm ghost" onClick=${() => undo(d)}>${t.undo}</button>`}</div>`)}
-      ${items.map(([k, x]) => html`<${ApprovalCard} key=${x.id} k=${k} x=${x} lang=${lang} onReview=${r => review(k, x, r)} onTalk=${tx => talk(k, x, tx)} />`)}
-      ${!items.length && canApproveAs(who) && html`<div class="card allclear"><span class="okc"><${Icon} n="check" s=${20} /></span><b>${t.clear}</b></div>`}
-    </div>
-    ${needAcc && html`<${AccessCard} c=${c} lang=${lang} who=${who} accKey=${accKey} skip=${() => setSkipAcc(true)} />`}
-    ${needIntake && html`<div class="card intake-cta"><div><b>${X.intakeT}</b><p class="muted">${X.intakeS}</p></div><button class="btn pri" onClick=${() => setIntake(true)}>${X.intakeBtn}</button></div>`}
-    <${MyRequests} c=${c} lang=${lang} />
-    ${next.length > 0 && html`<section class="sec" style="gap:12px"><div class="sec-h" style="padding:0"><h2>${t.upnext}</h2><button class="linkbtn" style="margin-left:auto;font-size:13px" onClick=${goCal}>${t.cal}</button></div>
-      <div class="upnext">${next.map(p => html`<button class="pcard" key=${p.id} onClick=${() => openPiece('post', p.id)}><${Thumb} p=${p} pillText=${t.st[p.status]} tone=${PTONE[p.status]} lang=${lang} /><span class="pt">${p.title}</span><span class="pd">${t.goes(fmt(p.date, lang))}</span></button>`)}</div></section>`}
-    ${inprod > 0 && html`<p class="muted" style="font-size:13px;display:flex;gap:8px;align-items:center"><${Icon} n="clock" s=${14} />${t.inprod(inprod)}</p>`}
-    ${intake && html`<${IntakeSheet} c=${c} lang=${lang} who=${who} close=${() => setIntake(false)} />`}`;
-}
-
-/* a imagem que recebe o ponto do comentário */
-function ReviewMedia({ x, cur, setCur, pins, onPin }) {
-  const imgs = x.imgs || []; const r = pieceRatio(x); const p0 = useRef(null);
-  const here = pins.filter(p => p.slide === cur + 1 && p.pin);
-  const layer = html`<div class="rv-layer" onPointerDown=${e => { p0.current = [e.clientX, e.clientY]; }} onClick=${e => { const s = p0.current; if (s && Math.hypot(e.clientX - s[0], e.clientY - s[1]) > 10) return; const b = e.currentTarget.getBoundingClientRect(); onPin(Math.round((e.clientX - b.left) / b.width * 100), Math.round((e.clientY - b.top) / b.height * 100)); }}>
-    ${here.map(p => html`<span key=${p.n} class=${cx('rv-pin', p.draft && 'draft')} style=${{ left: p.pin.x + '%', top: p.pin.y + '%' }}>${p.n}</span>`)}</div>`;
-  return html`<div class=${cx('ap-media', ratioCls(r))}><${Slider} imgs=${imgs} title=${x.title} ratio=${r} idx=${cur} onIdx=${setCur} overlay=${layer} /></div>`;
-}
-function ApprovalCard({ k, x, lang, onReview, onTalk }) {
-  const { db } = useApp();
-  const t = TX[lang] || TX.pt; const X = XT[lang] || XT.pt;
-  const [mode, setMode] = useState(null); const [list, setList] = useState([]); const [txt, setTxt] = useState(''); const [slide, setSlide] = useState(0); const [pin, setPin] = useState(null); const [cur, setCur] = useState(0); const [full, setFull] = useState(false);
-  const used = x.rounds || 0; const max = roundsOf(x); const left = max - used; const talkOpen = x.talk && x.talk.state === 'open';
-  const kind = k === 'post' ? pieceKind(lang, x) : k === 'script' ? `${t.script} · ${x.kind}` : t.delivery;
-  const when = k === 'post' && x.date ? t.goes(fmt(x.date, lang)) : k === 'script' && x.record ? t.record(fmt(x.record, lang)) : k === 'task' && x.due ? fmt(x.due, lang) : '';
-  const blocks = k === 'script' ? (full ? x.blocks : x.blocks.slice(0, 2)) : [];
-  const imgs = k === 'post' ? (x.imgs || []) : [];
-  const reset = () => { setMode(null); setList([]); setTxt(''); setPin(null); setSlide(0); };
-  const add = () => { if (!txt.trim()) return; setList(L => [...L, { text: txt.trim(), slide: slide || null, pin }]); setTxt(''); setPin(null); };
-  const send = () => { const L = txt.trim() ? [...list, { text: txt.trim(), slide: slide || null, pin }] : list; if (L.length) onReview({ ok: false, list: L }); };
-  const pins = [...list.map((it, i) => ({ ...it, n: i + 1 })), ...(pin ? [{ slide: cur + 1, pin, n: list.length + 1, draft: true }] : [])];
-  const roundLine = left <= 0 ? X.rNone(max) : used === 0 ? X.r0(max) : left === 1 ? X.rLast : X.rLeft(left);
-  return html`<article class="ap">
-    <div class="ap-h"><span class="k"><span class="pill t-cli">${t.st.cliente}</span><span>${kind}</span>${when && html`<span>· ${when}</span>`}${used > 0 && html`<span class="tag">${X.version(used + 1).toUpperCase()}</span>`}</span><h2>${x.title}</h2>
-      <span class="ap-until"><${Icon} n="clock" s=${13} />${X.until(fmt(approveBy(k, x), lang))}</span></div>
-    ${k === 'post' && (mode === 'change' && imgs.length ? html`<${ReviewMedia} x=${x} cur=${cur} setCur=${setCur} pins=${pins} onPin=${(px, py) => { setPin({ x: px, y: py }); setSlide(cur + 1); }} />` : html`<${PieceMedia} k="post" x=${x} lang=${lang} />`)}
-    <div class="ap-b">
-      ${x.lastRound && x.lastRound.items && x.lastRound.items.length > 0 && html`<div class="changed"><span class="label">${X.changed(x.lastRound.n)}</span><ul>${x.lastRound.items.map((it, i) => html`<li key=${i}><${Icon} n="check" s=${13} />${it.slide ? html`<span class="tag">${it.slide}</span> ` : null}${it.text}</li>`)}</ul></div>`}
-      ${(x.media || []).length > 0 && html`<div class="lp-grid">${x.media.map((md, i) => html`<${LinkPreview} key=${i} url=${md.url} name=${md.name} kind=${md.kind} lang=${lang} />`)}</div>`}
-      ${k === 'post' && x.caption && html`<p style="white-space:pre-wrap;font-size:14px">${x.caption}</p>`}
-      ${k === 'script' && html`<div class="sblk-read">${blocks.map(([l, v], i) => html`<div key=${i}>${l && html`<div class="label">${l}</div>`}<p style="white-space:pre-wrap">${v}</p></div>`)}${x.blocks.length > 2 && html`<button class="linkbtn" onClick=${() => setFull(!full)}>${full ? t.collapse : t.readAll}</button>`}</div>`}
-      ${k === 'task' && html`<p style="font-size:14px">${x.desc}</p><p class="muted" style="font-size:13px">${t.entregaOpen}</p>`}
-      <span class="from">${t.sentBy(firstName(db, x.assignee), rel(x.sentAt || x.since, lang))}</span>
-      <p class=${cx('rounds-line', left <= 1 && 'last')}>${talkOpen ? X.talkSent : roundLine}</p>
-    </div>
-    ${mode === 'change' ? html`<form class="chg" onSubmit=${e => { e.preventDefault(); send(); }}>
-        ${imgs.length > 1 && html`<div class="field"><span>${t.whichSlide}</span><div class="chips">${[0, ...imgs.map((_, i) => i + 1)].map(n => html`<button type="button" key=${n} class=${cx(slide === n && 'on')} onClick=${() => { setSlide(n); if (n) setCur(n - 1); }}>${n === 0 ? t.general : n}</button>`)}</div></div>`}
-        ${imgs.length > 0 && html`<p class="muted" style="font-size:12.5px;display:flex;gap:6px;align-items:center"><${Icon} n="pin" s=${13} />${pin ? X.pinned : X.tapToPin}</p>`}
-        <label class="field"><span>${t.whatChange}</span><textarea class="ta" id=${'chg-' + x.id} ref=${autoF} placeholder=${t.phChange} value=${txt} onInput=${e => setTxt(e.target.value)}></textarea></label>
-        <button type="button" class="btn sm" style="align-self:flex-start" disabled=${!txt.trim()} onClick=${add}><${Icon} n="plus" s=${13} />${X.addAnother}</button>
-        ${list.length > 0 && html`<div class="round-list"><span class="label">${X.inRound}</span>${list.map((it, i) => html`<div class="rl-it" key=${i}><span class="rl-n">${i + 1}</span><span class="rl-t">${it.slide ? html`<span class="tag">${it.slide}</span> ` : null}${it.text}${it.pin ? html` <small class="muted">· ${X.pinned}</small>` : null}</span><button type="button" class="btn sm ghost" onClick=${() => setList(L => L.filter((_, j) => j !== i))}>${X.remove}</button></div>`)}</div>`}
-        ${left === 1 && html`<p class="rounds-line last">${X.rLast}</p>`}
-        <div class="ap-acts" style="padding:0"><button type="button" class="btn lg" onClick=${reset}>${t.cancel}</button><button class="btn pri lg" type="submit" disabled=${!list.length && !txt.trim()}>${X.sendRound(list.length + (txt.trim() ? 1 : 0))}</button></div>
-      </form>`
-    : mode === 'detail' || mode === 'talk' ? html`<form class="chg" onSubmit=${e => { e.preventDefault(); if (!txt.trim()) return; if (mode === 'detail') onReview({ ok: true, detail: txt.trim() }); else { onTalk(txt.trim()); reset(); } }}>
-        <label class="field"><span>${mode === 'detail' ? X.detail : X.talk}</span><textarea class="ta" id=${'dt-' + x.id} ref=${autoF} placeholder=${mode === 'detail' ? X.detailPh : X.talkPh} value=${txt} onInput=${e => setTxt(e.target.value)}></textarea></label>
-        <p class="muted" style="font-size:12.5px">${mode === 'detail' ? X.detailNote : X.talkNote}</p>
-        <div class="ap-acts" style="padding:0"><button type="button" class="btn lg" onClick=${reset}>${t.cancel}</button><button class="btn pri lg" type="submit" disabled=${!txt.trim()}>${mode === 'detail' ? X.detailSend : X.talkSend}</button></div></form>`
-    : html`<div class="ap-acts">${left > 0 ? html`<button class="btn lg" onClick=${() => setMode('change')}><${Icon} n="msg" />${t.change}</button>` : html`<button class="btn lg" disabled=${talkOpen} onClick=${() => setMode('talk')}><${Icon} n="msg" />${X.talk}</button>`}<button class="btn pri lg" onClick=${() => onReview({ ok: true })}><${Icon} n="check" />${t.approve}</button></div>
-      <div class="ap-more"><button class="linkbtn" onClick=${() => setMode('detail')}>${X.detail}</button></div>`}
-  </article>`;
-}
-
-/* formulário de entrada, no idioma do cliente */
-function IntakeSheet({ c, lang, who, close }) {
-  const { act } = useApp(); const X = XT[lang] || XT.pt; const t = TX[lang] || TX.pt; const a = c.about || {};
-  const [f, setF] = useState(() => ({ desc: a.desc || '', niche: a.niche || '', goals: [...(a.goals || []), '', '', ''].slice(0, 3), approver: c.contact && c.contact !== '—' ? c.contact : '', ch: [...((c.notify || {}).ch || [])], phone: '', email: '', access: [] }));
-  const [sent, setSent] = useState(false);
-  const tog = (key, v) => setF(o => ({ ...o, [key]: o[key].includes(v) ? o[key].filter(y => y !== v) : [...o[key], v] }));
-  const submit = e => { e.preventDefault(); act.intakeSubmit(c.id, { ...f, goals: f.goals.map(g => g.trim()).filter(Boolean) }, who ? who.id : 'client'); setSent(true); };
-  return html`<div class="p-sheet-wrap" onClick=${e => e.target === e.currentTarget && close()}><form class="p-sheet pp-sheet" role="dialog" aria-modal="true" aria-label=${X.intakeT} onSubmit=${submit}>
-    <div class="mhd"><div><h2>${sent ? X.sentT : X.intakeT}</h2>${!sent && html`<p>${X.intakeS}</p>`}</div><button type="button" class="btn icon ghost" aria-label=${t.cancel} onClick=${close}><${Icon} n="x" /></button></div>
-    ${sent ? html`<div class="mft"><button type="button" class="btn pri" onClick=${close}>OK</button></div>` : html`<div class="mbd pp-body">
-      <label class="field"><span>${X.desc}</span><textarea class="ta" id="in-desc" rows="3" placeholder=${X.descPh} value=${f.desc} onInput=${e => (v => setF(o => ({ ...o, desc: v })))(e.target.value)}></textarea></label>
-      <label class="field"><span>${X.niche}</span><input class="inp" id="in-niche" placeholder=${X.nichePh} value=${f.niche} onInput=${e => (v => setF(o => ({ ...o, niche: v })))(e.target.value)} /></label>
-      <div class="field"><span>${X.goals}</span>${f.goals.map((g, i) => html`<input key=${i} class="inp" id=${'in-goal' + i} aria-label=${X.goals + ' ' + (i + 1)} placeholder=${i === 0 ? X.goalPh : ''} value=${g} onInput=${e => { const v = e.target.value; setF(o => ({ ...o, goals: o.goals.map((y, j) => (j === i ? v : y)) })); }} />`)}</div>
-      <label class="field"><span>${X.approver}</span><input class="inp" id="in-appr" placeholder=${X.approverPh} value=${f.approver} onInput=${e => (v => setF(o => ({ ...o, approver: v })))(e.target.value)} /></label>
-      <div class="field"><span>${X.notifyQ}</span><div class="filter-chips">${['whatsapp', 'email', 'sms'].map(k => html`<button type="button" key=${k} class=${cx(f.ch.includes(k) && 'on')} aria-pressed=${f.ch.includes(k)} onClick=${() => tog('ch', k)}>${X.ch[k]}</button>`)}</div>
-        <div class="two"><input class="inp" id="in-phone" aria-label=${X.phone} placeholder=${X.phone} value=${f.phone} onInput=${e => (v => setF(o => ({ ...o, phone: v })))(e.target.value)} /><input class="inp" id="in-email" type="email" aria-label=${X.email} placeholder=${X.email} value=${f.email} onInput=${e => (v => setF(o => ({ ...o, email: v })))(e.target.value)} /></div></div>
-      <div class="field"><span>${X.access}</span><div class="acc-list">${Object.entries(X.acc).map(([k, l]) => html`<label key=${k} class="acc-it"><input type="checkbox" checked=${f.access.includes(k)} onChange=${() => tog('access', k)} />${l}</label>`)}</div><small class="muted">${X.accessNote}</small></div>
-    </div>
-    <div class="mft"><button type="button" class="btn ghost" onClick=${close}>${t.cancel}</button><button class="btn pri" type="submit">${X.send}</button></div>`}
-  </form></div>`;
-}
-/* criar acesso: nome, e-mail e senha opcional; o link do WhatsApp segue valendo */
-function AccessCard({ c, lang, who, accKey, skip }) {
-  const { act, toast } = useApp(); const X = XT[lang] || XT.pt;
-  const [f, setF] = useState({ name: who ? who.name : (c.contact && c.contact !== '—' ? c.contact : ''), email: who && who.email ? who.email : '', password: '' });
-  const okPw = !f.password || f.password.length >= 8; const ok = f.name.trim() && f.email.includes('@') && okPw;
-  return html`<form class="card acc-card" onSubmit=${e => { e.preventDefault(); if (!ok) return; act.saveAccess(c.id, accKey, f); toast(X.accessOk); }}>
-    <div><b><${Icon} n="key" s=${15} /> ${X.accessT}</b><p class="muted">${X.accessS}</p></div>
-    <div class="acc-grid"><input class="inp" id="ac-name" aria-label=${X.name} placeholder=${X.name} autocomplete="name" value=${f.name} onInput=${e => (v => setF(o => ({ ...o, name: v })))(e.target.value)} />
-      <input class="inp" id="ac-email" type="email" aria-label=${X.email} placeholder=${X.email} autocomplete="email" value=${f.email} onInput=${e => (v => setF(o => ({ ...o, email: v })))(e.target.value)} />
-      <input class=${cx('inp', !okPw && 'bad')} id="ac-pw" type="password" aria-label=${X.password} placeholder=${X.password} autocomplete="new-password" value=${f.password} onInput=${e => (v => setF(o => ({ ...o, password: v })))(e.target.value)} /></div>
-    ${!okPw && html`<small class="err">${X.pwHint}</small>`}
-    <div style="display:flex;gap:8px;justify-content:flex-end"><button type="button" class="btn ghost sm" onClick=${skip}>${X.later}</button><button class="btn pri sm" type="submit" disabled=${!ok}>${X.saveAcc}</button></div>
-  </form>`;
-}
-
-/* resultados: o relatório de uma página por mês que o time publica */
-function PortalResults({ c, lang }) {
-  const { db } = useApp(); const X = XT[lang] || XT.pt;
-  const L = (c.reports || []).filter(r => r.published).sort((a, b) => b.month.localeCompare(a.month));
-  const [mk, setMk] = useState(L[0] ? L[0].month : null); const r = L.find(x => x.month === mk) || L[0];
-  if (!r) return null;
-  const s = r.sum || {};
-  return html`<div class="sec" style="gap:18px"><div><h1 style="font-size:24px">${X.results}</h1><p class="muted" style="margin-top:6px">${capFirst(monthName(r.month, lang))}</p></div>
-    <section class="sec" style="gap:8px"><h2 style="font-size:16px">${X.rDone}</h2><ul class="res-done">${[s.posts ? X.rPosts(s.posts) : null, s.videos ? X.rVideos(s.videos) : null, s.meets ? X.rMeets(s.meets) : null, s.deliv ? X.rDeliv(s.deliv) : null].filter(Boolean).map((l, i) => html`<li key=${i}><${Icon} n="check" s=${14} />${l}</li>`)}</ul></section>
-    ${(r.metrics || []).length > 0 && html`<section class="sec" style="gap:8px"><h2 style="font-size:16px">${X.rNumbers}</h2><div class="res-grid">${r.metrics.map((m, i) => html`<div class="card res-m" key=${i}><span class="muted">${m.name}</span><b>${m.value || '—'}</b>${m.goal && html`<small>${X.rGoal(m.goal)}</small>`}</div>`)}</div></section>`}
-    ${r.note && html`<p class="res-note">${r.note}</p>`}
-    <p class="muted" style="font-size:12.5px">${X.rBy(firstName(db, r.by), fmt(r.at, lang))}</p>
-    ${L.length > 1 && html`<div class="filter-chips"><span class="muted" style="font-size:13px;align-self:center">${X.rOther}</span>${L.map(x => html`<button key=${x.month} class=${cx(x.month === r.month && 'on')} onClick=${() => setMk(x.month)}>${capFirst(monthName(x.month, lang))}</button>`)}</div>`}
-  </div>`;
-}
-
-/* login do cliente: link por e-mail ou senha, no idioma dele */
-function BrandedLogin({ c, back, enter }) {
-  const sysDark = useSysDark(); const th = clientTheme(c, sysDark); const lang = c.lang; const T = (XT[lang] || XT.pt).login;
-  const [mode, setMode] = useState('link'); const [email, setEmail] = useState(''); const [pw, setPw] = useState(''); const [sent, setSent] = useState(false);
-  return html`<div class="blogin" style=${portalStyle(c, th)}><div class="bl-box">
-    <div class="bl-logo"><${ClientLogo} c=${c} dark=${th.mode === 'dark'} /></div>
-    <div><h1>${T[0]}</h1><p class="muted" style="margin-top:8px">${mode === 'link' ? T[1] : ''}</p></div>
-    <div class="seg" style="align-self:flex-start"><button type="button" class=${cx(mode === 'link' && 'on')} onClick=${() => setMode('link')}>${T[5]}</button><button type="button" class=${cx(mode === 'pw' && 'on')} onClick=${() => setMode('pw')}>${T[6]}</button></div>
-    ${mode === 'link' ? html`<form class="bl-form" onSubmit=${e => { e.preventDefault(); if (email.includes('@')) setSent(true); }}><label class="sr" for="bl-email">E-mail</label><input id="bl-email" class="inp" type="email" placeholder=${T[4]} value=${email} onInput=${e => setEmail(e.target.value)} /><button class="btn pri" type="submit">${T[2]}</button></form>`
-      : html`<form class="bl-form col" onSubmit=${e => { e.preventDefault(); if (email.includes('@') && pw) enter(); }}><label class="sr" for="bl-email2">E-mail</label><input id="bl-email2" class="inp" type="email" autocomplete="email" placeholder=${T[4]} value=${email} onInput=${e => setEmail(e.target.value)} /><label class="sr" for="bl-pw">${T[6]}</label><input id="bl-pw" class="inp" type="password" autocomplete="current-password" placeholder=${T[6]} value=${pw} onInput=${e => setPw(e.target.value)} /><button class="btn pri" type="submit" disabled=${!email.includes('@') || !pw}>${T[7]}</button><button type="button" class="linkbtn" style="font-size:13px" onClick=${() => setMode('link')}>${T[8]}</button></form>`}
-    ${sent && html`<p class="muted" style="font-size:13px">✓ ${email}</p>`}
-    <button class="btn" onClick=${enter}>${T[3]}<${Icon} n="arrowR" s=${14} /></button>
-    <div class="bl-foot"><button class="linkbtn" onClick=${back}>← M&O</button><${PoweredBy} lang=${lang} /></div>
-  </div></div>`;
-}
-
-/* ================= v12: o lado do time das rodadas, do relatório, do pacote e dos avisos ================= */
-function RoundsBar({ k, x }) {
-  const { db, act, can, me } = useApp();
-  const used = x.rounds || 0; const max = roundsOf(x); const talk = x.talk; const lr = x.lastRound;
-  if (!used && !talk && !x.uncounted && !x.paidRounds) return html`<p class="muted rb-line"><${Icon} n="msg" s=${13} />Rodadas de ajuste do cliente: 0 de ${max} usadas.</p>`;
-  const mineOrSocio = can('round.grant') || (me && x.assignee === me.id);
-  return html`<div class="rb">
-    <p class="rb-line"><${Icon} n="msg" s=${13} /><b>Rodadas de ajuste: ${used} de ${max} usadas</b>${x.paidRounds ? html` · <span class="tag">${plural(x.paidRounds, 'RODADA COBRADA', 'RODADAS COBRADAS')}</span>` : null}${x.uncounted ? html` · <span class="muted">${plural(x.uncounted, 'devolvida', 'devolvidas')} por erro da M&O</span>` : null}</p>
-    ${lr && x.status === 'ajuste' && html`<div class="rb-round"><span class="label">O que o cliente pediu na rodada ${lr.n}</span><ul>${lr.items.map((it, i) => html`<li key=${i}>${it.slide ? html`<span class="tag">SLIDE ${it.slide}</span> ` : null}${it.pin ? html`<span class="tag">PONTO MARCADO</span> ` : null}${it.text}</li>`)}</ul>
-      ${mineOrSocio && used > 0 && html`<button class="linkbtn" style="font-size:12.5px" onClick=${() => act.uncountRound(k, x.id)}>Não contar esta rodada: o ajuste foi erro da M&O</button>`}</div>`}
-    ${talk && talk.state === 'open' && html`<div class="rb-talk"><span class="label">O cliente quer falar sobre um 3º ajuste</span><p>"${talk.text}"</p>
-      ${can('round.grant') ? html`<div class="rb-acts"><button class="btn sm" onClick=${() => act.resolveTalk(k, x.id, 'free')}>Liberar sem custo</button><button class="btn sm" onClick=${() => act.resolveTalk(k, x.id, 'paid')}>Cobrar à parte</button><button class="btn sm" onClick=${() => act.resolveTalk(k, x.id, 'new')}>Tratar como peça nova</button></div>
-        <small class="muted">Liberar e cobrar abrem uma rodada nova com o pedido dele. Peça nova cria uma ideia na esteira e deixa esta como está.</small>` : html`<small class="muted">Esperando um sócio decidir.</small>`}</div>`}
-    ${talk && talk.state === 'done' && html`<p class="muted rb-line">3º ajuste: ${talk.how === 'free' ? 'liberado sem custo' : talk.how === 'paid' ? 'cobrado à parte' : 'virou peça nova'}${talk.by ? ' por ' + firstName(db, talk.by) : ''}.</p>`}
-  </div>`;
-}
-
-/* o relatório de uma página por mês */
-function monthSum(db, c, mk) {
-  const inM = s => s && s.slice(0, 7) === mk;
-  const posts = db.posts.filter(p => p.clientId === c.id && p.status === 'publicado' && inM(p.date));
-  const videos = db.scripts.filter(s => s.clientId === c.id && s.status === 'noar' && inM(s.since));
-  const meets = Object.values(db.meetingNotes).filter(n => n.shared && n.clientId === c.id && inM(dayOf(n.start)));
-  const deliv = db.tasks.filter(t => t.clientId === c.id && t.type === 'entrega' && t.status === 'done' && inM(t.since));
-  return { posts: posts.length, videos: videos.length, meets: meets.length, deliv: deliv.length, list: [...posts.map(p => 'Post: ' + p.title), ...videos.map(s => 'Vídeo: ' + s.title), ...meets.map(n => 'Reunião: ' + n.title), ...deliv.map(t => 'Entrega: ' + t.title)] };
-}
-function ReportCard({ c }) {
-  const { db, setModal } = useApp(); const mk = monthKey(); const r = (c.reports || []).find(x => x.month === mk);
-  return html`<section class="sec"><div class="sec-h"><h2>Relatório do mês</h2>${r && html`<span class=${'pill t-' + (r.published ? 'ok' : 'neu')}>${r.published ? 'Publicado' : 'Rascunho'}</span>`}</div>
-    <div class="card docs-card"><p class="muted" style="font-size:13px">Uma página por mês no painel do cliente: o que foi feito, que o sistema já sabe, e de 1 a 3 números com o comentário do time. A régua é o custo por reunião agendada.</p>
-      <button class=${cx('btn', !r && 'pri')} style="align-self:flex-start" onClick=${() => setModal({ t: 'report', clientId: c.id })}><${Icon} n="chart" s=${14} />${r ? (r.published ? 'Ver e editar' : 'Continuar o relatório') : 'Montar o relatório de ' + monthName(mk)}</button>
-      ${r && r.published && html`<small class="muted">O cliente vê na aba Resultados, em ${LANG_PT[c.lang]}.</small>`}</div></section>`;
-}
-function ReportEditor({ close, clientId }) {
-  const { db, act } = useApp(); const c = db.clients.find(x => x.id === clientId); const mk = monthKey(); const cur = (c.reports || []).find(x => x.month === mk);
-  const goals = (c.about && c.about.goals) || [];
-  const [m, setM] = useState(() => cur ? structuredClone(cur.metrics || []) : [{ name: 'Custo por reunião agendada', value: '', goal: '' }, ...goals.slice(0, 2).map(g => ({ name: g, value: '', goal: '' }))]);
-  const [note, setNote] = useState(cur ? cur.note || '' : '');
-  const sum = monthSum(db, c, mk);
-  const save = pub => { act.saveReport(c.id, { id: cur ? cur.id : uid('r'), month: mk, sum, metrics: m.filter(x => x.name.trim() && String(x.value || '').trim()), note: note.trim() }, pub); close(); };
-  return html`<div><div class="mhd"><div><h2>Relatório de ${monthName(mk)}: ${c.name}</h2><p>Sai no painel em ${LANG_PT[c.lang]}. Escreva os números e o comentário nessa língua.</p></div><button class="btn icon ghost" aria-label="Fechar" onClick=${close}><${Icon} n="x" /></button></div>
-    <div class="mbd">
-      <div><span class="label">O que fizemos, pelo sistema</span>${sum.list.length ? html`<ul class="ata-ul">${sum.list.slice(0, 12).map((l, i) => html`<li key=${i}>${l}</li>`)}</ul>` : html`<p class="muted" style="font-size:13px;margin-top:6px">Nada publicado nem entregue neste mês ainda. O relatório fica com os números e o comentário.</p>`}</div>
-      <div class="field"><span>Números (de 1 a 3)</span>
-        ${m.map((x, i) => html`<div class="rep-row" key=${i}><input class="inp" aria-label=${'Nome do número ' + (i + 1)} placeholder="O que é" value=${x.name} onInput=${e => setM(m.map((y, j) => (j === i ? { ...y, name: e.target.value } : y)))} /><input class="inp" aria-label="Valor" placeholder="Valor" value=${x.value} onInput=${e => setM(m.map((y, j) => (j === i ? { ...y, value: e.target.value } : y)))} /><input class="inp" aria-label="Meta" placeholder="Meta" value=${x.goal} onInput=${e => setM(m.map((y, j) => (j === i ? { ...y, goal: e.target.value } : y)))} /><button class="btn sm icon ghost" aria-label="Tirar" onClick=${() => setM(m.filter((_, j) => j !== i))}><${Icon} n="x" s=${13} /></button></div>`)}
-        ${m.length < 3 && html`<button class="btn sm" style="align-self:flex-start" onClick=${() => setM([...m, { name: '', value: '', goal: '' }])}><${Icon} n="plus" s=${13} />Número</button>`}
-        <small class="muted">No produto, os números do Meta Ads entram sozinhos, pela API de leitura. No protótipo, você digita.</small></div>
-      <label class="field"><span>O que isso quer dizer e o que vem agora</span><textarea class="ta" id="rep-note" rows="4" value=${note} onInput=${e => setNote(e.target.value)}></textarea></label>
-    </div>
-    <div class="mft"><button class="btn ghost" onClick=${close}>Cancelar</button><button class="btn" onClick=${() => save(false)}>Salvar rascunho</button><button class="btn pri" onClick=${() => save(true)}><${Icon} n="send" s=${14} />Publicar no painel</button></div></div>`;
-}
-
-/* contrato e pacote do mês */
-function ContractSec({ c }) {
-  const { act } = useApp(); const k = c.contract || {}; const p = k.pack || {};
-  const set = patch => act.setContract(c.id, patch); const setP = patch => set({ pack: { ...p, ...patch } });
-  const N = (key, label) => html`<label class="field"><span>${label}</span><input class="inp" id=${'ct-' + key} type="number" min="0" inputmode="numeric" value=${p[key] ?? ''} onChange=${e => setP({ [key]: e.target.value === '' ? null : Math.max(0, Math.round(num(e.target.value))) })} /></label>`;
-  return html`<section class="ab-sec"><h2>Contrato e pacote do mês</h2>
-    <div class="ct-grid"><label class="field"><span>Valor mensal</span><div style="display:flex;gap:6px"><select class="sel" id="ct-cur" style="width:86px" value=${k.currency || 'US$'} onChange=${e => set({ currency: e.target.value })}><option>US$</option><option>R$</option><option>€</option></select><input class="inp" id="ct-fee" inputmode="decimal" value=${k.fee || ''} onChange=${e => set({ fee: e.target.value.trim() })} /></div></label>
-      <label class="field"><span>Início</span><input class="inp" id="ct-start" type="date" value=${k.start || ''} onChange=${e => set({ start: e.target.value || null })} /></label>
-      <label class="field"><span>Renovação</span><input class="inp" id="ct-renew" type="date" value=${k.renew || ''} onChange=${e => set({ renew: e.target.value || null })} /></label></div>
-    <div class="ct-grid">${N('posts', 'Posts por mês')}${N('scripts', 'Vídeos por mês')}${N('meetings', 'Reuniões por mês')}<label class="field"><span>Relatório mensal</span><span class="seg" style="align-self:flex-start"><button type="button" class=${cx(p.report !== false && 'on')} onClick=${() => setP({ report: true })}>Sim</button><button type="button" class=${cx(p.report === false && 'on')} onClick=${() => setP({ report: false })}>Não</button></span></label></div>
-    <p class="muted" style="font-size:12px">O pacote monta o mês no QG e avisa quando a entrega passa do que foi contratado.</p></section>`;
-}
-function PackCard({ c, setTab }) {
-  const { db, act, open } = useApp(); const p = (c.contract || {}).pack || {}; const mk = monthKey(); const inM = s => s && s.slice(0, 7) === mk;
-  const has = p.posts || p.scripts || p.meetings;
-  if (!has) return html`<section class="sec"><div class="sec-h"><h2>Pacote do mês</h2></div><div class="card docs-card"><p class="muted" style="font-size:13px">Cadastre o contrato na aba Sobre para acompanhar o que o mês inclui e o que passou dele.</p><button class="btn sm" style="align-self:flex-start" onClick=${() => setTab('about')}><${Icon} n="package" s=${13} />Cadastrar o contrato</button></div></section>`;
-  const posts = db.posts.filter(x => x.clientId === c.id && inM(x.date)).length;
-  const scripts = db.scripts.filter(x => x.clientId === c.id && inM(x.record)).length;
-  const meets = db.events.filter(e => e.clientId === c.id && inM(e.date)).length;
-  const Row = (label, n, max) => max ? html`<div class="pk-row" key=${label}><span>${label}</span><span class="bar"><i class=${n > max ? 'late' : ''} style=${{ width: Math.min(100, n / max * 100) + '%' }}></i></span><b class="tnum">${n} de ${max}</b>${n > max ? html`<span class="pill t-late">${n - max} a mais</span>` : null}</div>` : null;
-  const gap = p.posts ? Math.max(0, p.posts - posts) : 0;
-  return html`<section class="sec"><div class="sec-h"><h2>Pacote de ${monthName(mk)}</h2></div><div class="card docs-card">
-    ${Row('Posts', posts, p.posts)}${Row('Vídeos', scripts, p.scripts)}${Row('Reuniões', meets, p.meetings)}
-    ${gap > 0 && html`<button class="btn sm" style="align-self:flex-start" onClick=${() => act.buildMonth(c.id, gap, mk)}><${Icon} n="plus" s=${13} />Montar o mês: ${plural(gap, 'post', 'posts')} que faltam</button>`}
-    <small class="muted">Conta o que tem data neste mês, em qualquer etapa da esteira.</small></div></section>`;
-}
-
-/* canal de aviso do cliente */
-function NotifyField({ f, setF }) {
-  const ch = f.notify || []; const tog = k => setF({ ...f, notify: ch.includes(k) ? ch.filter(x => x !== k) : [...ch, k] });
-  return html`<div class="field"><span>Onde fica o cliente</span><div class="seg" style="align-self:flex-start">${COUNTRY.map(([k, l, d]) => html`<button type="button" key=${k} class=${cx(f.country === k && 'on')} onClick=${() => setF({ ...f, country: k, notify: d })}>${l}</button>`)}</div>
-    <span style="margin-top:6px">Avisar por</span><div class="filter-chips">${Object.entries(CHN).map(([k, l]) => html`<button type="button" key=${k} class=${cx(ch.includes(k) && 'on')} aria-pressed=${ch.includes(k)} onClick=${() => tog(k)}>${l}</button>`)}</div>
-    <p class="muted" style="font-size:12px">No Brasil, o WhatsApp está em quase todo celular. Nos EUA, só 32% dos adultos usam, então o aviso vai por e-mail e SMS.</p></div>`;
-}
-function NotifyChips({ c }) {
-  const { act } = useApp(); const ch = (c.notify && c.notify.ch) || ['whatsapp'];
-  const tog = k => { const L = ch.includes(k) ? ch.filter(x => x !== k) : [...ch, k]; if (L.length) act.setClient(c.id, { notify: { ...(c.notify || {}), ch: L } }); };
-  return html`<span class="nt-chips">${Object.entries(CHN).map(([k, l]) => html`<button key=${k} class=${cx('see-chip', ch.includes(k) && 'on')} aria-pressed=${ch.includes(k)} onClick=${() => tog(k)}>${l}</button>`)}</span>`;
-}
-
-/* lembrete e acesso: uma mensagem por lote, no canal do cliente, e um lembrete só */
-function MessageModal({ kind, clientId, close, fresh }) {
-  const app = useApp(); const { db, toast, act } = app;
-  const c = db.clients.find(x => x.id === clientId);
-  const pend = pendingOf(db, clientId, null); const n = pend.length;
-  const chs = (c.notify && c.notify.ch && c.notify.ch.length ? c.notify.ch : ['whatsapp']);
-  const [ch, setCh] = useState(chs[0]);
-  const who = c.contact && c.contact !== '—' ? c.contact.split(' ')[0] : '';
-  const M = MSG[c.lang] || MSG.pt; const M2 = MSG2[c.lang] || MSG2.pt;
-  const url = magicUrl(clientId, kind === 'remind' && n === 1 ? pend[0] : null);
-  const base = kind === 'invite' ? M.invite(who) : M.remind(who, n);
-  const text = ch === 'email' && kind === 'remind' ? M2.mail(who, n, url) : ch === 'sms' && kind === 'remind' ? M2.sms(n, url) : base.replace(/\[[^\]]+\]/, url);
-  const subj = kind === 'remind' ? M2.subj(n) : '';
-  const reminded = kind === 'remind' && c.reminded && diff(c.reminded) >= -3 ? c.reminded : null;
-  const mark = () => { if (kind === 'remind') act.setClient(c.id, { reminded: off(0) }); };
-  const tryLink = () => { close(); mark(); app.setSession({ role: 'cliente', clientId, via: 'link' }); app.setDeep(kind === 'remind' && pend[0] ? { k: pend[0][0], id: pend[0][1].id } : null); };
-  return html`<div>
-    <div class="mhd"><div><h2>${fresh ? `Área de ${c.name} criada` : kind === 'invite' ? `Mandar acesso para ${c.name}` : `Lembrar ${c.name}`}</h2><p>${kind === 'invite' ? 'O link já é o acesso: o cliente entra sem senha e cai direto no painel dele.' : 'Uma mensagem só para todas as peças que esperam por ele, e o link abre direto na primeira.'}</p></div><button class="btn icon ghost" aria-label="Fechar" onClick=${close}><${Icon} n="x" /></button></div>
-    <div class="mbd">
-      ${chs.length > 1 && html`<div class="seg" style="align-self:flex-start">${chs.map(k => html`<button key=${k} class=${cx(ch === k && 'on')} onClick=${() => setCh(k)}>${CHN[k]}</button>`)}</div>`}
-      <span class="wa"><${Icon} n=${ch === 'email' ? 'mail' : 'msg'} s=${14} />${ch === 'whatsapp' ? 'WhatsApp' : ch === 'email' ? 'E-mail' : 'SMS'}, em ${LANG_PT[c.lang]}</span>
-      ${subj && ch === 'email' && html`<p style="font-size:13px"><b>Assunto:</b> ${subj}</p>`}
-      <div class="msg">${text}</div>
-      ${reminded && html`<p class="be-warn">O último lembrete foi ${rel(reminded)}. A regra é um lembrete por lote de peças.</p>`}
-      <p class="muted" style="font-size:12px">${ch === 'whatsapp' ? 'Vai pelo WhatsApp da M&O, à mão, sem custo por mensagem.' : ch === 'email' ? 'No produto, o e-mail sai sozinho pelo sistema.' : 'No produto, o SMS sai sozinho pelo sistema. Nos EUA, o número precisa do registro A2P 10DLC.'} O link vale só para este cliente e expira em 3 dias.</p>
-      <button class="linkbtn" style="font-size:13px" onClick=${tryLink}>Testar: abrir o link como o cliente abre (protótipo)</button></div>
-    <div class="mft"><button class="btn ghost" onClick=${close}>Fechar</button>${ch === 'whatsapp' && html`<a class="btn" href=${'https://wa.me/?text=' + encodeURIComponent(text)} target="_blank" rel="noopener" style="text-decoration:none" onClick=${mark}><${Icon} n="msg" s=${14} />Abrir no WhatsApp</a>`}<button class="btn pri" onClick=${() => copyText((subj && ch === 'email' ? 'Assunto: ' + subj + '\n\n' : '') + text, ok => { toast(ok ? 'Mensagem copiada.' : 'Não deu pra copiar. Selecione o texto e copie.'); if (ok) { mark(); close(); } })}><${Icon} n="copy" s=${14} />Copiar mensagem</button></div>
-  </div>`;
-}
-
-/* histórico das ações novas */
-Object.assign(LOGD, {
-  review: ([k, id, r], p, n) => LI(n, k, id, r && r.ok ? (r.detail ? 'aprovou com um detalhe ' : 'aprovou ') + KW[k] : 'pediu uma rodada de ajuste ' + KN[k]),
-  undoReview: ([k, id], p, n) => LI(n, k, id, 'desfez a decisão ' + KD[k]),
-  talk: ([k, id], p, n) => LI(n, k, id, 'pediu para falar sobre um 3º ajuste ' + KN[k]),
-  resolveTalk: ([k, id, how], p, n) => LI(n, k, id, (how === 'free' ? 'liberou sem custo uma rodada extra ' : how === 'paid' ? 'liberou, para cobrar à parte, uma rodada extra ' : 'transformou em peça nova o pedido ') + KN[k]),
-  uncountRound: ([k, id], p, n) => LI(n, k, id, 'devolveu ao cliente uma rodada, por erro da M&O, ' + KN[k]),
-  moveClient: ([k, id], p, n) => LI(n, k, id, 'mudou de cliente ' + KW[k]),
-  intakeSubmit: ([cid], p, n) => LC(n, cid, 'preencheu o formulário de entrada de', null, 'about'),
-  saveAccess: ([cid], p, n) => LC(n, cid, 'criou o próprio acesso ao painel de'),
-  setContract: ([cid], p, n) => LC(n, cid, 'editou o contrato de', 'contract:' + cid, 'about'),
-  buildMonth: ([cid, k2], p, n) => LC(n, cid, 'montou o pacote do mês com ' + plural(k2, 'ideia', 'ideias') + ' de post em'),
-  saveReport: ([cid, , pub], p, n) => LC(n, cid, pub ? 'publicou o relatório do mês de' : 'salvou o rascunho do relatório de'),
-});
 
 render(html`<${App} />`, document.getElementById('app'));
 </script>

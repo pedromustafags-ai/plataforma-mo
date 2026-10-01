@@ -4,7 +4,7 @@ Protótipo clicável da plataforma de gestão da M&O Company, com a central do t
 cliente, pensada para substituir Notion, ClickUp e Trello. Os dados são de exemplo, tirados do
 trabalho real da M&O, e nada é salvo em servidor: recarregar a página volta ao começo.
 
-- **No ar:** https://claude.ai/artifact/8isLH3dQCDxv73eQGtguWV (versão 11, 29/09/2026)
+- **No ar:** https://claude.ai/artifact/8isLH3dQCDxv73eQGtguWV (versão 12, 30/09/2026)
 - **Este repositório** guarda a cópia exata da versão publicada, para versionar e para servir de ponto
   de partida da versão de verdade.
 
@@ -25,7 +25,7 @@ Depois abra http://localhost:8000 no navegador e escolha um dos acessos de exemp
 |---|---|
 | `index.html` | A página publicada, idêntica à que está no ar. |
 | `img/` | As 51 artes dos carrosséis da M&O usadas nos posts de exemplo. |
-| `fonte/` | A fonte de todas as versões, da v1 à v11, com os scripts que montaram cada uma. O guia está em `fonte/COMO-FUNCIONA.md`. |
+| `fonte/` | A fonte de todas as versões, da v1 à v12, com os scripts que montaram cada uma. O guia está em `fonte/COMO-FUNCIONA.md`. |
 | `decisoes/` | O porquê de cada escolha: as falas do Pedro volta a volta, os handoffs, a memória da plataforma e as pesquisas. O índice está em `decisoes/README.md`. |
 
 ## O que só funciona dentro do claude.ai
@@ -37,7 +37,7 @@ avisa:
 - o link do Drive que vira prévia do post;
 - o copiloto, a ata por IA e o desenho por IA no quadro e no funil.
 
-## O que tem, até a versão 11
+## O que tem, até a versão 12
 
 - Central do time: meu dia, caixa de entrada, visão geral, tarefas, postagens, roteiros, calendário,
   reuniões, quadros, funis, processos internos, equipe e automações.
@@ -54,6 +54,12 @@ avisa:
 - O cliente vê na produção só as etapas que o time liga para ele, adiciona os próprios links e avisa o
   time do que faz.
 - Histórico de tudo o que cada pessoa mudou, do time e dos clientes, para os sócios consultarem.
+- Um endereço por tela: o Voltar do navegador funciona, e o link do cliente abre direto na peça a aprovar,
+  sem tela de login.
+- Duas rodadas de ajuste por peça, cada uma com quantos comentários o cliente quiser, presos ao slide ou a um
+  ponto da imagem; no terceiro pedido, "Falar com a M&O", e um sócio decide.
+- Formulário de entrada, criar acesso com senha opcional, relatório do mês (aba Resultados) e o pacote do
+  contrato, que monta o mês e avisa quando passa do contratado.
 
 ## Histórico das versões
 
@@ -96,16 +102,28 @@ Todas publicadas no mesmo link, entre 25 e 29/09/2026. O detalhe de cada uma est
   arrastado por cima dela; toda paleta do quadro ganha uma bolinha de cor livre, com as três últimas
   cores à mão; o funil ganha o estilo Só o caminho, com etapas e setas e sem número nenhum, ao lado do
   Com números, e três modelos nesse estilo.
+- **v12 (30/09):** depois da pesquisa de navegação, função que falta e experiência do cliente
+  (`decisoes/pesquisas/2026-09-30-navegacao-funcoes-e-experiencia-do-cliente.md`). Cada tela ganha um
+  endereço, e o Voltar funciona; o link do cliente já é o acesso e abre direto na peça; a barra do time sobe a
+  Visão geral para o topo e mostra cada cliente numa linha só; as 12 abas do cliente viram 6, com sub-abas;
+  o "Novo" pergunta de qual cliente é o post; a busca mostra os recentes. No painel do cliente, 5 destinos no
+  celular (Para você, Conteúdo, Reuniões, Resultados e Mais); duas rodadas de ajuste por peça, com vários
+  comentários num envio, ponto marcado na imagem, contador e "o que mudou"; "Aprovar com um detalhe" sem
+  gastar rodada; no terceiro pedido, "Falar com a M&O", e o Sócio libera sem custo, cobra à parte ou trata
+  como peça nova; aprovar em lote; prazo de aprovação à vista. Formulário de entrada, criar acesso com nome,
+  e-mail e senha opcional, login por senha, relatório do mês e pacote do contrato. Lembrete por WhatsApp,
+  e-mail ou SMS, conforme o país do cliente, com um lembrete só por lote.
 
 ## O que está em aberto
 
-- O Pedro testar a v11 dentro do claude.ai, e o link de pasta do Drive virando prévia do post (esse
+- O Pedro testar a v12 dentro do claude.ai, e o link de pasta do Drive virando prévia do post (esse
   caminho não rodou ao vivo; a parte do conector foi conferida de fora em 29/09).
+- O teste de navegação com o Bruno, um colaborador e dois ou três clientes, que confirma o agrupamento das
+  abas do cliente (hoje é hipótese).
 - Qual falta do quadro vem depois: cursores ao vivo, comentários, votação com cronômetro, agrupar e
   guias de alinhamento, exportar.
 - Se o TikTok entra como fonte de tráfego no funil dos clientes.
-- Quem mantém o servidor (cerca de €15 por mês), se a aprovação do cliente fica em dois botões ou ganha
-  mais estados, e se o nível Sócio entra.
+- Qual serviço de servidor foi contratado: a stack da versão de verdade se ajusta a ele.
 - Traduzir o editor de roteiro no painel do cliente, e avisar por WhatsApp ou e-mail quando chega a vez
   de alguém do cliente.
 

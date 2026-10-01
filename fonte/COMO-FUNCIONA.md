@@ -7,7 +7,7 @@ ao Claude (copiloto, ata por IA, desenho por IA).
 
 ## O arquivo que vale hoje
 
-- **`src.html`** é a fonte da versão 11, a que está no ar. Tem dois marcadores, `__LOGO__` e `__ICON__`,
+- **`src.html`** é a fonte da versão 12, a que está no ar. Tem dois marcadores, `__LOGO__` e `__ICON__`,
   onde entram os SVGs do logo da M&O.
 - **`build.py`** lê `src.html`, põe os dois SVGs de `logo/` nos marcadores (recolorindo os preenchimentos
   para as classes `lc`, `lm` e `lw`, que o tema pinta) e grava `index.html` e `test.html`.
@@ -37,17 +37,24 @@ costurar a seguinte.
 | v9 | 28/09 | `src-v8.html` | `v9.js`, `css_v9.txt` | `integrate9.py` (rodado por `make9.sh`) |
 | v10 | 29/09 | `src-v9.html` | `v10.js`, `css_v10.txt` | `integrate10.py` (rodado por `make10.sh`) |
 | v11 | 29/09 | `src-v10.html` | `v11.js`, `css_v11.txt` | `integrate11.py` (rodado por `make11.sh`) |
+| v12 | 30/09 | `src-v11.html` | `v12a.js` a `v12d.js`, `css_v12.txt` | `integrate12.py` (rodado por `make12.sh`) |
 
 Os scripts de costura são registro histórico: eles esperam encontrar o texto exato da versão anterior
 e param com erro se não acharem. O `integrate9.py` confere, a cada troca, que o trecho antigo apareceu
 exatamente uma vez. O `make9.sh` refaz a v9 do zero: copia `src-v8.html` para `src.html`, costura, monta
 e confere a sintaxe do script com `node --check`. O `make10.sh` faz o mesmo para a v10, a partir de
-`src-v9.html`, e o `make11.sh` para a v11, a partir de `src-v10.html`.
+`src-v9.html`, o `make11.sh` para a v11, a partir de `src-v10.html`, e o `make12.sh` para a v12, a partir de
+`src-v11.html`.
 
 A partir da v10, quando uma função inteira muda, o script tira a versão antiga do `src.html` (função
 `drop`) e a nova passa a morar no módulo da versão. Na v10 foram assim `CMark`, `NewClient`,
 `FlowSettings`, `PortalBoard`, `LinkCard`, `PortalLinks` e `Inbox`, todas em `v10.js`. Na v11,
-`mindLayout` (o mapa mental dos dois lados) e `NewFunnel` (o funil novo com o estilo), em `v11.js`.
+`mindLayout` (o mapa mental dos dois lados) e `NewFunnel` (o funil novo com o estilo), em `v11.js`. Na v12,
+`ClientArea`, `NewMenu`, `Portal`, `PortalHome`, `ApprovalCard`, `BrandedLogin` e `MessageModal`, nos quatro
+módulos: `v12a.js` (endereço por tela, navegação do time e as ações novas), `v12b.js` (os textos novos do
+painel do cliente, nas quatro línguas), `v12c.js` (o painel do cliente) e `v12d.js` (rodadas, relatório,
+pacote e avisos do lado do time). O `integrate12.py` tem também `rep_between`, que troca um trecho do início
+de um marcador até o fim do outro.
 
 ## As outras pastas
 

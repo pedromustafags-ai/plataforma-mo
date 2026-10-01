@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: ab2d7709-f116-409b-a64f-d0018981c666
-  modified: 2026-09-29T13:50:33.614Z
+  modified: 2026-09-30T22:13:15.128Z
 ---
 
 Em 25/09/2026 o Pedro decidiu construir um **sistema próprio de gestão para a M&O**, separado do
@@ -176,6 +176,24 @@ pedidos 1 a 5).
   números", trocados no topo do funil. Três modelos no estilo só o caminho. Funil antigo continua com
   números.
 
+**v12 publicada em 30/09 no mesmo link**, depois da pesquisa
+(https://claude.ai/artifact/BGxbjd2zKeQ1zbBodrh9L7) e das respostas do Pedro (registro em
+`pedro/feedbacks/2026-09-30-plataforma-mo-socio-dois-ajustes-e-pesquisa-de-navegacao.md`).
+- **Endereço por tela** (`#c.mo.posts~post.p6` etc.): o Voltar funciona, e o link do cliente `#a.<cliente>[.post.<id>]`
+  já é o acesso e abre direto na peça. Recentes na busca ⌘K.
+- **Time:** Visão geral no topo da barra; cliente numa linha só, sem árvore; as 12 abas do cliente viraram 6
+  (QG, Produção, Calendário, Reuniões, Estratégia, Sobre) com sub-abas; "Novo" pergunta o cliente, e a gaveta do
+  post e do roteiro ganhou o campo Cliente.
+- **Cliente:** 5 destinos no celular (Para você, Conteúdo com Lista/Calendário/Produção, Reuniões, Resultados quando
+  houver relatório, Mais); "Pedir algo" com texto.
+- **As 2 rodadas** (decisão do Pedro): cada rodada junta vários comentários, presos ao slide ou a um ponto da
+  imagem; contador e "o que mudou"; "Aprovar com um detalhe" não gasta rodada; no 3º pedido, "Falar com a M&O", e o
+  **Sócio** decide na peça (liberar sem custo, cobrar à parte, peça nova); a M&O pode devolver uma rodada que foi
+  erro dela. Aprovar em lote, e a próxima peça abre sozinha.
+- Formulário de entrada (preenche Sobre e Marca), criar acesso com senha opcional, login por senha, relatório do
+  mês, pacote do contrato na aba Sobre, e lembrete por WhatsApp, e-mail ou SMS conforme o país, um por lote.
+- **O CRM fica fora da plataforma**, no `prospect.moagency.io`. A plataforma é `central.moagency.io`.
+
 **No GitHub desde 29/09:** repositório privado `github.com/pedromustafags-ai/plataforma-mo`, cópia local em
 `~/Downloads/plataforma-mo`. Tem a página publicada, a fonte da v1 à v11 (`fonte/`, com `build.py` que remonta
 a página a partir de `src.html` e dos logos em `fonte/logo/`), as falas do Pedro, os handoffs, esta memória e as
@@ -190,7 +208,18 @@ que torna "copiloto só do Pedro" também uma regra de termo, não só de custo.
 **Why:** a plataforma é também material de demo da M&O (mostra estrutura sem precisar de caso,
 respeitando a trava do zero cliente da skill `mo-agency`). As ferramentas que ela substitui estão
 em [[trello-pela-api-da-sessao]] e [[clickup-qg-do-evento-rodrigo]].
-**How to apply:** em aberto com ele: quem mantém a infra (~€15/mês) e se a aprovação do cliente
-fica em dois estados (aprova/pede ajuste) ou quatro. Próximo passo é o Pedro navegar o protótipo e testar com o Bruno e com alguém de
+**Respostas de 30/09** (registro em `pedro/feedbacks/2026-09-30-plataforma-mo-socio-dois-ajustes-e-pesquisa-de-navegacao.md`):
+o nível **Sócio fica** (três níveis: Sócio, colaborador, cliente); o cliente **aprova ou pede até 2
+ajustes** por peça (o que acontece no 3º não foi dito); a infraestrutura **já está contratada** (não
+foi dito qual serviço, e a stack se ajusta a ele). E a ordem dele: pesquisar navegação, função que
+falta e experiência do cliente **antes** de qualquer versão nova.
+**A pesquisa de 30/09 está em** https://claude.ai/artifact/BGxbjd2zKeQ1zbBodrh9L7 e em
+`plataforma-mo/decisoes/pesquisas/2026-09-30-navegacao-funcoes-e-experiencia-do-cliente.md`. Veredito: antes de
+função nova, (1) o link do cliente vira o acesso e abre na peça, (2) o ajuste vira rodada com vários
+comentários e contador "1 de 2", (3) 5 destinos no celular do cliente, cliente numa linha na barra do time, e
+um endereço por tela. Esperando o Pedro: a saída do 3º ajuste (recomendei "Falar com a M&O" com o Sócio
+decidindo), se os leads já vivem no CRM do agente, o canal dos clientes dos EUA (só 32% usam WhatsApp) e qual
+infra foi contratada.
+**How to apply:** Próximo passo é o Pedro navegar o protótipo e testar com o Bruno e com alguém de
 fora; só depois stack real (Next.js, Supabase com segurança por linha, repo próprio, fora do
 MVB-OS).

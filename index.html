@@ -1435,6 +1435,24 @@ button.pick-row{width:100%;border:0;background:none;text-align:left;font:inherit
 .bl-form.col{flex-direction:column;align-items:stretch}
 .bl-form.col .inp{min-width:0}
 @container portal (max-width:680px){.p-top .p-brand .logo{height:15px}.p-top .p-brand{min-width:0;flex:0 1 auto}.p-top .p-brand .c-logo{max-width:108px}}
+
+/* ---------- v13: link e horário da reunião ---------- */
+.mt-when{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.props .mt-when .inp{width:auto}
+.mt-url{display:flex;gap:6px;align-items:center;min-width:0}
+.props .mt-url .inp{max-width:none;flex:1;min-width:0}
+.mt-url a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;color:var(--st-cli)}
+.mt-show{display:flex;gap:8px;align-items:center;cursor:pointer}
+.row > a.btn{text-decoration:none;flex:none}
+.mt-up{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 16px}
+.mt-day{width:52px;height:56px;border-radius:12px;background:var(--surface-2);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.mt-day b{font:600 22px var(--sans);font-variant-numeric:tabular-nums}
+.mt-day small{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);margin-top:4px}
+.mt-info{display:flex;flex-direction:column;gap:3px;min-width:0}
+.mt-info .k{font-size:13px;color:var(--text-2)}
+.mt-info b{font-size:16px;font-weight:600;overflow-wrap:anywhere}
+.mt-up a.btn{text-decoration:none;height:44px;border-radius:10px}
+@container portal (max-width:680px){.mt-up{grid-template-columns:auto minmax(0,1fr)}.mt-up a.btn{grid-column:1/-1}}
 </style>
 
 <div id="app"></div>
@@ -1903,6 +1921,7 @@ function App() {
     portalLinkDel: (cid, lid, msg) => commit(d => { const c = d.clients.find(x => x.id === cid); const l = c.links.find(x => x.id === lid); if (!l) return; c.links = c.links.filter(x => x.id !== lid); const by = actorId(); if (c.owner !== by) notify(d, c.owner, noteWho(by), 'tirou um link do painel:', 'link', lid, { cid, label: l.name }); }, msg),
   };
   Object.assign(act, actV12({ commit, notify, me, dbRef }));
+  Object.assign(act, actV13({ commit }));
   Object.keys(act).forEach(k => { const f = act[k]; act[k] = (...a) => { const p = curAct.current; curAct.current = { name: k, args: a }; try { return f(...a); } finally { curAct.current = p; } }; });
 
 
@@ -2684,9 +2703,9 @@ Vinícius: Ainda cedo pra dizer, dois dias de dado. Eu preferia esperar a semana
 Pedro: Concordo. Mas quero o relatório medindo custo por reunião agendada, não custo por lead.
 Vinícius: Então preciso que o Felipe marque no CRM quando a reunião é agendada pelo agente.
 Pedro: Eu falo com ele hoje. Semana que vem a gente olha junto na segunda.` },
-    { key: 'ex:m3', example: true, clientId: 'mo', title: 'Revisão da semana M&O', start: dtOff(3, '10:00'), end: dtOff(3, '10:45'), attendees: team },
+    { key: 'ex:m3', example: true, clientId: 'mo', title: 'Revisão da semana M&O', start: dtOff(3, '10:00'), end: dtOff(3, '10:45'), attendees: team, meet: 'https://meet.google.com/abc-defg-hij' },
   ];
-  return { boards, funnels, meetings, meetingNotes: {}, meetingClient: {}, automations: { au0: true, au1: true, au2: true, au3: false, au4: true },
+  return { boards, funnels, meetings, meetingNotes: {}, meetingClient: {}, meetingShow: { 'ex:m3': true }, automations: { au0: true, au1: true, au2: true, au3: false, au4: true },
     favs: { pedro: ['funnel:f1', 'board:b1'], felipe: ['board:b1'], bruno: ['board:b1'], vinicius: ['funnel:f1'] } };
 }
 function tplVSL(id, clientId) {
@@ -2872,7 +2891,8 @@ function liveMeetings(live) {
 }
 function allMeetings(app) {
   const { db, live } = app;
-  return [...liveMeetings(live), ...db.meetings].map(m => ({ ...m, clientId: db.meetingClient[m.key] !== undefined ? db.meetingClient[m.key] : (m.clientId || null) }));
+  return [...liveMeetings(live), ...db.meetings].map(m => { const clientId = db.meetingClient[m.key] !== undefined ? db.meetingClient[m.key] : (m.clientId || null); const sh = db.meetingShow[m.key];
+    return { ...m, clientId, show: !!clientId && (sh !== undefined ? sh : !!m.manual) }; });
 }
 async function loadLive(setLive) {
   const mcp = await cap('mcp');
@@ -2904,14 +2924,15 @@ function MeetingsView({ clientId }) {
     <span class="mt-time"><b>${hhmm(m.start)}</b><small>${diff(dayOf(m.start)) === 0 ? 'hoje' : fmt(dayOf(m.start))}</small></span>
     <div class="row-main"><div class="row-title">${m.title}</div><div class="row-meta">
       ${c ? html`<${CChip} id=${c.id} />` : html`<span class="tag">SEM CLIENTE</span>`}
-      <span>${plural(m.attendees.length, 'participante')}</span>
-      ${m.meet && html`<span class="src"><${Icon} n="video" s=${12} />Meet</span>`}
+      ${m.attendees.length > 0 && html`<span>${plural(m.attendees.length, 'participante')}</span>`}
+      ${c && m.show && html`<span class="pill t-cli">Cliente vê</span>`}
       ${(m.tactiq || m.transcript) && html`<span class="src"><${Icon} n="script" s=${12} />${m.example ? 'Transcrição de exemplo' : 'Tactiq'}</span>`}
       ${note ? html`<span class="pill t-ok">Resumo pronto</span>` : (m.tactiq || m.transcript) && diff(dayOf(m.start)) <= 0 ? html`<span class="pill t-adj">Resumo pendente</span>` : null}
       ${m.example && html`<span class="tag">EXEMPLO</span>`}
-    </div></div></div>`; };
+    </div></div>${m.meet && notOver(m) && html`<a class="btn sm" href=${m.meet} target="_blank" rel="noopener" onClick=${e => e.stopPropagation()} onKeyDown=${e => e.stopPropagation()}><${Icon} n="video" s=${14} />Entrar</a>`}</div>`; };
   const Sec = (t, items, empty) => html`<section class="sec"><div class="sec-h"><h2>${t}</h2><span class="c">${items.length}</span></div><div class="list">${items.length ? items.map(Row) : html`<div class="empty">${empty}</div>`}</div></section>`;
   return html`<div class="sec" style="gap:20px">
+    <div class="toolbar"><span class="spacer"></span><button class="btn" onClick=${() => open('meeting', app.act.addMeeting(clientId))}><${Icon} n="plus" s=${14} />Nova reunião</button></div>
     <${IntegrationCard} avail=${avail} />
     ${Sec('Hoje', today, 'Nenhuma reunião hoje.')}
     ${Sec('Próximas', next, 'Nada marcado nos próximos dias.')}
@@ -2966,15 +2987,17 @@ ${tx.slice(0, 40000)}`;
     try { const q = `{${emails.map(e => `from:${e} to:${e}`).join(' ')}} newer_than:30d`; const r = await mcp.callTool(SRV.gmail, 'search_threads', { query: q, pageSize: 5 }); setMail({ threads: (r.payload && r.payload.threads) || [] }); } catch (e) { setMail({ error: mcpMsg(e, SRV.gmail) }); } };
   const dur = Math.round((Date.parse(m.end) - Date.parse(m.start)) / 6e4);
   return html`
-    <div class="dtitle">${m.title}</div>
+    ${m.live ? html`<div class="dtitle">${m.title}</div>` : html`<${Title} value=${m.title} onSave=${v => act.setMeeting(m.key, { title: v })} />`}
     <div class="row-meta" style="font-size:13px"><span>${fmt(dayOf(m.start), 'pt', { weekday: 'long', day: 'numeric', month: 'long' })}, ${hhmm(m.start)}${dur > 0 ? ` · ${dur} min` : ''}</span>${m.example && html`<span class="tag">EXEMPLO</span>`}</div>
     <div class="mt-links">
-      ${m.meet && html`<a class="btn sm" href=${m.meet} target="_blank" rel="noopener"><${Icon} n="video" s=${14} />Abrir no Meet</a>`}
+      ${m.meet && html`<a class=${cx('btn sm', notOver(m) && 'pri')} href=${m.meet} target="_blank" rel="noopener"><${Icon} n="video" s=${14} />${joinLabel(m.meet)}</a>`}
       ${m.cal && html`<a class="btn sm" href=${m.cal} target="_blank" rel="noopener"><${Icon} n="cal" s=${14} />Ver na Agenda</a>`}
       ${m.tactiq && html`<a class="btn sm" href=${m.tactiq.url} target="_blank" rel="noopener"><${Icon} n="script" s=${14} />Transcrição no Tactiq</a>`}
     </div>
-    <dl class="props"><dt>Cliente</dt><dd><select class="sel" id="mt-client" value=${m.clientId || ''} onChange=${e => act.linkMeeting(m.key, e.target.value || null)}><option value="">Sem cliente</option>${db.clients.map(c => html`<option value=${c.id}>${c.name}</option>`)}</select></dd>
+    <dl class="props"><${MeetFields} m=${m} /><dt>Cliente</dt><dd><select class="sel" id="mt-client" value=${m.clientId || ''} onChange=${e => act.linkMeeting(m.key, e.target.value || null)}><option value="">Sem cliente</option>${db.clients.map(c => html`<option value=${c.id}>${c.name}</option>`)}</select></dd>
+      <${MeetShow} m=${m} />
       <dt>Participantes</dt><dd style="display:flex;gap:6px;flex-wrap:wrap">${m.attendees.length ? m.attendees.map((a, i) => html`<span class="tag" key=${i} title=${a.email || ''}>${a.name}</span>`) : html`<span class="muted">—</span>`}</dd></dl>
+    ${m.manual && html`<${MeetDel} m=${m} />`}
     <section class="sec" style="gap:12px"><div class="sec-h" style="padding:0"><h2>Ata da reunião</h2>${note && html`<span class="pill t-ok">gerado ${rel(note.at)}</span>`}</div>
       ${!note && !tx && diff(dayOf(m.start)) > 0 && html`<p class="muted">A reunião ainda não aconteceu. Com a automação ligada, o resumo aparece aqui quando ela terminar.</p>`}
       ${!note && !m.transcript && diff(dayOf(m.start)) <= 0 && html`<div class="primary-act" style="flex-direction:column;align-items:stretch">
@@ -4055,17 +4078,6 @@ const MT = {
   es: { tab: 'Reuniones', empty: 'Todavía no hay actas. Después de cada reunión, el resumen aparece aquí.', sum: 'Resumen', dec: 'Decisiones', next: 'Próximos pasos', you: 'Tú', cli: 'Cliente' },
   fr: { tab: 'Réunions', empty: 'Aucun compte rendu pour le moment. Après chaque réunion, le résumé apparaît ici.', sum: 'Résumé', dec: 'Décisions', next: 'Prochaines étapes', you: 'Vous', cli: 'Client' },
 };
-function PortalMeetings({ c, lang }) {
-  const { db } = useApp(); const T = MT[lang] || MT.pt;
-  const list = Object.entries(db.meetingNotes).filter(([k, n]) => n.shared && n.cliente && (n.clientId || (db.meetings.find(m => m.key === k) || {}).clientId || db.meetingClient[k]) === c.id).sort((a, b) => Date.parse(b[1].start) - Date.parse(a[1].start));
-  const who = q => /cliente|client|you|você|tú|vous/i.test(q) ? T.you : q;
-  return html`<div class="sec" style="gap:16px"><h1 style="font-size:24px">${T.tab}</h1>
-    ${list.length ? list.map(([k, n]) => html`<article class="ap ata" key=${k}><div class="ap-h"><span class="k"><span>${fmt(dayOf(n.start), lang, { weekday: 'long', day: 'numeric', month: 'long' })}</span><span>· ${hhmm(n.start)}</span>${n.example && html`<span class="tag">EXEMPLO</span>`}</span><h2>${n.title}</h2></div>
-      <div class="ap-b"><div><span class="label">${T.sum}</span><p style="margin-top:4px">${n.cliente.resumo}</p></div>
-        ${n.cliente.decisoes && n.cliente.decisoes.length > 0 && html`<div><span class="label">${T.dec}</span><ul class="ata-ul">${n.cliente.decisoes.map((d, i) => html`<li key=${i}>${d}</li>`)}</ul></div>`}
-        ${n.cliente.proximos && n.cliente.proximos.length > 0 && html`<div><span class="label">${T.next}</span><ul class="ata-ul">${n.cliente.proximos.map((p, i) => html`<li key=${i}><b>${who(p.quem)}</b> ${p.o}</li>`)}</ul></div>`}</div></article>`) : html`<div class="card empty">${T.empty}</div>`}
-  </div>`;
-}
 function PieceBanner({ t }) {
   const { db, act, open } = useApp(); const x = itemOf(db, t.piece.k, t.piece.id); if (!x) return null;
   const c = db.clients.find(y => y.id === x.clientId); const fl = flowFor(c, t.piece.k); const st = fl.stages.find(s => s.key === t.piece.stage); const nx = nextOf(fl, t.piece.stage);
@@ -6465,6 +6477,98 @@ Object.assign(LOGD, {
   setContract: ([cid], p, n) => LC(n, cid, 'editou o contrato de', 'contract:' + cid, 'about'),
   buildMonth: ([cid, k2], p, n) => LC(n, cid, 'montou o pacote do mês com ' + plural(k2, 'ideia', 'ideias') + ' de post em'),
   saveReport: ([cid, , pub], p, n) => LC(n, cid, pub ? 'publicou o relatório do mês de' : 'salvou o rascunho do relatório de'),
+});
+
+/* ================= v13: link e horário da reunião ================= */
+/* reunião marcada à mão (sem Google Agenda) guarda o link e o horário aqui; a da Agenda mostra o que veio de lá */
+const MT13 = {
+  pt: { up: 'Próximas reuniões', notes: 'Atas', join: 'Entrar na reunião', today: 'Hoje', tomorrow: 'Amanhã', nolink: 'O link aparece aqui antes da reunião.' },
+  en: { up: 'Upcoming meetings', notes: 'Meeting notes', join: 'Join meeting', today: 'Today', tomorrow: 'Tomorrow', nolink: 'The link will show up here before the meeting.' },
+  es: { up: 'Próximas reuniones', notes: 'Actas', join: 'Entrar a la reunión', today: 'Hoy', tomorrow: 'Mañana', nolink: 'El enlace aparecerá aquí antes de la reunión.' },
+  fr: { up: 'Prochaines réunions', notes: 'Comptes rendus', join: 'Rejoindre la réunion', today: "Aujourd'hui", tomorrow: 'Demain', nolink: 'Le lien apparaîtra ici avant la réunion.' },
+};
+Object.keys(MT13).forEach(l => Object.assign(MT[l], MT13[l]));
+const safeUrl = u => { u = String(u || '').trim(); if (!u) return ''; if (!/^[a-z][a-z0-9+.-]*:/i.test(u)) u = 'https://' + u; return /^https?:\/\/[^\s/]+\.[^\s]+$/i.test(u) ? u : ''; };
+const shortUrl = u => String(u || '').replace(/^https?:\/\//i, '').replace(/\/$/, '');
+const meetHost = u => /meet\.google\./i.test(u) ? 'Meet' : /zoom\.us/i.test(u) ? 'Zoom' : /teams\.(microsoft|live)\./i.test(u) ? 'Teams' : '';
+const joinLabel = u => { const h = meetHost(u); return h ? 'Entrar no ' + h : 'Entrar na reunião'; };
+const hm24 = iso => { const x = new Date(iso); return pad(x.getHours()) + ':' + pad(x.getMinutes()); };
+const atDay = (day, hm) => { const x = pd(day); const [h, m] = hm.split(':').map(Number); x.setHours(h, m || 0, 0, 0); return x.toISOString(); };
+const notOver = m => Date.parse(m.end || m.start) > Date.now();
+
+function actV13({ commit }) {
+  return {
+    addMeeting: clientId => { const key = uid('man'); const s = atDay(off(1), '10:00');
+      commit(d => { d.meetings.push({ key, manual: true, clientId: clientId || null, title: 'Nova reunião', start: s, end: new Date(Date.parse(s) + 30 * 6e4).toISOString(), attendees: [], meet: '' }); }, 'Reunião criada'); return key; },
+    setMeeting: (key, patch) => commit(d => { const m = d.meetings.find(x => x.key === key); if (m) Object.assign(m, patch); }),
+    showMeeting: (key, on) => commit(d => { d.meetingShow[key] = on; }, on ? 'O cliente vê esta reunião no painel' : 'Reunião escondida do painel do cliente'),
+    delMeeting: key => commit(d => { d.meetings = d.meetings.filter(x => x.key !== key); delete d.meetingShow[key]; }, 'Reunião apagada'),
+  };
+}
+
+/* as linhas de horário e link na gaveta da reunião */
+function MeetFields({ m }) {
+  const { act, toast } = useApp();
+  const [link, setLink] = useState(m.meet || ''); const [bad, setBad] = useState(false);
+  useEffect(() => { setLink(m.meet || ''); }, [m.meet]);
+  const copy = () => copyText(m.meet, ok => toast(ok ? 'Link copiado.' : 'Não deu para copiar. Selecione o link.'));
+  if (m.live) return html`<dt>Link</dt><dd>${m.meet ? html`<span class="mt-url"><a href=${m.meet} target="_blank" rel="noopener">${shortUrl(m.meet)}</a><button class="btn sm" onClick=${copy}><${Icon} n="copy" s=${14} />Copiar</button></span>` : html`<span class="muted">—</span>`}</dd>`;
+  const dur = Date.parse(m.end) - Date.parse(m.start);
+  const setStart = (day, t) => { if (!day || !t) return; const s = atDay(day, t); act.setMeeting(m.key, { start: s, end: new Date(Date.parse(s) + Math.max(dur, 15 * 6e4)).toISOString() }); };
+  const setEnd = t => { if (!t) return; const e = atDay(dayOf(m.start), t); if (Date.parse(e) <= Date.parse(m.start)) { toast('O fim precisa ser depois do início.'); return; } act.setMeeting(m.key, { end: e }); };
+  const saveLink = () => { const v = link.trim();
+    if (!v) { setBad(false); if (m.meet) act.setMeeting(m.key, { meet: '' }); return; }
+    const u = safeUrl(v); if (!u) { setBad(true); return; }
+    setBad(false); setLink(u); if (u !== m.meet) act.setMeeting(m.key, { meet: u }); };
+  return html`<dt>Horário</dt><dd class="mt-when">
+      <input type="date" class="inp" aria-label="Dia" value=${dayOf(m.start)} onChange=${e => setStart(e.target.value, hm24(m.start))} />
+      <input type="time" class="inp" aria-label="Início" value=${hm24(m.start)} onChange=${e => setStart(dayOf(m.start), e.target.value)} />
+      <span class="muted">até</span>
+      <input type="time" class="inp" aria-label="Fim" value=${hm24(m.end)} onChange=${e => setEnd(e.target.value)} /></dd>
+    <dt><label for="mt-link">Link</label></dt><dd><div class="mt-url">
+      <input id="mt-link" class="inp" type="url" placeholder="Cole o link do Meet, Zoom ou Teams" value=${link} onInput=${e => setLink(e.target.value)} onBlur=${saveLink} onKeyDown=${e => e.key === 'Enter' && e.currentTarget.blur()} />
+      ${m.meet && html`<button class="btn sm" onClick=${copy}><${Icon} n="copy" s=${14} />Copiar</button>`}</div>
+      ${bad && html`<span class="err">Esse endereço não parece um link. Confira e cole de novo.</span>`}</dd>`;
+}
+function MeetShow({ m }) {
+  const { act } = useApp(); if (!m.clientId) return null;
+  return html`<dt>Painel do cliente</dt><dd><label class="mt-show"><input type="checkbox" checked=${m.show} onChange=${e => act.showMeeting(m.key, e.target.checked)} /><span>O cliente vê o horário e o link</span></label></dd>`;
+}
+function MeetDel({ m }) {
+  const { act, setDrawer } = useApp();
+  return html`<button class="btn sm ghost danger" style="align-self:flex-start" onClick=${() => { setDrawer(null); act.delMeeting(m.key); }}><${Icon} n="trash" s=${14} />Apagar reunião</button>`;
+}
+
+/* aba Reuniões do painel do cliente: as próximas, com horário e link, e depois as atas */
+function PortalMeetings({ c, lang }) {
+  const app = useApp(); const { db } = app; const T = MT[lang] || MT.pt;
+  const list = Object.entries(db.meetingNotes).filter(([k, n]) => n.shared && n.cliente && (n.clientId || (db.meetings.find(m => m.key === k) || {}).clientId || db.meetingClient[k]) === c.id).sort((a, b) => Date.parse(b[1].start) - Date.parse(a[1].start));
+  const up = allMeetings(app).filter(m => m.clientId === c.id && m.show && notOver(m)).sort((a, b) => Date.parse(a.start) - Date.parse(b.start));
+  const who = q => /cliente|client|you|você|tú|vous/i.test(q) ? T.you : q;
+  const when = m => { const d = diff(dayOf(m.start)); return d === 0 ? T.today : d === 1 ? T.tomorrow : capFirst(fmt(dayOf(m.start), lang, { weekday: 'long', day: 'numeric', month: 'long' })); };
+  const tm = (iso, tz) => new Date(iso).toLocaleTimeString(LOC(lang), { hour: 'numeric', minute: '2-digit', ...(tz ? { timeZoneName: 'short' } : {}) });
+  const mon = iso => new Intl.DateTimeFormat(LOC(lang), { month: 'short' }).format(new Date(iso)).replace(/\./g, '');
+  return html`<div class="sec" style="gap:16px"><h1 style="font-size:24px">${T.tab}</h1>
+    ${up.length > 0 && html`<section class="sec" style="gap:10px"><div class="sec-h" style="padding:0"><h2>${T.up}</h2></div>
+      ${up.map(m => html`<div class="card mt-up" key=${m.key}>
+        <div class="mt-day"><b>${new Date(m.start).getDate()}</b><small>${mon(m.start)}</small></div>
+        <div class="mt-info"><span class="k">${when(m)} · ${tm(m.start)} – ${tm(m.end, true)}</span><b>${m.title}</b>
+          ${!m.meet && html`<small class="muted">${T.nolink}</small>`}${m.example && html`<span class="tag" style="align-self:flex-start">EXEMPLO</span>`}</div>
+        ${m.meet && html`<a class="btn pri" href=${m.meet} target="_blank" rel="noopener"><${Icon} n="video" s=${16} />${T.join}</a>`}</div>`)}</section>`}
+    ${up.length > 0 && list.length > 0 && html`<div class="sec-h" style="padding:0"><h2>${T.notes}</h2></div>`}
+    ${list.length ? list.map(([k, n]) => html`<article class="ap ata" key=${k}><div class="ap-h"><span class="k"><span>${fmt(dayOf(n.start), lang, { weekday: 'long', day: 'numeric', month: 'long' })}</span><span>· ${hhmm(n.start)}</span>${n.example && html`<span class="tag">EXEMPLO</span>`}</span><h2>${n.title}</h2></div>
+      <div class="ap-b"><div><span class="label">${T.sum}</span><p style="margin-top:4px">${n.cliente.resumo}</p></div>
+        ${n.cliente.decisoes && n.cliente.decisoes.length > 0 && html`<div><span class="label">${T.dec}</span><ul class="ata-ul">${n.cliente.decisoes.map((d, i) => html`<li key=${i}>${d}</li>`)}</ul></div>`}
+        ${n.cliente.proximos && n.cliente.proximos.length > 0 && html`<div><span class="label">${T.next}</span><ul class="ata-ul">${n.cliente.proximos.map((p, i) => html`<li key=${i}><b>${who(p.quem)}</b> ${p.o}</li>`)}</ul></div>`}</div></article>`) : !up.length && html`<div class="card empty">${T.empty}</div>`}
+  </div>`;
+}
+
+/* histórico das ações novas */
+Object.assign(LOGD, {
+  addMeeting: ([cid], p, n) => ({ text: 'marcou uma reunião', clientId: cid || null }),
+  setMeeting: ([key, patch = {}], p, n) => { const m = n.meetings.find(x => x.key === key); return m && { text: patch.meet !== undefined ? 'mudou o link da reunião' : patch.title ? 'renomeou a reunião' : 'mudou o horário da reunião', label: m.title, clientId: m.clientId || null, merge: 'meet:' + key + ':' + Object.keys(patch).join() }; },
+  showMeeting: ([key, on], p, n) => { const m = n.meetings.find(x => x.key === key); return { text: on ? 'mostrou no painel do cliente a reunião' : 'tirou do painel do cliente a reunião', label: m ? m.title : null, clientId: (m && m.clientId) || null }; },
+  delMeeting: ([key], p) => { const m = p.meetings.find(x => x.key === key); return m && { text: 'apagou a reunião', label: m.title, clientId: m.clientId || null }; },
 });
 
 render(html`<${App} />`, document.getElementById('app'));

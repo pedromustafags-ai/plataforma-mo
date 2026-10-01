@@ -1,0 +1,18 @@
+
+/* ---------- v13: link e horário da reunião ---------- */
+.mt-when{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.props .mt-when .inp{width:auto}
+.mt-url{display:flex;gap:6px;align-items:center;min-width:0}
+.props .mt-url .inp{max-width:none;flex:1;min-width:0}
+.mt-url a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;color:var(--st-cli)}
+.mt-show{display:flex;gap:8px;align-items:center;cursor:pointer}
+.row > a.btn{text-decoration:none;flex:none}
+.mt-up{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 16px}
+.mt-day{width:52px;height:56px;border-radius:12px;background:var(--surface-2);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.mt-day b{font:600 22px var(--sans);font-variant-numeric:tabular-nums}
+.mt-day small{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);margin-top:4px}
+.mt-info{display:flex;flex-direction:column;gap:3px;min-width:0}
+.mt-info .k{font-size:13px;color:var(--text-2)}
+.mt-info b{font-size:16px;font-weight:600;overflow-wrap:anywhere}
+.mt-up a.btn{text-decoration:none;height:44px;border-radius:10px}
+@container portal (max-width:680px){.mt-up{grid-template-columns:auto minmax(0,1fr)}.mt-up a.btn{grid-column:1/-1}}

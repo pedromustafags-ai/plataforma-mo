@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: ab2d7709-f116-409b-a64f-d0018981c666
-  modified: 2026-09-30T22:13:15.128Z
+  modified: 2026-10-01T01:04:31.254Z
 ---
 
 Em 25/09/2026 o Pedro decidiu construir um **sistema próprio de gestão para a M&O**, separado do
@@ -193,6 +193,17 @@ pedidos 1 a 5).
 - Formulário de entrada (preenche Sobre e Marca), criar acesso com senha opcional, login por senha, relatório do
   mês, pacote do contrato na aba Sobre, e lembrete por WhatsApp, e-mail ou SMS conforme o país, um por lote.
 - **O CRM fica fora da plataforma**, no `prospect.moagency.io`. A plataforma é `central.moagency.io`.
+
+**v13 publicada em 30/09 no mesmo link** (registro em
+`pedro/feedbacks/2026-09-30-plataforma-mo-reuniao-com-link-e-horario.md`). Pedido dele: *"Nas reuniões, seria
+interessante deixar o link da reunião e horário."*
+- **Nova reunião** no time, com título, dia, início, fim e link (Meet, Zoom, Teams ou qualquer endereço) editáveis;
+  a da Google Agenda mostra o link de lá com "Copiar". "Entrar" direto na linha da reunião de hoje e das próximas.
+- **Painel do cliente:** a aba Reuniões abre com "Próximas reuniões", horário no fuso de quem vê e "Entrar na
+  reunião", nas 4 línguas; as atas vêm abaixo.
+- **Quem vê:** só reunião ligada ao cliente e com "O cliente vê o horário e o link" marcado. A marcada à mão nasce
+  marcada; a da Agenda nasce desmarcada, para reunião interna sobre o cliente não vazar.
+- **Em aberto:** o calendário do cliente lê outra lista de eventos (`db.events`), que não bate com Reuniões.
 
 **No GitHub desde 29/09:** repositório privado `github.com/pedromustafags-ai/plataforma-mo`, cópia local em
 `~/Downloads/plataforma-mo`. Tem a página publicada, a fonte da v1 à v11 (`fonte/`, com `build.py` que remonta

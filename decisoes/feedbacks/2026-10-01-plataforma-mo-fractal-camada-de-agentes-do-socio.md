@@ -40,5 +40,11 @@ AS LEIS QUE SAEM DAÍ
    - outros que uma agência de uma pessoa só precise ter.
 4. **A estrutura vem do modelo One Person Business do Dan Koe.**
 
+ANTES DESTA FALA, ao mandar o vídeo e o site (literal): *"O fractal é um saas de uma agência de uma só pessoa.
+Mas eu gostei do design também e podemos pensar nisso."* A pesquisa mostrou que o Fractal não tem o lado
+do cliente de agência; ele é um espaço de trabalho de uma pessoa com agentes. **Em aberto:** qual design ele
+gostou, o do aplicativo (escuro, enxuto, no estilo do Linear) ou o do site (serifa itálica e fundos de
+pintura). A pergunta foi feita e não teve resposta.
+
 ATENÇÃO NO NOME: o "Felipe" desta diretriz é o Felipe Barcelos, fundador do Fractal. O Felipe da M&O
 é o desenvolvedor do agente de WhatsApp. São pessoas diferentes.
